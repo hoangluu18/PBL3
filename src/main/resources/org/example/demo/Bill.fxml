@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1022.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.HelloController">
+   <children>
+      <VBox layoutX="32.0" layoutY="140.0" prefHeight="131.0" prefWidth="630.0">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="Bill ID">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <TextField prefHeight="63.0" prefWidth="630.0" promptText="" style="-fx-background-radius: 5;" />
+         </children>
+      </VBox>
+      <VBox layoutX="744.0" layoutY="140.0" prefHeight="131.0" prefWidth="630.0">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="Order Date">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <DatePicker prefHeight="63.0" prefWidth="630.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="72.0" layoutY="403.0" prefHeight="75.0" prefWidth="250.0" />
+      <VBox layoutX="402.0" layoutY="403.0" prefHeight="75.0" prefWidth="250.0" />
+      <VBox layoutX="32.0" layoutY="298.0" prefHeight="131.0" prefWidth="630.0">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="Staff">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <TextField prefHeight="63.0" prefWidth="630.0" style="-fx-background-radius: 5;" />
+         </children>
+      </VBox>
+      <VBox layoutX="744.0" layoutY="298.0" prefHeight="131.0" prefWidth="630.0">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="Customer">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <TextField prefHeight="63.0" prefWidth="630.0" style="-fx-background-radius: 5;" />
+         </children>
+      </VBox>
+      <Label layoutX="29.0" layoutY="449.0" style="-fx-font-weight: bold;" text="Item">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TableView layoutX="29.0" layoutY="511.0" prefHeight="299.0" prefWidth="1350.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label layoutX="29.0" layoutY="828.0" style="-fx-font-weight: bold;" text="Total Price">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="1173.0" layoutY="828.0" style="-fx-font-weight: bold;" text="VND">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button layoutX="952.0" layoutY="902.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="168.0" style="-fx-background-radius: 5; -fx-font-weight: bold;" text="Save">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+      <Button layoutX="1158.0" layoutY="902.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="225.0" style="-fx-background-radius: 5; -fx-font-weight: bold;" text="Purchase">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
