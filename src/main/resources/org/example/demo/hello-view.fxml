@@ -24,14 +24,6 @@
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Label layoutX="806.0" layoutY="285.0" style="-fx-font-weight: bold; -fx-font-style: italic;" text="Manager">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <Label layoutX="942.0" layoutY="285.0" style="-fx-font-style: italic;" text="Staff">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
       <Label layoutX="806.0" layoutY="46.0" style="-fx-underline: true; -fx-font-style: italic; -fx-font-weight: bold;" text="Login">
          <font>
             <Font size="36.0" />
@@ -39,7 +31,7 @@
       </Label>
       <VBox layoutX="806.0" layoutY="329.0" prefHeight="91.0" prefWidth="565.0">
          <children>
-            <Label text="Company">
+            <Label style="-fx-font-weight: bold;" text="Company">
                <font>
                   <Font size="20.0" />
                </font>
@@ -49,7 +41,7 @@
       </VBox>
       <VBox layoutX="806.0" layoutY="554.0" prefHeight="91.0" prefWidth="565.0">
          <children>
-            <Label text="Password">
+            <Label style="-fx-font-weight: bold;" text="Password">
                <font>
                   <Font size="20.0" />
                </font>
@@ -59,7 +51,7 @@
       </VBox>
       <VBox layoutX="806.0" layoutY="438.0" prefHeight="91.0" prefWidth="565.0">
          <children>
-            <Label text="Account">
+            <Label style="-fx-font-weight: bold;" text="Account">
                <font>
                   <Font size="20.0" />
                </font>
@@ -67,5 +59,15 @@
             <TextField prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-background-radius: 5;" />
          </children>
       </VBox>
+      <Button layoutX="806.0" layoutY="249.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: true;" text="Manager">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="953.0" layoutY="249.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: false;" text="Staff">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
