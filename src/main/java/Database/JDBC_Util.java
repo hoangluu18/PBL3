@@ -17,7 +17,7 @@ public class JDBC_Util {
             // thong so ket noi
             String url = "jdbc:mysql://localhost:3306/pbl3";
             String username = "root"; //sua theo may cua ban
-            String password = "Pmshoanghot1@"; //sua theo may cua ban
+            String password = "123456"; //sua theo may cua ban
 
             c = DriverManager.getConnection(url,username,password);
         }catch (SQLException e){

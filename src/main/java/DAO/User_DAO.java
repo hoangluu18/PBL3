@@ -141,6 +141,32 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         return null;
     }
 
+    public ArrayList<User> checklg(String condition, String account, String password) {
+
+        String sql = "SELECT * FROM users WHERE " + condition; //+ condition;
+        ArrayList<User> listUser = new ArrayList<User>();
+        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1,account);
+            statement.setString(2,password);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                User user = new User();
+                user.setUser_id(resultSet.getInt("user_id"));
+                user.setUserName(resultSet.getString("userName"));
+                user.setPassword(resultSet.getString("password"));
+                user.setRole(resultSet.getInt("role"));
+                listUser.add(user);
+            }
+            JDBC_Util.closeConnection(connection);
+            return listUser;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     public static User_DAO getInstance(){
         return new User_DAO();
     }
