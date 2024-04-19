@@ -1,3 +1,6 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+#ingnore JDBC_Util
+/JDBC_Util/
