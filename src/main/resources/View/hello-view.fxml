@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1022.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1022.0" prefWidth="1440.0" style="-fx-background-color: FFF5E0;" styleClass="button1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HelloController">
    <children>
-      <Button fx:id="signinbutton" layoutX="806.0" layoutY="587.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 15; -fx-font-weight: bold;" text="SIGN IN">
+      <Button fx:id="signinbutton" layoutX="806.0" layoutY="587.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30; -fx-text-fill: White; -fx-font-weight: bold; -fx-background-color: black;" text="SIGN IN">
          <font>
             <Font size="24.0" />
          </font></Button>
@@ -37,15 +37,15 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="manaccount" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-background-radius: 5;" />
+            <TextField fx:id="manaccount" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-background-radius: 5;" stylesheets="@../hello-view.css" />
          </children>
       </VBox>
-      <Button fx:id="manapicked" layoutX="806.0" layoutY="249.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: true; -fx-font-size: 24;" text="Manager">
+      <Button fx:id="manapicked" layoutX="806.0" layoutY="249.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: true; -fx-font-size: 24;" styleClass="head-button" text="MANAGER">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="staffunpick" layoutX="953.0" layoutY="249.0" mnemonicParsing="false" onAction="#testklaralefttoright" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: false; -fx-font-size: 24;" text="Staff">
+      <Button fx:id="staffunpick" layoutX="953.0" layoutY="249.0" mnemonicParsing="false" onAction="#testklaralefttoright" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: false; -fx-font-size: 24;" text="STAFF">
          <font>
             <Font size="24.0" />
          </font>
