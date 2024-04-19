@@ -6,6 +6,9 @@ public class User {
     private String password;
     private int role;// 0: admin, 1: employee
 
+    public static final int ADMIN = 0;
+    public static final int EMPLOYEE = 1;
+
     public String getUserName() {
         return userName;
     }
