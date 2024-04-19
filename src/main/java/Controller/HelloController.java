@@ -1,17 +1,12 @@
-package org.example.demo;
+package Controller;
 
 import DAO.User_DAO;
-import Model.User;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-
-import java.util.ArrayList;
 
 public class HelloController {
     int managercheck = 1;
@@ -56,8 +51,17 @@ public class HelloController {
         String pass = manapassword.getText()  ;
 
         //ArrayList<User> a = User_DAO.getInstance().findByCondition("userName = " + account + "And Where password = " + pass);
-        String condition = "userName = ? AND password = ?";
-        ArrayList<User> a = User_DAO.getInstance().checklg(condition, account, pass);
+//        String condition = "userName = ? AND password = ?";
+//        ArrayList<User> a = User_DAO.getInstance().checklg(condition, account, pass);
+
+        String condition = "userName = " + account + " AND password = " + pass;
+
+        if(User_DAO.getInstance().findByCondition(condition) == null){
+            System.out.println("null");
+        }
+        else{
+            System.out.println("not null");
+        }
 
 
 //        ArrayList<User> b = User_DAO.getInstance().findAll();
@@ -66,14 +70,14 @@ public class HelloController {
 //        }
 //        System.out.println("text    Account: " + account + ", Password: " + pass);
 
-        if(a != null) {
-            if (a.isEmpty()) {
-                System.out.println("Fail");
-            } else {
-                System.out.println("OK ngon vcl");
-            }
-        } else {
-            System.out.println("da co loi");
-        }
+//        if(a != null) {
+//            if (a.isEmpty()) {
+//                System.out.println("Fail");
+//            } else {
+//                System.out.println("OK ngon vcl");
+//            }
+//        } else {
+//            System.out.println("da co loi");
+//        }
     }
 }

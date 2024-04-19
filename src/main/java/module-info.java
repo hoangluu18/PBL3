@@ -6,6 +6,10 @@ module org.example.demo {
     requires jdk.compiler;
 
 
-    opens org.example.demo to javafx.fxml;
-    exports org.example.demo;
+    opens View to javafx.fxml;
+    exports View;
+    exports Controller;
+    opens Controller to javafx.fxml;
+    exports Test;
+    opens Test to javafx.fxml;
 }
