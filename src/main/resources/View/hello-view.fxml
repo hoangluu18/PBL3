@@ -37,7 +37,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="manaccount" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-background-radius: 5;" stylesheets="@../hello-view.css" />
+            <TextField fx:id="manaccount" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-background-radius: 5;" styleClass="txtfield" stylesheets="@../../java/CSS/hello-view.css" />
          </children>
       </VBox>
       <Button fx:id="manapicked" layoutX="806.0" layoutY="249.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-style: italic; -fx-underline: true; -fx-font-size: 24;" styleClass="head-button" text="MANAGER">
