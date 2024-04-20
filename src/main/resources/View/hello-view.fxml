@@ -84,7 +84,7 @@
          <children>
             <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Picture/Shop%20Management.png" />
+                  <Image url="@../Picture/ShopManagement.png" />
                </image>
             </ImageView>
             <Label layoutX="178.0" layoutY="676.0" text="SHOP MANAGEMENT" textFill="WHITE">
