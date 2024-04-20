@@ -17,7 +17,7 @@ public class HelloController {
     @FXML
     private TextField manapassword;
     @FXML
-    private ImageView klara;  // =  new ImageView(new Image("380263196_1029616164859701_6755985423599262347_n.jpg"));
+    private ImageView klara;
 
 
 
