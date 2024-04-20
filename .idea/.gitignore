@@ -3,4 +3,4 @@
 /workspace.xml
 
 #ingnore JDBC_Util
-/JDBC_Util/
+/src/main/java/Database/JDBC_Util.java
