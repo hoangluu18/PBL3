@@ -9,78 +9,78 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1022.0" prefWidth="1440.0" style="-fx-background-radius: 10;" styleClass="anchor" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HelloController">
+<AnchorPane prefHeight="982.0" prefWidth="1512.0" style="-fx-background-radius: 10;" styleClass="anchor" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Hello_viewController">
     <children>
-      <AnchorPane disable="true" layoutX="735.0" layoutY="3.0" prefHeight="1020.0" prefWidth="705.0" visible="false">
+      <AnchorPane layoutX="759.0" layoutY="3.0" prefHeight="1022.0" prefWidth="754.0">
          <children>
-              <Button fx:id="signinbutton" layoutX="78.0" layoutY="743.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN IN">
+              <Button fx:id="sigin_btn" layoutX="93.0" layoutY="733.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN IN">
                   <font>
                       <Font name="Inter Black" size="24.0" />
                   </font>
             </Button>
-            <Pane layoutX="74.0" layoutY="104.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-radius: 10;" styleClass="under_line" />
-              <Label layoutX="73.0" layoutY="54.0" text="LOGIN">
+            <Pane layoutX="85.0" layoutY="135.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+              <Label layoutX="86.0" layoutY="75.0" prefHeight="64.0" prefWidth="180.0" text="LOGIN">
                   <font>
-                      <Font name="Inter Black" size="42.0" />
+                      <Font name="Inter Black" size="52.0" />
                   </font>
               </Label>
-              <Button fx:id="manapicked" layoutX="56.0" layoutY="222.0" mnemonicParsing="false" style="-fx-underline: true;" styleClass="switch-btn" text="Manager">
+              <Button layoutX="78.0" layoutY="222.0" mnemonicParsing="false" style="-fx-underline: true;" styleClass="switch-btn" text="Manager">
                   <font>
                       <Font name="Inter Black" size="24.0" />
                   </font>
               </Button>
-              <Button fx:id="staffunpick" layoutX="194.0" layoutY="223.0" mnemonicParsing="false" onAction="#testklaralefttoright" styleClass="switch-btn" text="Staff">
+              <Button layoutX="216.0" layoutY="223.0" mnemonicParsing="false" styleClass="switch-btn" text="Staff">
                   <font>
                       <Font name="Inter Bold" size="24.0" />
                   </font>
               </Button>
-                <Label layoutX="86.0" layoutY="353.0" text="Account">
+                <Label layoutX="106.0" layoutY="353.0" text="Account">
                     <font>
                         <Font name="Inter Medium" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="manaccount" layoutX="74.0" layoutY="383.0" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
-                <Label layoutX="85.0" layoutY="486.0" text="Password">
+                <TextField fx:id="mana_log_account" layoutX="98.0" layoutY="383.0" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
+                <Label layoutX="104.0" layoutY="486.0" text="Password">
                     <font>
                         <Font name="Inter Medium" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="manapassword" layoutX="74.0" layoutY="515.0" prefHeight="54.0" prefWidth="567.0" promptText="Password" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
+                <TextField fx:id="mana_log_password" layoutX="97.0" layoutY="516.0" prefHeight="54.0" prefWidth="567.0" promptText="Password" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
          </children>
       </AnchorPane>
         <AnchorPane prefHeight="1025.0" prefWidth="722.0">
             <children>
-                <Button fx:id="signinbutton1" layoutX="81.0" layoutY="742.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN UP">
+                <Button layoutX="81.0" layoutY="742.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN UP">
                     <font>
                         <Font name="Inter Black" size="24.0" />
                     </font>
                 </Button>
-                <Label layoutX="86.0" layoutY="50.0" text="REGISTER">
+                <Label layoutX="86.0" layoutY="73.0" text="REGISTER">
                     <font>
-                        <Font name="Inter Black" size="42.0" />
+                        <Font name="Inter Black" size="52.0" />
                     </font>
                 </Label>
-                <Button fx:id="manaunpick" layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#testklararighttoleft" styleClass="switch-btn" text="Manager">
+                <Button layoutX="77.0" layoutY="252.0" mnemonicParsing="false" styleClass="switch-btn" text="Manager">
                     <font>
                         <Font name="Inter Bold" size="24.0" />
                     </font>
                 </Button>
-            <Pane layoutX="88.0" layoutY="100.0" prefHeight="10.0" prefWidth="150.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+            <Pane layoutX="88.0" layoutY="132.0" prefHeight="10.0" prefWidth="183.0" style="-fx-background-radius: 10;" styleClass="under_line" />
                   <Label layoutX="93.0" layoutY="352.0" text="Account">
                       <font>
                           <Font name="Inter Medium" size="20.0" />
                       </font>
                   </Label>
-                  <TextField fx:id="manaccount1" layoutX="79.0" layoutY="381.0" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
+                  <TextField layoutX="79.0" layoutY="381.0" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
                   <Label layoutX="91.0" layoutY="488.0" text="Password">
                       <font>
                           <Font name="Inter Medium" size="20.0" />
                       </font>
                   </Label>
-                  <TextField fx:id="manapassword1" layoutX="81.0" layoutY="517.0" prefHeight="54.0" prefWidth="565.0" promptText="Password" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
+                  <TextField layoutX="81.0" layoutY="517.0" prefHeight="54.0" prefWidth="565.0" promptText="Password" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
             </children>
         </AnchorPane>
-      <AnchorPane prefHeight="1022.0" prefWidth="738.0" styleClass="anchor_child">
+      <AnchorPane prefHeight="1024.0" prefWidth="756.0" styleClass="anchor_child">
          <children>
             <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -92,16 +92,16 @@
                   <Font name="Inter SemiBold" size="35.0" />
                </font>
             </Label>
-            <Button layoutX="122.0" layoutY="752.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="486.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="sign-in_btn" text="CREATE ACCOUNT">
+            <Button layoutX="122.0" layoutY="741.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="500.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="sign-in_btn" text="CREATE ACCOUNT">
                <font>
                   <Font name="Inter Black" size="24.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="738.0" layoutY="-1.0" prefHeight="1023.0" prefWidth="704.0">
+      <AnchorPane layoutX="738.0" layoutY="-1.0" prefHeight="1023.0" prefWidth="704.0" visible="false">
          <children>
-            <Button fx:id="signinbutton2" layoutX="76.0" layoutY="748.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN IN">
+            <Button layoutX="76.0" layoutY="748.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN IN">
                <font>
                   <Font name="Inter Black" size="24.0" />
                </font>
@@ -112,18 +112,18 @@
                   <Font name="Inter Black" size="42.0" />
                </font>
             </Label>
-            <Button fx:id="manapicked1" layoutX="54.0" layoutY="226.0" mnemonicParsing="false" styleClass="switch-btn" text="Manager">
+            <Button layoutX="54.0" layoutY="226.0" mnemonicParsing="false" styleClass="switch-btn" text="Manager">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="staffunpick1" layoutX="192.0" layoutY="227.0" mnemonicParsing="false" onAction="#testklaralefttoright" style="-fx-underline: true;" styleClass="switch-btn" text="Staff">
+            <Button layoutX="192.0" layoutY="227.0" mnemonicParsing="false" style="-fx-underline: true;" styleClass="switch-btn" text="Staff">
                <font>
                   <Font name="Inter Black" size="24.0" />
                </font>
             </Button>
-            <TextField fx:id="manaccount2" layoutX="71.0" layoutY="387.0" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
-            <TextField fx:id="manapassword2" layoutX="71.0" layoutY="519.0" prefHeight="54.0" prefWidth="567.0" promptText="Password" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
+            <TextField layoutX="71.0" layoutY="387.0" prefHeight="54.0" prefWidth="565.0" promptText="Email or user name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
+            <TextField layoutX="71.0" layoutY="519.0" prefHeight="54.0" prefWidth="567.0" promptText="Password" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd" />
             <Label layoutX="84.0" layoutY="357.0" text="Account">
                <font>
                   <Font name="Inter Medium" size="20.0" />
