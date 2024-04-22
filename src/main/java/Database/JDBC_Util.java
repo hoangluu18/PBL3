@@ -34,8 +34,6 @@ public class JDBC_Util {
             }
         }catch (SQLException e){
             e.printStackTrace();
-
-
         }
     }
 }
