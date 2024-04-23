@@ -9,26 +9,14 @@ import java.util.ArrayList;
 
 public class testDAO {
     public static void main(String[] rags) {
-        //test OrderDetail_DAO
-//        OrderDetail o1 = OrderDetail_DAO.getInstance().findById(1);
-//        System.out.println(o1.getOrder_detail_id());
-//        System.out.println(o1.getOrder_id());
-//        System.out.println(o1.getProduct_id());
-//        System.out.println(o1.getQuantity());
-//        System.out.println(o1.getUnit_price());
+        User user = new User();
+        user.setUserName("admin");
+        user.setPassword("0000");
+        user.setRole(User.ADMIN);
 
-         //test condition OrderDetail_DAO
-       ArrayList<OrderDetail> list = OrderDetail_DAO.getInstance().findByCondition("order_id = 1");
-        for (OrderDetail o : list) {
-            System.out.println(o.getOrder_detail_id());
-            System.out.println(o.getOrder_id());
-            System.out.println(o.getProduct_id());
-            System.out.println(o.getQuantity());
-            System.out.println(o.getUnit_price());
+        if(User_DAO.getInstance().insert(user) == User_DAO.isDuplicate) {// check duplicate account
+            System.out.println("Duplicate account, try again");
         }
-
-        //test User_DAO
-
 
 
 

@@ -84,6 +84,12 @@ public class Hello_viewController {
     }
 
     @FXML
-    public void registration(ActionEvent actionEvent) {
+    public void registration(ActionEvent actionEvent) {// click button sign_up button
+        User user = new User();
+        user.setUserName(sign_account.getText());
+        user.setPassword(sign_password.getText());
+        user.setRole(User.ADMIN);
+
+        User_DAO.getInstance().insert(user);
     }
 }
