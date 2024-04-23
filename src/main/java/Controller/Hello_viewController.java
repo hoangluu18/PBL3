@@ -2,6 +2,7 @@ package Controller;
 import DAO.User_DAO;
 import Database.JDBC_Util;
 import Model.User;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.Alert;
@@ -9,8 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,6 +39,15 @@ public class Hello_viewController {
     private PasswordField sign_password;
     @FXML
     private TextField sign_account;
+    @FXML
+    private Button staffBtn;
+    @FXML
+    private Button manaBtn;
+    private int role = 0;
+    @FXML
+    private Pane highlightPane;
+    @FXML
+    private AnchorPane switch_anchor;
 
 
     @FXML
@@ -73,10 +86,26 @@ public class Hello_viewController {
 
     @FXML
     public void staffStatus(ActionEvent actionEvent) {
+        staffBtn.getStyleClass().add("selected_btn");
+        manaBtn.getStyleClass().remove("selected_btn");
+        manaBtn.getStyleClass().add("switch-btn");
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), highlightPane);
+        tt.setToX(staffBtn.getLayoutX() - manaBtn.getLayoutX());
+        tt.play();
+        highlightPane.setPrefWidth(staffBtn.getWidth());
+        this.role = 1;
     }
 
     @FXML
     public void managerStatus(ActionEvent actionEvent) {
+        manaBtn.getStyleClass().add("selected_btn");
+        staffBtn.getStyleClass().remove("selected_btn");
+        staffBtn.getStyleClass().add("switch-btn");
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), highlightPane);
+        tt.setToX(manaBtn.getLayoutX() - manaBtn.getLayoutX());
+        tt.play();
+        highlightPane.setPrefWidth(manaBtn.getWidth());
+        this.role = 0;
     }
 
     @FXML

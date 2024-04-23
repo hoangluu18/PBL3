@@ -36,6 +36,8 @@
     -fx-background-color: black;
 }
 
-.text-field .text{
-    -fx-font-size: 20px;
+.selected_btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
 }
