@@ -89,7 +89,19 @@ public class Hello_viewController {
         user.setUserName(sign_account.getText());
         user.setPassword(sign_password.getText());
         user.setRole(User.ADMIN);
-
-        User_DAO.getInstance().insert(user);
+        if(User_DAO.getInstance().insert(user) == User_DAO.isDuplicate){
+            this.alert = new Alert(Alert.AlertType.ERROR);
+            this.alert.setTitle("Error Message");
+            this.alert.setHeaderText((String)null);
+            this.alert.setContentText("Duplicate account, try again");
+            this.alert.showAndWait();
+        }
+        else {
+            this.alert = new Alert(Alert.AlertType.INFORMATION);
+            this.alert.setTitle("Information Message");
+            this.alert.setHeaderText((String)null);
+            this.alert.setContentText("Successfully Sign Up!");
+            this.alert.showAndWait();
+        }
     }
 }
