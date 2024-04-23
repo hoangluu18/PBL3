@@ -16,149 +16,153 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="584.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <AnchorPane prefHeight="60.0" prefWidth="900.0" styleClass="nav-header">
-            <children>
-                <ImageView fitHeight="30.0" fitWidth="122.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Picture/Salework-logo-full.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="129.0" layoutY="13.0" text="Home">
-                    <font>
-                        <Font name="Inter Black" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="213.0" layoutY="13.0" text="Product">
-                    <font>
-                        <Font name="Inter Black" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="323.0" layoutY="13.0" text="Staff">
-                    <font>
-                        <Font name="Inter Black" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="400.0" layoutY="13.0" text="Bill">
-                    <font>
-                        <Font name="Inter Black" size="20.0" />
-                    </font>
-                </Label>
-                <Avatar accessibleRole="IMAGE_VIEW" layoutX="830.0" layoutY="12.0">
-                    <image>
-                        <Image url="@../Picture/Ava.jpg" />
-                    </image>
-                </Avatar>
-                <Label layoutX="751.0" layoutY="21.0" text="NameLabel" />
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="anchorStaff" layoutX="-1.0" layoutY="50.0" prefHeight="533.0" prefWidth="900.0" visible="false">
-            <children>
-                <Line endX="508.33331298828125" endY="-7.62939453125E-6" layoutX="338.0" layoutY="29.0" startX="-104.33332824707031" startY="-7.62939453125E-6" />
-                <Label layoutX="18.0" layoutY="-1.0" prefHeight="60.0" prefWidth="511.0" style="-fx-font-weight: bold;" text="Staff Information">
-                    <font>
-                        <Font name="Inter Bold" size="24.0" />
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="60.0" text="Staff ID:">
-                    <font>
-                        <Font name="Inter Bold" size="18.0" />
-                    </font>
-                </Label>
-                <TextField layoutX="100.0" layoutY="60.0" prefHeight="25.0" prefWidth="300.0" />
-                <Label layoutX="20.0" layoutY="100.0" text="Name:">
-                    <font>
-                        <Font name="Inter Bold" size="18.0" />
-                    </font>
-                </Label>
-                <TextField layoutX="100.0" layoutY="100.0" prefHeight="25.0" prefWidth="300.0" />
-                <Label layoutX="20.0" layoutY="140.0" text="Address:">
-                    <font>
-                        <Font name="Inter Bold" size="18.0" />
-                    </font>
-                </Label>
-                <TextField layoutX="100.0" layoutY="140.0" prefHeight="25.0" prefWidth="300.0" />
-                <Label layoutX="435.0" layoutY="60.0" text="Email:">
-                    <font>
-                        <Font name="Inter Bold" size="18.0" />
-                    </font>
-                </Label>
-                <TextField layoutX="560.0" layoutY="60.0" prefHeight="25.0" prefWidth="300.0" />
-                <Label layoutX="435.0" layoutY="100.0" text="Password:">
-                    <font>
-                        <Font name="Inter Bold" size="18.0" />
-                    </font>
-                </Label>
-                <TextField layoutX="560.0" layoutY="100.0" prefHeight="25.0" prefWidth="300.0" />
-                <Label layoutX="435.0" layoutY="140.0" text="Phone num:">
-                    <font>
-                        <Font name="Inter Bold" size="18.0" />
-                    </font>
-                </Label>
-                <TextField layoutX="560.0" layoutY="141.0" prefHeight="25.0" prefWidth="300.0" />
-                <Button layoutX="520.0" layoutY="185.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Add">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Button>
-                <Button layoutX="647.0" layoutY="185.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Edit">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Button>
-                <Button layoutX="767.0" layoutY="185.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Delete">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Button>
-                <TableView layoutX="39.0" layoutY="253.0" prefHeight="265.0" prefWidth="822.0">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                </TableView>
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="anchorBill" layoutY="60.0" prefHeight="524.0" prefWidth="900.0" visible="false">
-            <children>
-                <Label layoutX="14.0" layoutY="7.0" text="Product Detail">
-                    <font>
-                        <Font name="Inter Bold" size="24.0" />
-                    </font>
-                </Label>
-                <TableView layoutX="14.0" layoutY="45.0" prefHeight="200.0" prefWidth="862.0">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                </TableView>
-                <Label layoutX="14.0" layoutY="253.0" text="Bill List ">
-                    <font>
-                        <Font name="Inter Bold" size="24.0" />
-                    </font>
-                </Label>
-                <TableView layoutX="14.0" layoutY="283.0" prefHeight="224.0" prefWidth="862.0">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                </TableView>
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="55.0" prefHeight="524.0" prefWidth="900.0">
-            <children>
-                <DatePicker layoutX="20.0" layoutY="14.0" prefHeight="25.0" prefWidth="340.0" />
-                <BarChart layoutX="14.0" layoutY="57.0" prefHeight="410.0" prefWidth="854.0">
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT" />
-                    </yAxis>
-                </BarChart>
-                <Button layoutX="249.0" layoutY="459.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="81.0" text="Button" />
-            </children>
-        </AnchorPane>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="982.0" prefWidth="1512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.managerController">
+   <children>
+      <AnchorPane prefHeight="63.0" prefWidth="1512.0" styleClass="nav-header">
+         <children>
+            <ImageView fitHeight="44.0" fitWidth="127.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/Salework-logo-full.png" />
+               </image>
+            </ImageView>
+
+            <Label layoutX="1213.0" layoutY="20.0" text="NameLabel">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Button fx:id="homeButton" layoutX="191.0" layoutY="8.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="51.0" prefWidth="135.0" text="Home">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="productButton" layoutX="411.0" layoutY="3.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="135.0" text="Product">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="staffButton" layoutX="666.0" layoutY="3.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="51.0" prefWidth="135.0" text="Staff">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="billButton" layoutX="891.0" layoutY="4.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="51.0" prefWidth="135.0" text="Bill">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="14.0">
+               <image>
+                  <Image url="@../Picture/Ava.jpg" />
+               </image>
+            </Avatar>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+         <children>
+            <DatePicker layoutX="20.0" layoutY="14.0" prefHeight="43.0" prefWidth="697.0" />
+            <BarChart layoutX="14.0" layoutY="66.0" prefHeight="689.0" prefWidth="1478.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </BarChart>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+         <children>
+            <Label layoutX="25.0" layoutY="15.0" text="Staff  Information">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <Line endX="1027.0" endY="-7.62939453125E-6" layoutX="449.0" layoutY="36.0" startX="-100.0" />
+            <Label layoutX="45.0" layoutY="90.0" text="Staff ID:">
+               <font>
+                  <Font name="Inter SemiBold" size="28.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="90.0" prefHeight="35.0" prefWidth="450.0" />
+            <Label layoutX="45.0" layoutY="180.0" text="Staff ID:">
+               <font>
+                  <Font name="Inter SemiBold" size="28.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="180.0" prefHeight="35.0" prefWidth="450.0" />
+            <Label layoutX="45.0" layoutY="270.0" text="Address:">
+               <font>
+                  <Font name="Inter SemiBold" size="28.0" />
+               </font>
+            </Label>
+            <TextField layoutX="180.0" layoutY="270.0" prefHeight="35.0" prefWidth="450.0" />
+            <Label layoutX="710.0" layoutY="90.0" text="Email:">
+               <font>
+                  <Font name="Inter SemiBold" size="28.0" />
+               </font>
+            </Label>
+            <TextField layoutX="891.0" layoutY="90.0" prefHeight="35.0" prefWidth="450.0" />
+            <Label layoutX="710.0" layoutY="180.0" text="Password:">
+               <font>
+                  <Font name="Inter SemiBold" size="28.0" />
+               </font>
+            </Label>
+            <TextField layoutX="891.0" layoutY="180.0" prefHeight="35.0" prefWidth="450.0" />
+            <Label layoutX="710.0" layoutY="270.0" text="Phone Num:">
+               <font>
+                  <Font name="Inter SemiBold" size="28.0" />
+               </font>
+            </Label>
+            <TextField layoutX="891.0" layoutY="270.0" prefHeight="35.0" prefWidth="450.0" />
+            <Button layoutX="935.0" layoutY="320.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="173.0" text="Edit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="700.0" layoutY="320.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="173.0" text="Add">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="1170.0" layoutY="320.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="173.0" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <TableView layoutX="45.0" layoutY="417.0" prefHeight="471.0" prefWidth="1430.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+         <children>
+            <Label layoutX="25.0" layoutY="15.0" text="Product Detail">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <Line endX="1068.0" endY="-7.62939453125E-6" layoutX="412.0" layoutY="37.0" startX="-100.0" />
+            <TableView layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Label layoutX="25.0" layoutY="450.0" text="Bill List">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <TableView layoutX="25.0" layoutY="501.0" prefHeight="360.0" prefWidth="1430.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

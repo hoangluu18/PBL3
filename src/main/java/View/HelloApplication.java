@@ -11,13 +11,14 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("manager.fxml"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/hello-view.css").toExternalForm());
         stage.setTitle("Cafe Shop Management System");
         stage.setScene(scene);
         stage.show();
+        stage.setMaximized(true);
     }
 
     public static void main(String[] args) {

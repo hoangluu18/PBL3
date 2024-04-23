@@ -50,6 +50,7 @@ public class Hello_viewController {
     private AnchorPane switch_anchor;
 
 
+
     @FXML
     public void checklogin(javafx.event.ActionEvent actionEvent) {
         String account = log_account.getText() ;
@@ -113,6 +114,24 @@ public class Hello_viewController {
     }
 
     @FXML
-    public void registration(ActionEvent actionEvent) {
+    public void registration(ActionEvent actionEvent) {// click button sign_up button
+        User user = new User();
+        user.setUserName(sign_account.getText());
+        user.setPassword(sign_password.getText());
+        user.setRole(User.ADMIN);
+        if(User_DAO.getInstance().insert(user) == User_DAO.isDuplicate){
+            this.alert = new Alert(Alert.AlertType.ERROR);
+            this.alert.setTitle("Error Message");
+            this.alert.setHeaderText((String)null);
+            this.alert.setContentText("Duplicate account, try again");
+            this.alert.showAndWait();
+        }
+        else {
+            this.alert = new Alert(Alert.AlertType.INFORMATION);
+            this.alert.setTitle("Information Message");
+            this.alert.setHeaderText((String)null);
+            this.alert.setContentText("Successfully Sign Up!");
+            this.alert.showAndWait();
+        }
     }
 }
