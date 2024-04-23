@@ -1,5 +1,6 @@
 package Controller;
 
+import com.gluonhq.charm.glisten.control.Avatar;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
@@ -13,8 +14,7 @@ public class managerController {
         //    public static int  currentposition = 1;
         @FXML
         private Label labelproduct;
-
-
+        @FXML Avatar ava;
         @FXML
         private AnchorPane anchorHome,  anchorStaff, anchorBill;
 

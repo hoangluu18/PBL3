@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -25,7 +26,10 @@
                </image>
             </ImageView>
 
-            <Label layoutX="1383.0" layoutY="30.0" text="NameLabel" />
+            <Label layoutX="1213.0" layoutY="20.0" text="NameLabel">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
             <Button fx:id="homeButton" layoutX="191.0" layoutY="8.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="51.0" prefWidth="135.0" text="Home">
                <font>
                   <Font size="18.0" />
@@ -46,6 +50,11 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="14.0">
+               <image>
+                  <Image url="@../Picture/Ava.jpg" />
+               </image>
+            </Avatar>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">

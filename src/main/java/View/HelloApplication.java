@@ -18,6 +18,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Cafe Shop Management System");
         stage.setScene(scene);
         stage.show();
+        stage.setMaximized(true);
     }
 
     public static void main(String[] args) {
