@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### JDBC_Util ###
+/src/main/java/Database/JDBC_Util.java
