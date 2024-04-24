@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -40,8 +41,10 @@ public class managerController {
     private Button homeBtn;
     @FXML
     private Pane switch_pane;
+    @FXML
+    private GridPane gridCardPane;
 
-        @FXML
+    @FXML
         public void anchorProductappear() throws IOException {
             anchorStaff.setVisible(false);
             anchorBill.setVisible(false);
