@@ -35,7 +35,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="productButton" layoutX="411.0" layoutY="3.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="135.0" text="Product">
+            <Button fx:id="productButton" layoutX="411.0" layoutY="3.0" mnemonicParsing="false" onAction="#anchorproductappear" prefHeight="51.0" prefWidth="135.0" text="Product">
                <font>
                   <Font size="18.0" />
                </font>
@@ -57,7 +57,7 @@
             </Avatar>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <DatePicker layoutX="20.0" layoutY="14.0" prefHeight="43.0" prefWidth="697.0" />
             <BarChart layoutX="14.0" layoutY="66.0" prefHeight="689.0" prefWidth="1478.0">
@@ -164,7 +164,7 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorproduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="Product List">
                <font>
@@ -172,8 +172,6 @@
                </font>
             </Label>
             <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" />
-            <ImageView fx:id="testImage" fitHeight="303.0" fitWidth="318.0" layoutX="132.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="555.0" layoutY="268.0" mnemonicParsing="false" onAction="#show" text="Choose" />
          </children>
       </AnchorPane>
    </children>
