@@ -54,6 +54,11 @@
                   <Font name="Inter Regular" size="19.0" />
                </font></PasswordField>
             <Pane fx:id="highlightPane" layoutX="77.0" layoutY="261.0" prefHeight="7.0" prefWidth="124.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+            <Label fx:id="notificationlABEL" layoutX="100.0" layoutY="587.0" prefHeight="30.0" prefWidth="559.0" textFill="#dd4949">
+               <font>
+                  <Font name="Inter Bold" size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
         <AnchorPane prefHeight="1025.0" prefWidth="722.0">

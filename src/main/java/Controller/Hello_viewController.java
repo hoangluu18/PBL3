@@ -5,10 +5,7 @@ import Model.User;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -55,6 +52,8 @@ public class Hello_viewController {
     private AnchorPane loginForm;
     @FXML
     private Button switchBtn;
+    @FXML
+    private Label notificationlABEL;
 
 
     @FXML
@@ -80,11 +79,7 @@ public class Hello_viewController {
                 stage.show();
                 this.sigin_btn.getScene().getWindow().hide();
             } else {
-                this.alert = new Alert(Alert.AlertType.ERROR);
-                this.alert.setTitle("Error Message");
-                this.alert.setHeaderText((String)null);
-                this.alert.setContentText("Incorrect Username/Password");
-                this.alert.showAndWait();
+                this.notificationlABEL.setText("Invalid account or password!");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,6 +145,8 @@ public class Hello_viewController {
             this.alert.showAndWait();
         }
         else {
+            this.sign_account.setText("");
+            this.sign_password.setText("");
             this.alert = new Alert(Alert.AlertType.INFORMATION);
             this.alert.setTitle("Information Message");
             this.alert.setHeaderText((String)null);
