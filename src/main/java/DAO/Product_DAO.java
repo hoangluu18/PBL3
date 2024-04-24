@@ -11,7 +11,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
     @Override
     public int insert(Product entity) {
         //product_id, name, price, color, size, quantity, description, type_id
-        String sql = "INSERT INTO products (product_id, name, price, color, size, quantity, description, type_id) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO products (product_id, name, price, color, size, quantity, description, type_id, image_path) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, entity.getProduct_id());
@@ -22,6 +22,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
             statement.setInt(6, entity.getQuantity());
             statement.setString(7, entity.getDescription());
             statement.setInt(8, entity.getType_id());
+            statement.setString(9,entity.getImage());
 
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
@@ -38,7 +39,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
 
     @Override
     public int update(Product entity) {
-        String sql = "UPDATE products SET name = ?, price = ?, color = ?, size = ?, quantity = ?, description = ?, type_id = ? WHERE product_id = ?";
+        String sql = "UPDATE products SET name = ?, price = ?, color = ?, size = ?, quantity = ?, description = ?, type_id = ?, image_path = ? WHERE product_id = ?";
 
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getName());
@@ -48,7 +49,8 @@ public class Product_DAO implements DAO_Interface<Product, String>{
             statement.setInt(5, entity.getQuantity());
             statement.setString(6, entity.getDescription());
             statement.setInt(7, entity.getType_id());
-            statement.setInt(8, entity.getProduct_id());
+            statement.setString(8,entity.getImage());
+            statement.setInt(9, entity.getProduct_id());
 
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
@@ -95,6 +97,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
                 product.setQuantity(resultSet.getInt("quantity"));
                 product.setDescription(resultSet.getString("description"));
                 product.setType_id(resultSet.getInt("type_id"));
+                product.setImage(resultSet.getString("image_path"));
 
                 listProduct.add(product);
             }
@@ -123,6 +126,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
                 product.setQuantity(resultSet.getInt("quantity"));
                 product.setDescription(resultSet.getString("description"));
                 product.setType_id(resultSet.getInt("type_id"));
+                product.setImage(resultSet.getString("image_path"));
             }
             JDBC_Util.closeConnection(connection);
             return product;
@@ -151,6 +155,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
                 product.setQuantity(resultSet.getInt("quantity"));
                 product.setDescription(resultSet.getString("description"));
                 product.setType_id(resultSet.getInt("type_id"));
+                product.setImage(resultSet.getString("image_path"));
 
                 listProduct.add(product);
             }
