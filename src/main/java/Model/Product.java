@@ -15,9 +15,11 @@ public class Product {
 
     private String description;
 
+    private String image;
+
     private int type_id; // khóa ngoại của bảng productType
 
-    public Product(int product_id, String name, int price, String color, String size, int quantity, String description, int type_id) {
+    public Product(int product_id, String name, int price, String color, String size, int quantity, String description, String image ,int type_id) {
         this.product_id = product_id;
         this.name = name;
         this.price = price;
@@ -25,10 +27,15 @@ public class Product {
         this.size = size;
         this.quantity = quantity;
         this.description = description;
+        this.image = image;
         this.type_id = type_id;
     }
     public Product() {
     }
+
+    public String getImage() {return image;}
+
+    public void setImage(String image) {this.image = image;}
 
     public int getProduct_id() {
         return product_id;

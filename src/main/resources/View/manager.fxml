@@ -38,7 +38,7 @@
                   <Font size="28.0" />
                </font>
             </Button>
-            <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="901.0" layoutY="3.0" mnemonicParsing="false" styleClass="switch-btn" text="Product">
+            <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="901.0" layoutY="3.0" mnemonicParsing="false" onAction="#anchorProductappear" styleClass="switch-btn" text="Product">
                <font>
                   <Font size="26.0" />
                </font>
@@ -188,16 +188,14 @@
             <Line endX="1170.89599609375" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
-            <Button layoutX="555.0" layoutY="268.0" mnemonicParsing="false" onAction="#show" text="Choose" />
             <Label layoutX="25.0" layoutY="15.0" text="Product List">
                <font>
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
             <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" />
-            <ImageView fx:id="testImage" fitHeight="303.0" fitWidth="318.0" layoutX="132.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
