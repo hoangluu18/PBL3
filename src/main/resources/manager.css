@@ -1,0 +1,40 @@
+.navbar{
+    -fx-border-color: transparent transparent linear-gradient(to right, #141e46, #003a63, #005678, #007382, #008e83, #00a084, #12b17e, #3dc173, #3ace76, #36da79, #31e77c, #2cf47e)
+    transparent;
+    -fx-border-width: 0 0 3 0;
+}
+
+.main-background{
+    -fx-background-color: #fdf8ee;
+}
+
+.switch-btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.selected_btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.switch-pane{
+    -fx-background-color: black;
+    -fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 0);
+}
+
+.line-color{
+    -fx-stroke: linear-gradient(to right, #141e46, #003a63, #005678, #007382, #008e83, #00a084, #12b17e, #3dc173, #3ace76, #36da79, #31e77c, #2cf47e);;
+}
+
+.txtfd{
+    -fx-border-color: #141E46;
+    -fx-border-width: 1px;
+}
+
+.main_btn{
+    -fx-background-color: #141E46;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, #1f2449, 10, 0, 0, 0);
+}

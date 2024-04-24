@@ -14,10 +14,6 @@
     -fx-background-color: #fdf8ee;
 }
 
-.login-txt{
-    -fx-font-style: italic;
-}
-
 .txtfd{
     -fx-border-color: #141E46;
     -fx-border-width: 1px;
