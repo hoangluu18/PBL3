@@ -22,7 +22,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="982.0" prefWidth="1512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.managerController">
    <children>
-      <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background" />
+      <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background">
+         <children>
+            <Button layoutX="678.0" layoutY="441.0" mnemonicParsing="false" onAction="#testChangeImage" text="Button" />
+            <ImageView fx:id="test2Image" fitHeight="291.0" fitWidth="362.0" layoutX="134.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
       <AnchorPane prefHeight="63.0" prefWidth="1512.0" styleClass="navbar">
          <children>
             <ImageView fitHeight="54.0" fitWidth="161.0" layoutX="11.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -191,7 +195,7 @@
             <Line endX="1170.89599609375" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="Product List">
                <font>

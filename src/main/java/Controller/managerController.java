@@ -16,6 +16,7 @@ import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,7 +35,7 @@ public class managerController {
     @FXML
     private Button billBtn;
     @FXML
-    private ImageView testImage;
+    private ImageView testImage, test2Image;
     @FXML
     private Button homeBtn;
     @FXML
@@ -85,6 +86,23 @@ public class managerController {
                 testImage.setImage(image);
             }
         }
+
+
+    public void testChangeImage(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose");
+        File selected = fileChooser.showOpenDialog(null);
+        String path = "";
+        if (selected != null) {
+            // Tạo một Image từ đường dẫn của tệp đã chọn
+             path = selected.getName();
+
+        }
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Picture/" + path)));
+        test2Image.setImage(image);
+    }
+
+
     public void menuDisplayCard() throws IOException {
         int r = 0;
         int c = 0;
