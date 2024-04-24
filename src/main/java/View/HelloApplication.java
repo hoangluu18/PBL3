@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("manager.fxml"));
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/hello-view.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/manager.css").toExternalForm());
         stage.setTitle("Shop Management System");
         stage.setScene(scene);
         stage.show();

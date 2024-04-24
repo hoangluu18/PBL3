@@ -4,7 +4,9 @@ import Model.Product;
 import com.gluonhq.charm.glisten.control.Avatar;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,7 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 public class managerController {
 
-    Product test = new Product(1, "test", 100, "black", "big", 1, "nhu lol", "src/main/resources/Picture/Ava.jpg",1);
+    Product test = new Product(1, "test", 100, "black", "big", 1, "nhu lol", "/resources/Picture/Ava.jpg",1);
     @FXML Avatar ava;
     @FXML
     private AnchorPane anchorHome,  anchorStaff, anchorBill, getAnchorProduct;
@@ -35,6 +37,8 @@ public class managerController {
     private ImageView testImage;
     @FXML
     private Button homeBtn;
+    @FXML
+    private GridPane gridCardPane;
 
         @FXML
         public void anchorProductappear() throws IOException {
@@ -82,11 +86,25 @@ public class managerController {
             }
         }
     public void menuDisplayCard() throws IOException {
-        FXMLLoader load = new FXMLLoader();
-        load.setLocation(this.getClass().getResource("cardProduct.fxml"));
-        AnchorPane pane = (AnchorPane) load.load();
-        cardProductController cardC = (cardProductController) load.getController();
-        cardC.setData((test));
+        int r = 0;
+        int c = 0;
+        try{
+            FXMLLoader load = new FXMLLoader();
+            load.setLocation(this.getClass().getResource("cardProduct.fxml"));
+            AnchorPane pane = (AnchorPane) load.load();
+            cardProductController cardC = (cardProductController) load.getController();
+            cardC.setData((test));
+//            if (c == 5){
+//                c = 0;
+//                r++;
+//            }
+            this.gridCardPane.add(pane, ++c, r);
+            GridPane.setMargin(pane, new Insets(10.0));
+        }
+        catch (Exception var7){
+            Exception e = var7;
+            e.printStackTrace();
+        }
     }
 
 }
