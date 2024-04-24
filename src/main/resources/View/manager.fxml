@@ -31,22 +31,22 @@
                <font>
                   <Font name="Inter SemiBold" size="19.0" />
                </font></Label>
-            <Button fx:id="homeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="791.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="51.0" prefWidth="93.0" styleClass="selected_btn" text="Home">
+            <Button fx:id="homeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="722.0" layoutY="4.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="109.0" styleClass="selected_btn" text="Home">
                <font>
                   <Font name="Inter Regular" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="productButton" alignment="CENTER" contentDisplay="CENTER" layoutX="914.0" layoutY="5.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="111.0" styleClass="switch-btn" text="Product">
+            <Button fx:id="productButton" alignment="CENTER" contentDisplay="CENTER" layoutX="879.0" layoutY="6.0" mnemonicParsing="false" onAction="#anchorproductappear" prefHeight="51.0" prefWidth="111.0" styleClass="switch-btn" text="Product">
                <font>
                   <Font name="Inter Regular" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="staffButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1051.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="51.0" prefWidth="75.0" styleClass="switch-btn" text="Staff">
+            <Button fx:id="staffButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1033.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="51.0" prefWidth="93.0" styleClass="switch-btn" text="Staff">
                <font>
-                  <Font size="22.0" />
+                  <Font name="Inter Regular" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="billButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1159.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="51.0" prefWidth="60.0" styleClass="switch-btn" text="Bill">
+            <Button fx:id="billButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1159.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="51.0" prefWidth="81.0" styleClass="switch-btn" text="Bill">
                <font>
                   <Font name="Inter Regular" size="22.0" />
                </font>
@@ -191,7 +191,7 @@
             <Line endX="1170.89599609375" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorproduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="Product List">
                <font>
@@ -199,8 +199,6 @@
                </font>
             </Label>
             <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" />
-            <ImageView fx:id="testImage" fitHeight="303.0" fitWidth="318.0" layoutX="132.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="555.0" layoutY="268.0" mnemonicParsing="false" onAction="#show" text="Choose" />
          </children>
       </AnchorPane>
    </children>
