@@ -8,13 +8,22 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="982.0" prefWidth="1512.0" style="-fx-background-radius: 10;" styleClass="anchor" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Hello_viewController">
     <children>
-      <AnchorPane layoutX="759.0" layoutY="3.0" prefHeight="1022.0" prefWidth="754.0">
+      <AnchorPane layoutX="759.0" layoutY="1.0" prefHeight="1022.0" prefWidth="754.0">
          <children>
-            <AnchorPane fx:id="switch_anchor" layoutX="85.0" layoutY="232.0" prefHeight="54.0" prefWidth="183.0" />
+            <AnchorPane fx:id="switch_anchor" layoutX="85.0" layoutY="232.0" prefHeight="54.0" prefWidth="183.0">
+               <children>
+                    <Button fx:id="manaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="-15.0" mnemonicParsing="false" onAction="#managerStatus" prefHeight="51.0" prefWidth="137.0" style="-fx-font-size: 24;" styleClass="selected_btn" text="Manager">
+                        <font>
+                            <Font name="Inter Regular" size="24.0" />
+                        </font>
+                    </Button>
+                  <Pane fx:id="highlightPane" layoutX="30.0" layoutY="29.0" prefHeight="7.0" prefWidth="122.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+               </children></AnchorPane>
               <Button fx:id="sigin_btn" layoutX="93.0" layoutY="733.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN IN">
                   <font>
                       <Font name="Inter Black" size="24.0" />
@@ -26,12 +35,7 @@
                       <Font name="Inter Black" size="52.0" />
                   </font>
               </Label>
-              <Button fx:id="manaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="73.0" layoutY="222.0" mnemonicParsing="false" onAction="#managerStatus" prefHeight="45.0" prefWidth="124.0" style="-fx-font-size: 24;" styleClass="selected_btn" text="Manager">
-                  <font>
-                      <Font name="Inter Regular" size="24.0" />
-                  </font>
-              </Button>
-              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="222.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
+              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="220.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
                   <font>
                       <Font size="24.0" />
                   </font>
@@ -54,10 +58,9 @@
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font></PasswordField>
-            <Pane fx:id="highlightPane" layoutX="72.0" layoutY="261.0" prefHeight="7.0" prefWidth="122.0" style="-fx-background-radius: 10;" styleClass="under_line" />
          </children>
       </AnchorPane>
-        <AnchorPane prefHeight="1025.0" prefWidth="722.0">
+        <AnchorPane prefHeight="1025.0" prefWidth="754.0">
             <children>
                 <Button fx:id="signup_btn" layoutX="81.0" layoutY="742.0" mnemonicParsing="false" onAction="#registration" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN UP">
                     <font>
@@ -96,24 +99,28 @@
             </PasswordField>
             </children>
         </AnchorPane>
-      <AnchorPane prefHeight="1024.0" prefWidth="756.0" styleClass="anchor_child">
+      <StackPane prefHeight="1024.0" prefWidth="756.0" visible="false">
          <children>
-            <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Picture/ShopManagement.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="178.0" layoutY="676.0" text="SHOP MANAGEMENT" textFill="WHITE">
-               <font>
-                  <Font name="Inter SemiBold" size="35.0" />
-               </font>
-            </Label>
-            <Button layoutX="122.0" layoutY="741.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="68.0" prefWidth="500.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="sign-in_btn" text="CREATE ACCOUNT">
-               <font>
-                  <Font name="Inter Black" size="24.0" />
-               </font>
-            </Button>
+            <AnchorPane fx:id="manapane" prefHeight="1024.0" prefWidth="756.0" styleClass="anchor_child">
+               <children>
+                  <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Picture/ShopManagement.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="178.0" layoutY="676.0" text="SHOP MANAGEMENT" textFill="WHITE">
+                     <font>
+                        <Font name="Inter SemiBold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btn_createAccount" layoutX="122.0" layoutY="741.0" mnemonicParsing="false" onAction="#slide" prefHeight="68.0" prefWidth="500.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="sign-in_btn" text="CREATE ACCOUNT">
+                     <font>
+                        <Font name="Inter Black" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </StackPane>
     </children>
 </AnchorPane>

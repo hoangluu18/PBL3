@@ -57,7 +57,7 @@
             </Avatar>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <DatePicker layoutX="20.0" layoutY="14.0" prefHeight="43.0" prefWidth="697.0" />
             <BarChart layoutX="14.0" layoutY="66.0" prefHeight="689.0" prefWidth="1478.0">
@@ -162,6 +162,18 @@
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+         <children>
+            <Label layoutX="25.0" layoutY="15.0" text="Product List">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" />
+            <ImageView fx:id="testImage" fitHeight="303.0" fitWidth="318.0" layoutX="132.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="555.0" layoutY="268.0" mnemonicParsing="false" onAction="#show" text="Choose" />
          </children>
       </AnchorPane>
    </children>

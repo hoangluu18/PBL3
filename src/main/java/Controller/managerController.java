@@ -3,9 +3,17 @@ package Controller;
 import com.gluonhq.charm.glisten.control.Avatar;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 
 import java.awt.*;
-
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 public class managerController {
 
 
@@ -18,7 +26,8 @@ public class managerController {
         @FXML
         private AnchorPane anchorHome,  anchorStaff, anchorBill;
 
-
+        @FXML
+        private ImageView testimage;
 
         @FXML
 //    public void anchorProductappear() {
@@ -80,6 +89,21 @@ public class managerController {
 //        }
 //        currentposition = 4;
         }
+
+        public void show() {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose");
+            File selected = fileChooser.showOpenDialog(null);
+
+            if (selected != null) {
+                // Tạo một Image từ đường dẫn của tệp đã chọn
+                Image image = new Image(selected.toURI().toString());
+                // Hiển thị hình ảnh trong ImageView
+                testimage.setImage(image);
+            }
+        }
+
+
     }
 
 

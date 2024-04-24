@@ -48,7 +48,12 @@ public class Hello_viewController {
     private Pane highlightPane;
     @FXML
     private AnchorPane switch_anchor;
-
+    @FXML
+    private AnchorPane manapane;
+    @FXML
+    public static boolean checklogin = true;
+    @FXML
+    private Button btn_createAccount;
 
 
     @FXML
@@ -132,6 +137,24 @@ public class Hello_viewController {
             this.alert.setHeaderText((String)null);
             this.alert.setContentText("Successfully Sign Up!");
             this.alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void slide(){
+        if(checklogin == true) {
+            TranslateTransition trans = new TranslateTransition(Duration.seconds(0.3), manapane);
+            trans.setToX(756);
+            trans.play();
+            checklogin = false;
+            btn_createAccount.setText("Login");
+        } else if(checklogin == false) {
+            TranslateTransition trans = new TranslateTransition(Duration.seconds(0.3), manapane);
+            trans.setToX(0);
+            trans.play();
+            checklogin = true;
+            btn_createAccount.setText("CREATE ACCOUNT");
+
         }
     }
 }
