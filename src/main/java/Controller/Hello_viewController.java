@@ -46,9 +46,13 @@ public class Hello_viewController {
     private int role = 0;
     @FXML
     private Pane highlightPane;
+    private int switch_status = 0;
     @FXML
-    private AnchorPane switch_anchor;
-
+    private AnchorPane switch_pane;
+    @FXML
+    private AnchorPane loginForm;
+    @FXML
+    private Button switchBtn;
 
 
     @FXML
@@ -90,7 +94,7 @@ public class Hello_viewController {
         staffBtn.getStyleClass().add("selected_btn");
         manaBtn.getStyleClass().remove("selected_btn");
         manaBtn.getStyleClass().add("switch-btn");
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), highlightPane);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), highlightPane);
         tt.setToX(staffBtn.getLayoutX() - manaBtn.getLayoutX());
         tt.play();
         highlightPane.setPrefWidth(staffBtn.getWidth());
@@ -102,8 +106,8 @@ public class Hello_viewController {
         manaBtn.getStyleClass().add("selected_btn");
         staffBtn.getStyleClass().remove("selected_btn");
         staffBtn.getStyleClass().add("switch-btn");
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), highlightPane);
-        tt.setToX(manaBtn.getLayoutX() - manaBtn.getLayoutX());
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), highlightPane);
+        tt.setToX(0.0);
         tt.play();
         highlightPane.setPrefWidth(manaBtn.getWidth());
         this.role = 0;
@@ -111,6 +115,23 @@ public class Hello_viewController {
 
     @FXML
     public void switchPane(ActionEvent actionEvent) {
+        if(switch_status == 0){
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), switch_pane);
+            tt.setToX(loginForm.getLayoutX());
+            tt.play();
+            tt.setOnFinished(e -> {
+                switchBtn.setText("LOG IN");
+                switch_status = 1;
+            });
+        }else{
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), switch_pane);
+            tt.setToX(0);
+            tt.play();
+            tt.setOnFinished(e -> {
+                switchBtn.setText("CREATE ACCOUNT");
+                switch_status = 0;
+            });
+        }
     }
 
     @FXML

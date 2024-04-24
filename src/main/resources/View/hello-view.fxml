@@ -12,9 +12,8 @@
 
 <AnchorPane prefHeight="982.0" prefWidth="1512.0" style="-fx-background-radius: 10;" styleClass="anchor" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Hello_viewController">
     <children>
-      <AnchorPane layoutX="759.0" layoutY="3.0" prefHeight="1022.0" prefWidth="754.0">
+      <AnchorPane fx:id="loginForm" layoutX="759.0" layoutY="3.0" prefHeight="1022.0" prefWidth="754.0">
          <children>
-            <AnchorPane fx:id="switch_anchor" layoutX="85.0" layoutY="232.0" prefHeight="54.0" prefWidth="183.0" />
               <Button fx:id="sigin_btn" layoutX="93.0" layoutY="733.0" mnemonicParsing="false" onAction="#checklogin" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN IN">
                   <font>
                       <Font name="Inter Black" size="24.0" />
@@ -54,7 +53,7 @@
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font></PasswordField>
-            <Pane fx:id="highlightPane" layoutX="72.0" layoutY="261.0" prefHeight="7.0" prefWidth="122.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+            <Pane fx:id="highlightPane" layoutX="77.0" layoutY="261.0" prefHeight="7.0" prefWidth="124.0" style="-fx-background-radius: 10;" styleClass="under_line" />
          </children>
       </AnchorPane>
         <AnchorPane prefHeight="1025.0" prefWidth="722.0">
@@ -96,7 +95,7 @@
             </PasswordField>
             </children>
         </AnchorPane>
-      <AnchorPane prefHeight="1024.0" prefWidth="756.0" styleClass="anchor_child">
+      <AnchorPane fx:id="switch_pane" prefHeight="1024.0" prefWidth="754.0" styleClass="anchor_child">
          <children>
             <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -108,7 +107,7 @@
                   <Font name="Inter SemiBold" size="35.0" />
                </font>
             </Label>
-            <Button layoutX="122.0" layoutY="741.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="68.0" prefWidth="500.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="sign-in_btn" text="CREATE ACCOUNT">
+            <Button fx:id="switchBtn" layoutX="122.0" layoutY="741.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="68.0" prefWidth="500.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="sign-in_btn" text="CREATE ACCOUNT">
                <font>
                   <Font name="Inter Black" size="24.0" />
                </font>
