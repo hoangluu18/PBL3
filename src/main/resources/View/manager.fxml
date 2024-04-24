@@ -28,32 +28,32 @@
                </image>
             </ImageView>
 
-            <Label layoutX="1288.0" layoutY="20.0" text="NameLabel">
+            <Label layoutX="1288.0" layoutY="16.0" text="NameLabel">
                <font>
                   <Font name="Inter SemiBold" size="19.0" />
                </font></Label>
-            <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="14.0" />
-            <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="782.0" layoutY="1.0" mnemonicParsing="false" onAction="#anchorHomeappear" styleClass="switch-btn" text="Home">
+            <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
+            <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="782.0" layoutY="4.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefWidth="109.0" styleClass="selected-btn" text="Home">
                <font>
-                  <Font name="Inter Regular" size="28.0" />
+                  <Font size="28.0" />
                </font>
             </Button>
-            <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="901.0" layoutY="3.0" mnemonicParsing="false" onAction="#anchorProductappear" styleClass="switch-btn" text="Product">
+            <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="901.0" layoutY="4.0" mnemonicParsing="false" onAction="#anchorProductappear" prefWidth="121.0" styleClass="switch-btn" text="Product">
                <font>
-                  <Font name="Inter Regular" size="26.0" />
+                  <Font size="26.0" />
                </font>
             </Button>
-            <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1031.0" layoutY="3.0" mnemonicParsing="false" onAction="#anchorStaffappear" styleClass="switch-btn" text="Staff">
+            <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1031.0" layoutY="4.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefWidth="88.0" styleClass="switch-btn" text="Staff">
                <font>
-                  <Font name="Inter Regular" size="26.0" />
+                  <Font size="26.0" />
                </font>
             </Button>
-            <Button fx:id="billBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1130.0" layoutY="3.0" mnemonicParsing="false" onAction="#anchorBillappear" styleClass="switch-btn" text="Bill">
+            <Button fx:id="billBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1130.0" layoutY="4.0" mnemonicParsing="false" onAction="#anchorBillappear" prefWidth="70.0" styleClass="switch-btn" text="Bill">
                <font>
-                  <Font name="Inter Regular" size="26.0" />
+                  <Font size="26.0" />
                </font>
             </Button>
-            <Pane layoutX="793.0" layoutY="44.0" prefHeight="6.0" prefWidth="96.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
+            <Pane fx:id="switch_pane" layoutX="783.0" layoutY="48.0" prefHeight="6.0" prefWidth="109.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">

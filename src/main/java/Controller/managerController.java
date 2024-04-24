@@ -2,9 +2,12 @@ package Controller;
 
 import Model.Product;
 import com.gluonhq.charm.glisten.control.Avatar;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -19,6 +22,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
+
 public class managerController {
 
     Product test = new Product(1, "test", 100, "black", "big", 1, "nhu lol", "src/main/resources/Picture/Ava.jpg",1);
@@ -32,11 +37,11 @@ public class managerController {
     @FXML
     private Button billBtn;
     @FXML
-    private ImageView testImage;
-    @FXML
     private Button homeBtn;
+    @FXML
+    private Pane switch_pane;
 
-        @FXML
+    @FXML
         public void anchorProductappear() throws IOException {
             anchorStaff.setVisible(false);
             anchorBill.setVisible(false);
@@ -47,25 +52,47 @@ public class managerController {
 
         @FXML
         public void anchorHomeappear(){
+            homeBtn.setMinWidth(108.5);
+            homeBtn.setMaxWidth(108.5);
+            homeBtn.setMinHeight(53);
+            homeBtn.setMaxHeight(53);
             anchorStaff.setVisible(false);
             anchorBill.setVisible(false);
             anchorHome.setVisible(true);
             getAnchorProduct.setVisible(false);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+            tt.setToX(0);
+            tt.play();
+            switch_pane.setPrefWidth(staffBtn.getWidth());
         }
         @FXML
         public void anchorStaffappear(){
+            anchorStaff.setMinWidth(87.5);
+            anchorStaff.setMaxWidth(87.5);
+            anchorStaff.setMinHeight(53);
+            anchorStaff.setMaxHeight(53);
             anchorBill.setVisible(false);
             anchorHome.setVisible(false);
             anchorStaff.setVisible(true);
             getAnchorProduct.setVisible(false);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+            tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
+            tt.play();
 
         }
         @FXML
         public void anchorBillappear(){
+            anchorBill.setMinWidth(67);
+            anchorBill.setMaxWidth(67);
+            anchorBill.setMinHeight(53);
+            anchorBill.setMaxHeight(53);
             anchorStaff.setVisible(false);
             anchorHome.setVisible(false);
             anchorBill.setVisible(true);
             getAnchorProduct.setVisible(false);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+            tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
+            tt.play();
         }
 
         @FXML
@@ -78,7 +105,7 @@ public class managerController {
                 // Tạo một Image từ đường dẫn của tệp đã chọn
                 Image image = new Image(selected.toURI().toString());
                 // Hiển thị hình ảnh trong ImageView
-                testImage.setImage(image);
+                testimage.setImage(image);
             }
         }
     public void menuDisplayCard() throws IOException {
