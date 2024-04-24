@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/hello-view.css").toExternalForm());
-        stage.setTitle("Cafe Shop Management System");
+        stage.setTitle("Shop Management System");
         stage.setScene(scene);
         stage.show();
         stage.setMaximized(true);

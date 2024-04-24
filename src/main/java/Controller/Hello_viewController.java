@@ -43,17 +43,18 @@ public class Hello_viewController {
     private Button staffBtn;
     @FXML
     private Button manaBtn;
-    private int role = 0;
+
+    private int role = User.ADMIN;
+
     @FXML
     private Pane highlightPane;
+    private int switch_status = 0;
     @FXML
-    private AnchorPane switch_anchor;
+    private AnchorPane switch_pane;
     @FXML
-    private AnchorPane manapane;
+    private AnchorPane loginForm;
     @FXML
-    public static boolean checklogin = true;
-    @FXML
-    private Button btn_createAccount;
+    private Button switchBtn;
 
 
     @FXML
@@ -61,7 +62,7 @@ public class Hello_viewController {
         String account = log_account.getText() ;
         String pass = log_password.getText()  ;
         User_DAO user_dao = new User_DAO();
-        String condition = "userName" + " = " + "'" + account + "'" + "AND password = '" + pass + "'";
+        String condition = "userName = '" + account + "' AND password = '" + pass + "' AND role = " + role;
         try {
             if(user_dao.findByCondition(condition) != null){
                 this.alert = new Alert(Alert.AlertType.INFORMATION);
@@ -95,11 +96,11 @@ public class Hello_viewController {
         staffBtn.getStyleClass().add("selected_btn");
         manaBtn.getStyleClass().remove("selected_btn");
         manaBtn.getStyleClass().add("switch-btn");
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), highlightPane);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), highlightPane);
         tt.setToX(staffBtn.getLayoutX() - manaBtn.getLayoutX());
         tt.play();
         highlightPane.setPrefWidth(staffBtn.getWidth());
-        this.role = 1;
+        this.role = User.EMPLOYEE;
     }
 
     @FXML
@@ -107,15 +108,32 @@ public class Hello_viewController {
         manaBtn.getStyleClass().add("selected_btn");
         staffBtn.getStyleClass().remove("selected_btn");
         staffBtn.getStyleClass().add("switch-btn");
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), highlightPane);
-        tt.setToX(manaBtn.getLayoutX() - manaBtn.getLayoutX());
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), highlightPane);
+        tt.setToX(0.0);
         tt.play();
         highlightPane.setPrefWidth(manaBtn.getWidth());
-        this.role = 0;
+        this.role = User.ADMIN;
     }
 
     @FXML
     public void switchPane(ActionEvent actionEvent) {
+        if(switch_status == 0){
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), switch_pane);
+            tt.setToX(loginForm.getLayoutX());
+            tt.play();
+            tt.setOnFinished(e -> {
+                switchBtn.setText("LOG IN");
+                switch_status = 1;
+            });
+        }else{
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), switch_pane);
+            tt.setToX(0);
+            tt.play();
+            tt.setOnFinished(e -> {
+                switchBtn.setText("CREATE ACCOUNT");
+                switch_status = 0;
+            });
+        }
     }
 
     @FXML
@@ -137,24 +155,6 @@ public class Hello_viewController {
             this.alert.setHeaderText((String)null);
             this.alert.setContentText("Successfully Sign Up!");
             this.alert.showAndWait();
-        }
-    }
-
-    @FXML
-    public void slide(){
-        if(checklogin == true) {
-            TranslateTransition trans = new TranslateTransition(Duration.seconds(0.3), manapane);
-            trans.setToX(756);
-            trans.play();
-            checklogin = false;
-            btn_createAccount.setText("Login");
-        } else if(checklogin == false) {
-            TranslateTransition trans = new TranslateTransition(Duration.seconds(0.3), manapane);
-            trans.setToX(0);
-            trans.play();
-            checklogin = true;
-            btn_createAccount.setText("CREATE ACCOUNT");
-
         }
     }
 }
