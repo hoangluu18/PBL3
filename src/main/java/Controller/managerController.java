@@ -45,51 +45,51 @@ public class managerController {
     @FXML
     private GridPane gridCardPane;
 
-        @FXML
-        public void anchorProductappear() throws IOException {
-            anchorStaff.setVisible(false);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(false);
-            getAnchorProduct.setVisible(true);
-            menuDisplayCard();
-        }
+    @FXML
+    public void anchorProductappear() throws IOException {
+        anchorStaff.setVisible(false);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(false);
+        getAnchorProduct.setVisible(true);
+        menuDisplayCard();
+    }
 
-        @FXML
-        public void anchorHomeappear(){
-            anchorStaff.setVisible(false);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(true);
-            getAnchorProduct.setVisible(false);
-        }
-        @FXML
-        public void anchorStaffappear(){
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(false);
-            anchorStaff.setVisible(true);
-            getAnchorProduct.setVisible(false);
+    @FXML
+    public void anchorHomeappear(){
+        anchorStaff.setVisible(false);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(true);
+        getAnchorProduct.setVisible(false);
+    }
+    @FXML
+    public void anchorStaffappear(){
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(false);
+        anchorStaff.setVisible(true);
+        getAnchorProduct.setVisible(false);
 
-        }
-        @FXML
-        public void anchorBillappear(){
-            anchorStaff.setVisible(false);
-            anchorHome.setVisible(false);
-            anchorBill.setVisible(true);
-            getAnchorProduct.setVisible(false);
-        }
+    }
+    @FXML
+    public void anchorBillappear(){
+        anchorStaff.setVisible(false);
+        anchorHome.setVisible(false);
+        anchorBill.setVisible(true);
+        getAnchorProduct.setVisible(false);
+    }
 
-        @FXML
-        public void show() {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choose");
-            File selected = fileChooser.showOpenDialog(null);
+    @FXML
+    public void show() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose");
+        File selected = fileChooser.showOpenDialog(null);
 
-            if (selected != null) {
-                // Tạo một Image từ đường dẫn của tệp đã chọn
-                Image image = new Image(selected.toURI().toString());
-                // Hiển thị hình ảnh trong ImageView
-                testImage.setImage(image);
-            }
+        if (selected != null) {
+            // Tạo một Image từ đường dẫn của tệp đã chọn
+            Image image = new Image(selected.toURI().toString());
+            // Hiển thị hình ảnh trong ImageView
+            testImage.setImage(image);
         }
+    }
     public void menuDisplayCard() throws IOException {
         int r = 0;
         int c = 0;
