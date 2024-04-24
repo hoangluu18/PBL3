@@ -78,7 +78,7 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="62.0" prefHeight="919.0" prefWidth="1522.0">
+      <AnchorPane layoutY="62.0" prefHeight="919.0" prefWidth="1522.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
@@ -254,6 +254,87 @@
             <Button layoutX="1237.0" layoutY="569.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="199.0" text="Next">
                <font>
                   <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="73.0" prefHeight="909.0" prefWidth="1522.0">
+         <children>
+            <Label layoutX="25.0" layoutY="15.0" text="BILL">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <Line endX="1186.6666259765625" endY="-7.62939453125E-6" layoutX="246.0" layoutY="37.0" startX="-100.0" />
+            <VBox layoutX="25.0" layoutY="104.0" prefHeight="111.0" prefWidth="677.0">
+               <children>
+                  <Label text="Bill ID">
+                     <font>
+                        <Font name="Inter Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="55.0" prefWidth="677.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="25.0" layoutY="237.0" prefHeight="127.0" prefWidth="677.0">
+               <children>
+                  <Label text="Staff">
+                     <font>
+                        <Font name="Inter Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="55.0" prefWidth="677.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="770.0" layoutY="104.0" prefHeight="111.0" prefWidth="677.0">
+               <children>
+                  <Label text="Order Date">
+                     <font>
+                        <Font name="Inter Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="55.0" prefWidth="677.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="770.0" layoutY="237.0" prefHeight="111.0" prefWidth="677.0">
+               <children>
+                  <Label text="Customer">
+                     <font>
+                        <Font name="Inter Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="55.0" prefWidth="677.0" />
+               </children>
+            </VBox>
+            <Label layoutX="25.0" layoutY="364.0" text="Items">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <TableView layoutX="24.0" layoutY="419.0" prefHeight="283.0" prefWidth="1421.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Label layoutX="23.0" layoutY="723.0" text="Total Price ">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="1231.0" layoutY="723.0" text="80.000VND">
+               <font>
+                  <Font name="Inter Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="1140.0" layoutY="778.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="135.0" text="Save">
+               <font>
+                  <Font name="Inter Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="1297.0" layoutY="778.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="147.0" text="Purchase">
+               <font>
+                  <Font name="Inter Bold" size="24.0" />
                </font>
             </Button>
          </children>
