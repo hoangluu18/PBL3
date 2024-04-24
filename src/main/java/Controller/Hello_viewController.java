@@ -40,7 +40,9 @@ public class Hello_viewController {
     private Button staffBtn;
     @FXML
     private Button manaBtn;
-    private int role = 0;
+
+    private int role = User.ADMIN;
+
     @FXML
     private Pane highlightPane;
     private int switch_status = 0;
@@ -59,7 +61,7 @@ public class Hello_viewController {
         String account = log_account.getText() ;
         String pass = log_password.getText()  ;
         User_DAO user_dao = new User_DAO();
-        String condition = "userName" + " = " + "'" + account + "'" + "AND password = '" + pass + "'";
+        String condition = "userName = '" + account + "' AND password = '" + pass + "' AND role = " + role;
         try {
             if(user_dao.findByCondition(condition) != null){
                 this.alert = new Alert(Alert.AlertType.INFORMATION);
@@ -93,7 +95,7 @@ public class Hello_viewController {
         tt.setToX(staffBtn.getLayoutX() - manaBtn.getLayoutX());
         tt.play();
         highlightPane.setPrefWidth(staffBtn.getWidth());
-        this.role = 1;
+        this.role = User.EMPLOYEE;
     }
 
     @FXML
@@ -105,7 +107,7 @@ public class Hello_viewController {
         tt.setToX(0.0);
         tt.play();
         highlightPane.setPrefWidth(manaBtn.getWidth());
-        this.role = 0;
+        this.role = User.ADMIN;
     }
 
     @FXML
