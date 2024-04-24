@@ -41,21 +41,21 @@ public class managerController {
     @FXML
     private Pane switch_pane;
 
-    @FXML
+        @FXML
         public void anchorProductappear() throws IOException {
             anchorStaff.setVisible(false);
             anchorBill.setVisible(false);
             anchorHome.setVisible(false);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+            tt.setToX(productBtn.getLayoutX() - switch_pane.getLayoutX());
+            tt.play();
+            switch_pane.setPrefWidth(productBtn.getWidth());
             getAnchorProduct.setVisible(true);
             menuDisplayCard();
         }
 
         @FXML
         public void anchorHomeappear(){
-            homeBtn.setMinWidth(108.5);
-            homeBtn.setMaxWidth(108.5);
-            homeBtn.setMinHeight(53);
-            homeBtn.setMaxHeight(53);
             anchorStaff.setVisible(false);
             anchorBill.setVisible(false);
             anchorHome.setVisible(true);
@@ -63,7 +63,7 @@ public class managerController {
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
             tt.setToX(0);
             tt.play();
-            switch_pane.setPrefWidth(staffBtn.getWidth());
+            switch_pane.setPrefWidth(homeBtn.getWidth());
         }
         @FXML
         public void anchorStaffappear(){
@@ -78,7 +78,7 @@ public class managerController {
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
             tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
             tt.play();
-
+            switch_pane.setPrefWidth(staffBtn.getWidth());
         }
         @FXML
         public void anchorBillappear(){
@@ -93,6 +93,7 @@ public class managerController {
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
             tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
             tt.play();
+            switch_pane.setPrefWidth(billBtn.getWidth());
         }
 
         @FXML
@@ -105,7 +106,6 @@ public class managerController {
                 // Tạo một Image từ đường dẫn của tệp đã chọn
                 Image image = new Image(selected.toURI().toString());
                 // Hiển thị hình ảnh trong ImageView
-                testimage.setImage(image);
             }
         }
     public void menuDisplayCard() throws IOException {

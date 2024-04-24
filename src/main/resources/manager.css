@@ -21,7 +21,6 @@
 
 .switch-pane{
     -fx-background-color: black;
-    -fx-effect: dropshadow(three-pass-box, black, 4, 0, 0, 0);
 }
 
 .line-color{
