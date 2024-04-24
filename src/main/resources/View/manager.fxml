@@ -33,7 +33,7 @@
                   <Font name="Inter SemiBold" size="19.0" />
                </font></Label>
             <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="14.0" />
-            <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="782.0" layoutY="1.0" mnemonicParsing="false" onAction="#anchorHomeappear" styleClass="selected-btn" text="Home">
+            <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="782.0" layoutY="1.0" mnemonicParsing="false" onAction="#anchorHomeappear" styleClass="switch-btn" text="Home">
                <font>
                   <Font size="28.0" />
                </font>
@@ -56,7 +56,7 @@
             <Pane layoutX="789.0" layoutY="44.0" prefHeight="6.0" prefWidth="96.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
             <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -69,7 +69,7 @@
             </BarChart>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
