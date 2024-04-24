@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cardPane" prefHeight="286.0" prefWidth="215.0" styleClass="product" stylesheets="@../product.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.cardProductController">
+   <effect>
+      <DropShadow />
+   </effect>
+   <children>
+      <ImageView fx:id="Image" fitHeight="200.0" fitWidth="200.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Ava.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="Name" layoutX="14.0" layoutY="228.0" text="Name" />
+      <Label fx:id="Price" layoutX="165.0" layoutY="246.0" text="Price">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
