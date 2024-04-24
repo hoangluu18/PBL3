@@ -1,6 +1,7 @@
 .product {
     -fx-background-color: antiquewhite;
     -fx-border-radius: 10px;
+    -fx-border-style: bold;
 }
 
 .product-content {

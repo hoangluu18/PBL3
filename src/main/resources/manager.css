@@ -13,7 +13,7 @@
     -fx-cursor: hand;
 }
 
-.selected_btn{
+.selected-btn{
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-font-weight: bold;
@@ -37,4 +37,10 @@
     -fx-background-color: #141E46;
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, #1f2449, 10, 0, 0, 0);
+}
+
+.main_btn:hover{
+    -fx-background-color: #22357e;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }

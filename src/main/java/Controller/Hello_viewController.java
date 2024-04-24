@@ -69,20 +69,25 @@ public class Hello_viewController {
                 this.alert.setHeaderText((String)null);
                 this.alert.setContentText("Successfully Login!");
                 this.alert.showAndWait();
-                Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("manager.fxml"));
+                Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/manager.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
+                scene.getStylesheets().add(getClass().getResource("/manager.css").toExternalForm());
                 stage.setTitle("Shop Management System");
                 stage.setMinWidth(1512.0);
                 stage.setMinHeight(982.0);
                 stage.setScene(scene);
                 stage.show();
+                stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
             } else {
                 this.notificationlABEL.setText("Invalid account or password!");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            Throwable cause = e.getCause();
+            System.out.println("Root cause:");
+            cause.printStackTrace();
         }
     }
 
