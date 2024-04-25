@@ -2,32 +2,40 @@ package DAO;
 
 import Database.JDBC_Util;
 import Model.Employee;
+import Model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Employee_DAO implements DAO_Interface<Employee, String> {
-
+    Connection connection = null;
+    PreparedStatement statement = null;
+    ResultSet result = null;
 
     @Override
     public int insert(Employee entity) {
-        String sql = "INSERT INTO employees (employee_id, Name, phone_number, Address, Email) VALUES (?,?,?,?,?)";
-        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+        String sql = "INSERT INTO employees (employee_id, name, phone_number, address, email) VALUES (?,?,?,?,?)";
+        try{
+            connection = JDBC_Util.getConnection();
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, entity.getEmployee_id());
             statement.setString(2, entity.getName());
             statement.setString(3, entity.getPhone_number());
             statement.setString(4, entity.getAddress());
             statement.setString(5, entity.getEmail());
-
-            int result = statement.executeUpdate();
-            System.out.println("Số dòng bị ảnh hưởng: " + result);
-
-            JDBC_Util.closeConnection(connection);
-
-        }catch (SQLException e){
+            statement.executeUpdate();
+            result = statement.getGeneratedKeys();
+        } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return 0;
     }
 

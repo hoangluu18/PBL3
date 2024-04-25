@@ -9,14 +9,14 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -36,7 +36,6 @@ import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
@@ -61,7 +60,6 @@ public class managerController implements Initializable {
     // Data connect
     private Connection connect;
     private PreparedStatement prepare;
-    private Statement statement;
     private ResultSet result;
 
     //manager
@@ -350,40 +348,63 @@ public class managerController implements Initializable {
 
     @FXML
     public void addStaff(ActionEvent actionEvent) {
-        Employee employee = new Employee();
-        if(Employee_DAO.getInstance().findAll() == null){
-            employee.setEmployee_id(1);
-        }else {
-            employee.setEmployee_id(Employee_DAO.getInstance().findAll().size()+1);
+        // Check if the corresponding user record already exists
+        User user = User_DAO.getInstance().findByUsername(staffemailTextfield.getText());
+        int employee_id = 0;
+        if (user == null) {
+            // If the user record doesn't exist, insert a new user record
+            User newUser = new User();
+            newUser.setUserName(staffemailTextfield.getText());
+            newUser.setPassword(staffpasswordTextfield.getText());
+            newUser.setRole(User.EMPLOYEE);
+            employee_id = User_DAO.getInstance().insert(newUser);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("User already exists");
+            alert.showAndWait();
         }
-        employee.setName(staffnameTextfield.getText());
-        employee.setPhone_number(staffphoneTextfield.getText());
-        employee.setAddress(staffaddressTextfield.getText());
-        employee.setEmail(staffemailTextfield.getText());
-        Employee_DAO.getInstance().insert(employee);
+
+        // Insert the new employee record with the newly inserted user record's ID as the foreign key reference
+        Employee newEmployee = new Employee();
+        newEmployee.setEmployee_id(employee_id);
+        newEmployee.setName(staffnameTextfield.getText());
+        newEmployee.setPhone_number(staffphoneTextfield.getText());
+        newEmployee.setAddress(staffaddressTextfield.getText());
+        newEmployee.setEmail(staffemailTextfield.getText());
+        Employee_DAO.getInstance().insert(newEmployee);
+        employeeList.add(newEmployee);
+        staff_table.refresh();
     }
 
     @FXML
     public void saveStaff(ActionEvent actionEvent) {
         Employee employee = staff_table.getSelectionModel().getSelectedItem();
-        staffidTextfield.setText(String.valueOf(employee.getEmployee_id()));
-        staffnameTextfield.setText(employee.getName());
-        staffphoneTextfield.setText(employee.getPhone_number());
-        staffaddressTextfield.setText(employee.getAddress());
-        staffemailTextfield.setText(employee.getEmail());
-        User u1 = User_DAO.getInstance().findById(employee.getEmployee_id());
-        staffpasswordTextfield.setText(u1.getPassword());
+        User user = User_DAO.getInstance().findById(employee.getEmployee_id());
+
         employee.setName(staffnameTextfield.getText());
         employee.setPhone_number(staffphoneTextfield.getText());
         employee.setAddress(staffaddressTextfield.getText());
         employee.setEmail(staffemailTextfield.getText());
         Employee_DAO.getInstance().update(employee);
+
+        // Update the user's information
+        user.setUserName(employee.getEmail());
+        user.setPassword(staffpasswordTextfield.getText());
+        User_DAO.getInstance().update(user);
+
+        staff_table.refresh();
     }
 
     @FXML
     public void deleteStaff(ActionEvent actionEvent) {
         Employee employee = staff_table.getSelectionModel().getSelectedItem();
+        User u1 = User_DAO.getInstance().findById(employee.getEmployee_id());
+        Employee_DAO.getInstance().delete(employee);
+        User_DAO.getInstance().delete(u1);
         employeeList.remove(employee);
+        staff_table.refresh();
     }
 
     @Override
@@ -392,10 +413,23 @@ public class managerController implements Initializable {
         employeeList = FXCollections.observableList(employeeData);
         staffidColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employee_id"));
         staffnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
-        staffphoneComlumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phonenumber"));
-        staffaddressColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("ddress"));
+        staffphoneComlumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phone_number"));
+        staffaddressColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("address"));
         staffemailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("email"));
         staff_table.setItems(employeeList);
+        staff_table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Employee employee = staff_table.getSelectionModel().getSelectedItem();
+                staffidTextfield.setText(String.valueOf(employee.getEmployee_id()));
+                staffnameTextfield.setText(employee.getName());
+                staffphoneTextfield.setText(employee.getPhone_number());
+                staffaddressTextfield.setText(employee.getAddress());
+                staffemailTextfield.setText(employee.getEmail());
+                User u1 = User_DAO.getInstance().findById(employee.getEmployee_id());
+                staffpasswordTextfield.setText(u1.getPassword());
+            }
+        });
     }
 }
 

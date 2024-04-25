@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 public class User_DAO implements DAO_Interface<User, Integer>{
     public static final int isDuplicate = -1;
+    ResultSet result = null;
+    Connection connection = null;
+    PreparedStatement statement = null;
     @Override
 
     public int insert(User entity) {
@@ -19,21 +22,32 @@ public class User_DAO implements DAO_Interface<User, Integer>{
             return isDuplicate;
         }
         //user_id, userName, password, role
-        String sql = "INSERT INTO users (user_id, userName, password, role) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO users (userName, password, role) VALUES (?,?,?)";
+        try{
+            int employee_id = 0;
+            connection = JDBC_Util.getConnection();
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, entity.getUserName());
+            statement.setString(2, entity.getPassword());
+            statement.setInt(3, entity.getRole());
 
-        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setInt(1, entity.getUser_id());
-            statement.setString(2, entity.getUserName());
-            statement.setString(3, entity.getPassword());
-            statement.setInt(4, entity.getRole());
-
-            int result = statement.executeUpdate();
-            System.out.println("Số dòng bị ảnh hưởng: " + result);
-
-            JDBC_Util.closeConnection(connection);
-
-        }catch (SQLException e) {
+            statement.executeUpdate();
+            result = statement.getGeneratedKeys();
+            if(result.next()){
+                employee_id = result.getInt(1);
+            }
+            return employee_id;
+        } catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            try {
+                if (result != null) result.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
         return 0;
     }
@@ -44,12 +58,11 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         if(checkDuplicateAccounts(entity.getUserName(), entity.getPassword(), entity.getRole())){
             return isDuplicate;
         }
-        String sql = "UPDATE users SET userName = ?, password = ?, role = ? WHERE user_id = ?";
+        String sql = "UPDATE users SET userName = ?, password = ? WHERE user_id = ?";
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getUserName());
             statement.setString(2, entity.getPassword());
-            statement.setInt(3, entity.getRole());
-            statement.setInt(4, entity.getUser_id());
+            statement.setInt(3, entity.getUser_id());
 
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
@@ -125,6 +138,15 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         return null;
     }
 
+    public User findByUsername(String username){
+        String condition = "userName = '" + username + "'";
+        ArrayList<User> listUser = findByCondition(condition);
+        if(listUser != null){
+            return listUser.get(0);
+        }
+        return null;
+    }
+
     @Override
     public ArrayList<User> findByCondition(String condition) {
 
@@ -150,14 +172,20 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         return null;
     }
 
-    boolean checkDuplicateAccounts(String username, String password, int role){
+    public boolean checkDuplicateAccounts(String username, String password, int role){
         String condition = "userName = '" + username  + "' AND role = '" + role + "'";
         if(findByCondition(condition) != null){
             return true;
         }
         return false;
     }
-
+    public boolean checkUserID(User entity){
+        String condition = "user_id = " + entity.getUser_id();
+        if(findByCondition(condition) != null){
+            return true;
+        }
+        return false;
+    }
 
     public static User_DAO getInstance(){
         return new User_DAO();

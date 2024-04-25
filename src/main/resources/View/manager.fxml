@@ -59,7 +59,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
             <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -72,7 +72,7 @@
             </BarChart>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>

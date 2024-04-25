@@ -43,3 +43,44 @@
     -fx-text-fill: white;
     -fx-cursor: hand;
 }
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+    -fx-start-margin: 0px;
+    -fx-end-margin: 0px;
+}
+
+.table-view .column-header .label {
+    -fx-background-color: #141E46;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: transparent transparent #141E46 transparent;
+    -fx-border-width: 1px;
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #f8efc3;
+}
+
+.table-view .table-row-cell:filled {
+    -fx-background-color: transparent;
+}
+
+
+.table-view .table-row-cell:filled:selected .text {
+    -fx-fill: black;
+}
+
+
+.table-view .table-cell {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+
+
