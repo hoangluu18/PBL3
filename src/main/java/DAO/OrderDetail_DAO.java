@@ -147,3 +147,4 @@ public class OrderDetail_DAO implements DAO_Interface<OrderDetail,Integer> {
         return new OrderDetail_DAO();
     }
 }
+

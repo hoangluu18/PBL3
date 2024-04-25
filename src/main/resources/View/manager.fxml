@@ -59,7 +59,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
             <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -72,7 +72,7 @@
             </BarChart>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
@@ -85,7 +85,7 @@
                   <Font name="Inter SemiBold" size="28.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="90.0" prefHeight="35.0" prefWidth="528.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="staffidTextfield" editable="false" layoutX="180.0" layoutY="90.0" prefHeight="35.0" prefWidth="528.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Medium" size="22.0" />
                </font></TextField>
@@ -94,7 +94,7 @@
                   <Font name="Inter SemiBold" size="28.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="180.0" prefHeight="43.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="staffnameTextfield" layoutX="180.0" layoutY="180.0" prefHeight="43.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Medium" size="22.0" />
                </font></TextField>
@@ -103,56 +103,59 @@
                   <Font name="Inter SemiBold" size="28.0" />
                </font>
             </Label>
-            <TextField layoutX="180.0" layoutY="270.0" prefHeight="41.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="staffaddressTextfield" layoutX="180.0" layoutY="270.0" prefHeight="41.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Medium" size="21.0" />
                </font></TextField>
-            <Label layoutX="783.0" layoutY="96.0" text="Email:">
+            <Label layoutX="755.0" layoutY="96.0" text="Email:">
                <font>
                   <Font name="Inter SemiBold" size="28.0" />
                </font>
             </Label>
-            <TextField layoutX="964.0" layoutY="90.0" prefHeight="35.0" prefWidth="521.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="staffemailTextfield" layoutX="964.0" layoutY="90.0" prefHeight="35.0" prefWidth="521.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Medium" size="22.0" />
                </font></TextField>
-            <Label layoutX="783.0" layoutY="186.0" text="Password:">
+            <Label layoutX="750.0" layoutY="186.0" text="Password:">
                <font>
                   <Font name="Inter SemiBold" size="28.0" />
                </font>
             </Label>
-            <TextField layoutX="964.0" layoutY="180.0" prefHeight="35.0" prefWidth="521.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="35.0" prefWidth="521.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Medium" size="22.0" />
                </font></TextField>
-            <Label layoutX="783.0" layoutY="277.0" text="Phone Num:">
+            <Label layoutX="752.0" layoutY="277.0" text="Phone Number:">
                <font>
                   <Font name="Inter SemiBold" size="28.0" />
                </font>
             </Label>
-            <TextField layoutX="964.0" layoutY="270.0" prefHeight="35.0" prefWidth="520.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="staffphoneTextfield" layoutX="964.0" layoutY="270.0" prefHeight="35.0" prefWidth="520.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Medium" size="22.0" />
                </font></TextField>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1227.0" layoutY="339.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Edit" textFill="WHITE">
+            <Button fx:id="saveBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1221.0" layoutY="339.0" mnemonicParsing="false" onAction="#saveStaff" prefHeight="50.0" prefWidth="115.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save" textFill="WHITE">
                <font>
                   <Font name="Inter SemiBold" size="30.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1092.0" layoutY="339.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" style="-fx-border-radius: 15; -fx-background-radius: 15;" styleClass="main_btn" text="Add" textFill="WHITE">
+            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1092.0" layoutY="339.0" mnemonicParsing="false" onAction="#addStaff" prefHeight="50.0" prefWidth="110.0" style="-fx-border-radius: 15; -fx-background-radius: 15;" styleClass="main_btn" text="Add" textFill="WHITE">
                <font>
                   <Font name="Inter SemiBold" size="30.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="1364.0" layoutY="339.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save" textFill="WHITE">
+            <Button fx:id="deleteBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1353.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteStaff" prefHeight="56.0" prefWidth="137.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Delete" textFill="WHITE">
                <font>
                   <Font name="Inter SemiBold" size="30.0" />
                </font>
             </Button>
-            <TableView layoutX="45.0" layoutY="417.0" prefHeight="471.0" prefWidth="1430.0">
+            <TableView fx:id="staff_table" layoutX="45.0" layoutY="417.0" prefHeight="471.0" prefWidth="1430.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="staffidColumn" prefWidth="161.07345581054688" text="Staff ID" />
+                <TableColumn fx:id="staffnameColumn" prefWidth="321.1993865966797" text="Name" />
+                  <TableColumn fx:id="staffphoneComlumn" prefWidth="309.3006896972656" text="Phone Numer" />
+                  <TableColumn fx:id="staffaddressColumn" prefWidth="329.2481689453125" text="Address" />
+                  <TableColumn fx:id="staffemailColumn" prefWidth="313.251953125" text="Email" />
               </columns>
             </TableView>
             <Label layoutX="47.0" layoutY="343.0" text="STAFF LIST">
