@@ -25,7 +25,6 @@ public class cardProductController {
     private int quantity;
     private String description;
     private int type_id;
-    private String image;
     public void setData(Product productData){
         this.productData = productData;
         this.product_id = productData.getProduct_id();
@@ -33,7 +32,7 @@ public class cardProductController {
         this.price = productData.getPrice();
         this.color = productData.getColor();
         this.size = productData.getSize();
-        this.image =  productData.getImage();
+        String path = "File:" + productData.getImage();
         this.quantity = productData.getQuantity();
         this.description = productData.getDescription();
         this.type_id = productData.getType_id();
