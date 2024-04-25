@@ -3,9 +3,7 @@ package Controller;
 import DAO.Employee_DAO;
 import DAO.User_DAO;
 import Database.JDBC_Util;
-import Model.Employee;
-import Model.Product;
-import Model.User;
+import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -105,6 +103,9 @@ public class managerController implements Initializable {
     private ArrayList<Employee> employeeData;
     @FXML
     private TableView<Employee> staff_table;
+    @FXML
+    private TableView table_billList, table_productDetail;
+
 
     @FXML
         public void anchorProductappear() throws IOException, SQLException {
@@ -116,7 +117,7 @@ public class managerController implements Initializable {
             tt.play();
             switch_pane.setPrefWidth(productBtn.getWidth());
             getAnchorProduct.setVisible(true);
-//            menuDisplayCard();
+            menuDisplayCard();
         }
 
         @FXML
@@ -174,91 +175,177 @@ public class managerController implements Initializable {
         }
     }
 
-//    public ObservableList<Product> menuGetData() throws SQLException {
-//
-//        String sql = "SELECT * FROM product";
-//
-//        ObservableList<Product> listData = FXCollections.observableArrayList();
-//        connect = JDBC_Util.getConnection();
-//
-//        try {
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            Product prod;
-//
-//            while (result.next()) {
-//                prod = new Product(
-//                        result.getInt("product_id"),
-//                        result.getString("name"),
-//                        result.getInt("price"),
-//                        result.getString("color"),
-//                        result.getString("size"),
-//                        result.getInt("quantity"),
-//                        result.getString("description"),
-//                        result.getString("image"),
-//                        result.getInt("type_id")
-//                );
-//
-//                listData.add(prod);
+    public ObservableList<Product> menuGetData() throws SQLException {
+
+        String sql = "SELECT * FROM product";
+
+        ObservableList<Product> listData = FXCollections.observableArrayList();
+        connect = JDBC_Util.getConnection();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            Product prod;
+
+            while (result.next()) {
+                prod = new Product(
+                        result.getInt("product_id"),
+                        result.getString("name"),
+                        result.getInt("price"),
+                        result.getString("color"),
+                        result.getString("size"),
+                        result.getInt("quantity"),
+                        result.getString("description"),
+                        result.getString("image"),
+                        result.getInt("type_id")
+                );
+
+                listData.add(prod);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listData;
+    }
+
+    public void menuDisplayCard() throws IOException, SQLException {
+        cardListData.clear();
+        cardListData.addAll(menuGetData());
+
+        int row = 0;
+        int column = 0;
+
+        gridCardPane.getChildren().clear();
+        gridCardPane.getRowConstraints().clear();
+        gridCardPane.getColumnConstraints().clear();
+
+        for (int q = 0; q < cardListData.size(); q++) {
+
+            try {
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("cardProduct.fxml"));
+                AnchorPane pane = load.load();
+                cardProductController cardC = load.getController();
+                cardC.setData(cardListData.get(q));
+
+                if (column == 6) {
+                    column = 0;
+                    row += 1;
+                }
+
+                gridCardPane.add(pane, column++, row);
+
+                GridPane.setMargin(pane, new Insets(10));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String choosePictureFromDialog(ImageView imgView) throws MalformedURLException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose");
+        File selected = fileChooser.showOpenDialog(null);
+        File url = selected;
+        try {
+            String path = url.toURI().toURL().toString();
+            Image imageForFile = new Image(selected.toURI().toURL().toString());
+            imgView.setImage(imageForFile);
+            return path;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void addTable_bill(){
+        Order order1 = new Order(1,1,"22-12-2024", 1, 10000,1);
+        Order order2 = new Order(2,2,"1-12-2024", 2, 20000,2);
+        ArrayList<Order> order = new ArrayList<>();
+        order.add(order1);
+        order.add(order2);
+
+        TableColumn<Order, Integer>idColumn = new TableColumn<Order, Integer>("ID");
+        TableColumn<Order, Integer>customer_id = new TableColumn<Order, Integer>("Customer_id");
+        TableColumn<Order, String>Date = new TableColumn<Order, String>("Date");
+        TableColumn<Order, Integer>Employee_id = new TableColumn<Order, Integer>("Employee_id");
+        TableColumn<Order, Integer>totalPrice = new TableColumn<Order, Integer>("Total Price");
+        TableColumn<Order, Integer>status = new TableColumn<Order, Integer>("Status");
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("order_id"));
+        customer_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("customer_id"));
+        Date.setCellValueFactory(new PropertyValueFactory<Order, String>("order_date"));
+        Employee_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("employee_id"));
+        totalPrice.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
+        status.setCellValueFactory(new PropertyValueFactory<Order, Integer>("status"));
+        idColumn.setPrefWidth(200);
+        customer_id.setPrefWidth(200);
+        Date.setPrefWidth(430);
+        Employee_id.setPrefWidth(250);
+        totalPrice.setPrefWidth(250);
+        status.setPrefWidth(100);
+        ObservableList<Order> orderdata = FXCollections.observableArrayList(order);
+        table_billList.getColumns().addAll(idColumn,customer_id,Date,Employee_id,totalPrice,status);
+        table_billList.setItems(orderdata);
+
+    }
+
+
+//        table_billList.getSelectionModel().selectedItemProperty().addListener(((observableValue, o, newSelection) -> {
+//            if(newSelection != null) {
+//                String orderID = newSelection.ge
 //            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return listData;
-//    }
-//
-//    public void menuDisplayCard() throws IOException, SQLException {
-//        cardListData.clear();
-//        cardListData.addAll(menuGetData());
-//
-//        int row = 0;
-//        int column = 0;
-//
-//        gridCardPane.getChildren().clear();
-//        gridCardPane.getRowConstraints().clear();
-//        gridCardPane.getColumnConstraints().clear();
-//
-//        for (int q = 0; q < cardListData.size(); q++) {
-//
-//            try {
-//                FXMLLoader load = new FXMLLoader();
-//                load.setLocation(getClass().getResource("cardProduct.fxml"));
-//                AnchorPane pane = load.load();
-//                cardProductController cardC = load.getController();
-//                cardC.setData(cardListData.get(q));
-//
-//                if (column == 6) {
-//                    column = 0;
-//                    row += 1;
-//                }
-//
-//                gridCardPane.add(pane, column++, row);
-//
-//                GridPane.setMargin(pane, new Insets(10));
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    public String choosePictureFromDialog(ImageView imgView) throws MalformedURLException {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Choose");
-//        File selected = fileChooser.showOpenDialog(null);
-//        File url = selected;
-//        try {
-//            String path = url.toURI().toURL().toString();
-//            Image imageForFile = new Image(selected.toURI().toURL().toString());
-//            imgView.setImage(imageForFile);
-//            return path;
-//        } catch (MalformedURLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+//        } ));
+
+    public int getOrderID(){
+        Order selectedOrder = (Order) table_billList.getSelectionModel().getSelectedItem();
+        int values = selectedOrder.getOrder_id();
+        return values;
+    }
+
+    public void addProductDetail(){
+        OrderDetail orderDetail1 = new OrderDetail(1,1,1,1,1000);
+        OrderDetail orderDetail2 = new OrderDetail(1,1,1,1,1000);
+        OrderDetail orderDetail3 = new OrderDetail(1,1,1,1,1000);
+
+        OrderDetail orderDetail4 = new OrderDetail(2,2,2,2,2);
+        ArrayList<OrderDetail> detailList = new ArrayList<>();
+        detailList.add(orderDetail1);
+        detailList.add(orderDetail2);
+        detailList.add(orderDetail3);
+        detailList.add(orderDetail4);
+        TableColumn<OrderDetail, Integer>idcolumn = new TableColumn<OrderDetail, Integer>("Order ID");
+        TableColumn<OrderDetail, Integer>order_detail_id = new TableColumn<OrderDetail, Integer>("Order detail ID");
+        TableColumn<OrderDetail, Integer>product_id = new TableColumn<OrderDetail, Integer>("Product id");
+        TableColumn<OrderDetail, Integer>quantity = new TableColumn<OrderDetail, Integer>("Quantity");
+        TableColumn<OrderDetail, Integer>unit_price = new TableColumn<OrderDetail, Integer>("Unit Price");
+
+        idcolumn.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_id"));
+        order_detail_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_detail_id"));
+        product_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("product_id"));
+        quantity.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("quantity"));
+        unit_price.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("unit_price"));
+
+        idcolumn.setPrefWidth(1430 / 5);
+        order_detail_id.setPrefWidth(1430 / 5);
+        product_id.setPrefWidth(1430 / 5);
+        quantity.setPrefWidth(1430 / 5);
+        unit_price.setPrefWidth(1430 / 5);
+        int orderID = getOrderID();
+        ArrayList<OrderDetail> selected = new ArrayList<>();
+
+        for(int i = 0; i < detailList.size(); i++) {
+            int index = detailList.get(i).getOrder_detail_id();
+            if(index == orderID) {
+                selected.add(detailList.get(i));
+            }
+        }
+        ObservableList<OrderDetail> orderDetailsdata = FXCollections.observableArrayList(selected);
+        table_productDetail.getColumns().addAll(idcolumn,order_detail_id, product_id, quantity, unit_price);
+        table_productDetail.setItems(orderDetailsdata);
+    }
 
 
     @FXML
