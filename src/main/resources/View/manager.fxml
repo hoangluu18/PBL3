@@ -22,11 +22,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="982.0" prefWidth="1512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.managerController">
    <children>
-      <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background">
-         <children>
-            <Button layoutX="678.0" layoutY="441.0" mnemonicParsing="false" onAction="#testChangeImage" text="Button" />
-            <ImageView fx:id="test2Image" fitHeight="291.0" fitWidth="362.0" layoutX="134.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" />
-         </children></AnchorPane>
+      <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background" />
       <AnchorPane prefHeight="63.0" prefWidth="1512.0" styleClass="navbar">
          <children>
             <ImageView fitHeight="54.0" fitWidth="161.0" layoutX="11.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -167,7 +163,7 @@
             <Line endX="691.30078125" endY="-3.0517578125E-5" layoutX="368.0" layoutY="364.0" startX="-98.8504638671875" startY="-3.0517578125E-5" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="line-color" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL">
                <font>
@@ -175,24 +171,15 @@
                </font>
             </Label>
             <Line endX="1068.0" endY="-7.62939453125E-6" layoutX="412.0" layoutY="37.0" startX="-50.049072265625" startY="-1.52587890625E-5" strokeWidth="3.0" styleClass="line-color" />
-            <TableView layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
+            <TableView fx:id="table_productDetail" layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0" />
             <Label layoutX="25.0" layoutY="450.0" text="BILL LIST">
                <font>
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <TableView layoutX="25.0" layoutY="501.0" prefHeight="360.0" prefWidth="1430.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
+            <TableView fx:id="table_billList" layoutX="25.0" layoutY="503.0" prefHeight="360.0" prefWidth="1430.0" />
             <Line endX="1170.89599609375" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
+            <Button layoutX="173.0" layoutY="864.0" mnemonicParsing="false" onAction="#addProductDetail" prefHeight="43.0" prefWidth="87.0" text="See Detail" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">

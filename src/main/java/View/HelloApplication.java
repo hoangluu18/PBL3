@@ -17,8 +17,10 @@ public class HelloApplication extends Application {
         scene.getStylesheets().add(getClass().getResource("/manager.css").toExternalForm());
         stage.setTitle("Shop Management System");
         stage.setScene(scene);
+        stage.setMinWidth(1512);
+        stage.setMinHeight(982);
         stage.show();
-        stage.setMaximized(true);
+
     }
 
     public static void main(String[] args) {
