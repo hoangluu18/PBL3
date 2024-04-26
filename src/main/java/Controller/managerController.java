@@ -1,6 +1,8 @@
 package Controller;
 
 import DAO.Employee_DAO;
+import DAO.OrderDetail_DAO;
+import DAO.Order_DAO;
 import DAO.User_DAO;
 import Database.JDBC_Util;
 import Model.*;
@@ -155,6 +157,7 @@ public class managerController implements Initializable {
             tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
             tt.play();
             switch_pane.setPrefWidth(billBtn.getWidth());
+            addTable_bill();
         }
 
     @FXML
@@ -256,11 +259,10 @@ public class managerController implements Initializable {
         }
     }
     public void addTable_bill(){
-        Order order1 = new Order(1,1,"22-12-2024", 1, 10000,1);
-        Order order2 = new Order(2,2,"1-12-2024", 2, 20000,2);
-        ArrayList<Order> order = new ArrayList<>();
-        order.add(order1);
-        order.add(order2);
+
+        ArrayList<Order> order = Order_DAO.getInstance().findAll();
+
+
 
         TableColumn<Order, Integer>idColumn = new TableColumn<Order, Integer>("ID");
         TableColumn<Order, Integer>customer_id = new TableColumn<Order, Integer>("Customer_id");
@@ -275,13 +277,16 @@ public class managerController implements Initializable {
         Employee_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("employee_id"));
         totalPrice.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
         status.setCellValueFactory(new PropertyValueFactory<Order, Integer>("status"));
+
         idColumn.setPrefWidth(200);
         customer_id.setPrefWidth(200);
         Date.setPrefWidth(430);
         Employee_id.setPrefWidth(250);
         totalPrice.setPrefWidth(250);
         status.setPrefWidth(100);
+
         ObservableList<Order> orderdata = FXCollections.observableArrayList(order);
+
         table_billList.getColumns().addAll(idColumn,customer_id,Date,Employee_id,totalPrice,status);
         table_billList.setItems(orderdata);
 
@@ -301,16 +306,9 @@ public class managerController implements Initializable {
     }
 
     public void addProductDetail(){
-        OrderDetail orderDetail1 = new OrderDetail(1,1,1,1,1000);
-        OrderDetail orderDetail2 = new OrderDetail(1,1,1,1,1000);
-        OrderDetail orderDetail3 = new OrderDetail(1,1,1,1,1000);
 
-        OrderDetail orderDetail4 = new OrderDetail(2,2,2,2,2);
-        ArrayList<OrderDetail> detailList = new ArrayList<>();
-        detailList.add(orderDetail1);
-        detailList.add(orderDetail2);
-        detailList.add(orderDetail3);
-        detailList.add(orderDetail4);
+        ArrayList<OrderDetail> detailList = OrderDetail_DAO.getInstance().findAll();
+
         TableColumn<OrderDetail, Integer>idcolumn = new TableColumn<OrderDetail, Integer>("Order ID");
         TableColumn<OrderDetail, Integer>order_detail_id = new TableColumn<OrderDetail, Integer>("Order detail ID");
         TableColumn<OrderDetail, Integer>product_id = new TableColumn<OrderDetail, Integer>("Product id");
@@ -332,7 +330,7 @@ public class managerController implements Initializable {
         ArrayList<OrderDetail> selected = new ArrayList<>();
 
         for(int i = 0; i < detailList.size(); i++) {
-            int index = detailList.get(i).getOrder_detail_id();
+            int index = detailList.get(i).getOrder_id();
             if(index == orderID) {
                 selected.add(detailList.get(i));
             }
