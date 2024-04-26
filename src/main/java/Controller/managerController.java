@@ -140,9 +140,6 @@ public class managerController implements Initializable {
             tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
             tt.play();
             switch_pane.setPrefWidth(staffBtn.getWidth());
-            // Thêm EventFilter cho MouseEvent.MOUSE_CLICKED vào scene hoặc root pane của bạn.
-
-
         }
         @FXML
         public void anchorBillappear(){
