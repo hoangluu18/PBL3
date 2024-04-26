@@ -38,6 +38,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
+
 import javax.xml.crypto.Data;
 
 public class managerController implements Initializable {
@@ -60,10 +61,6 @@ public class managerController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
 
-    //manager
-    @FXML
-    private ObservableList<Product> cardListData = FXCollections.observableArrayList();
-
     //employee
     @FXML
     private GridPane gridCardPane;
@@ -85,8 +82,6 @@ public class managerController implements Initializable {
     @FXML
     private Button saveBtn;
     @FXML
-    private TextField staffpasswordTextfield;
-    @FXML
     private TextField staffaddressTextfield;
     @FXML
     private TextField staffidTextfield;
@@ -101,6 +96,10 @@ public class managerController implements Initializable {
     private TableView<Employee> staff_table;
     @FXML
     private TableView table_billList, table_productDetail;
+    @FXML
+    private PasswordField staffpasswordTextfield;
+    @FXML
+    private ObservableList<Product> cardListData = FXCollections.observableArrayList();
 
 
     @FXML
