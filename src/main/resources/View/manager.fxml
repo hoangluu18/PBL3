@@ -73,7 +73,7 @@
             </BarChart>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
          <children>
             <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
@@ -164,7 +164,7 @@
             <PasswordField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="45.0" prefWidth="521.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+      <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL">
                <font>
@@ -180,7 +180,7 @@
             </Label>
             <TableView fx:id="table_billList" layoutX="25.0" layoutY="503.0" prefHeight="360.0" prefWidth="1430.0" />
             <Line endX="1170.89599609375" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
-            <Button layoutX="173.0" layoutY="864.0" mnemonicParsing="false" onAction="#addProductDetail" prefHeight="43.0" prefWidth="87.0" text="See Detail" />
+            <Button layoutX="62.0" layoutY="860.0" mnemonicParsing="false" onAction="#addProductDetail" prefHeight="43.0" prefWidth="87.0" text="See Detail" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
