@@ -6,6 +6,7 @@ import Database.JDBC_Util;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,9 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-
+import javafx.scene.Node;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.io.File;
@@ -43,7 +42,6 @@ import javax.xml.crypto.Data;
 
 public class managerController implements Initializable {
 
-    Product test = new Product(1, "test", 100, "black", "big", 1, "nhu lol", "src/main/resources/Picture/Ava.jpg",1);
     @FXML Avatar ava;
     @FXML
     private AnchorPane anchorHome,  anchorStaff, anchorBill, getAnchorProduct;
@@ -143,6 +141,9 @@ public class managerController implements Initializable {
             tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
             tt.play();
             switch_pane.setPrefWidth(staffBtn.getWidth());
+            // Thêm EventFilter cho MouseEvent.MOUSE_CLICKED vào scene hoặc root pane của bạn.
+
+
         }
         @FXML
         public void anchorBillappear(){
@@ -358,6 +359,17 @@ public class managerController implements Initializable {
             newUser.setPassword(staffpasswordTextfield.getText());
             newUser.setRole(User.EMPLOYEE);
             employee_id = User_DAO.getInstance().insert(newUser);
+
+            // Insert the new employee record with the newly inserted user record's ID as the foreign key reference
+            Employee newEmployee = new Employee();
+            newEmployee.setEmployee_id(employee_id);
+            newEmployee.setName(staffnameTextfield.getText());
+            newEmployee.setPhone_number(staffphoneTextfield.getText());
+            newEmployee.setAddress(staffaddressTextfield.getText());
+            newEmployee.setEmail(staffemailTextfield.getText());
+            Employee_DAO.getInstance().insert(newEmployee);
+            employeeList.add(newEmployee);
+            staff_table.refresh();
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -366,22 +378,13 @@ public class managerController implements Initializable {
             alert.showAndWait();
         }
 
-        // Insert the new employee record with the newly inserted user record's ID as the foreign key reference
-        Employee newEmployee = new Employee();
-        newEmployee.setEmployee_id(employee_id);
-        newEmployee.setName(staffnameTextfield.getText());
-        newEmployee.setPhone_number(staffphoneTextfield.getText());
-        newEmployee.setAddress(staffaddressTextfield.getText());
-        newEmployee.setEmail(staffemailTextfield.getText());
-        Employee_DAO.getInstance().insert(newEmployee);
-        employeeList.add(newEmployee);
-        staff_table.refresh();
+
     }
 
     @FXML
     public void saveStaff(ActionEvent actionEvent) {
         Employee employee = staff_table.getSelectionModel().getSelectedItem();
-        User user = User_DAO.getInstance().findById(employee.getEmployee_id());
+        User user = User_DAO.getInstance().findByUsername(employee.getEmail());
 
         employee.setName(staffnameTextfield.getText());
         employee.setPhone_number(staffphoneTextfield.getText());
@@ -389,13 +392,17 @@ public class managerController implements Initializable {
         employee.setEmail(staffemailTextfield.getText());
         Employee_DAO.getInstance().update(employee);
 
+        // Kiểm tra xem tên người dùng có thay đổi không
+        boolean isUsernameChanged = !user.getUserName().equals(employee.getEmail());
+
         // Update the user's information
         user.setUserName(employee.getEmail());
         user.setPassword(staffpasswordTextfield.getText());
-        User_DAO.getInstance().update(user);
+        User_DAO.getInstance().update(user, isUsernameChanged);
 
         staff_table.refresh();
     }
+
 
     @FXML
     public void deleteStaff(ActionEvent actionEvent) {
@@ -411,12 +418,13 @@ public class managerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         employeeData = Employee_DAO.getInstance().findAll();
         employeeList = FXCollections.observableList(employeeData);
-        staffidColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employee_id"));
-        staffnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
-        staffphoneComlumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phone_number"));
-        staffaddressColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("address"));
-        staffemailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("email"));
+        staffidColumn.setCellValueFactory(new PropertyValueFactory<>("employee_id"));
+        staffnameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        staffphoneComlumn.setCellValueFactory(new PropertyValueFactory<>("phone_number"));
+        staffaddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        staffemailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         staff_table.setItems(employeeList);
+
         staff_table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -430,6 +438,46 @@ public class managerController implements Initializable {
                 staffpasswordTextfield.setText(u1.getPassword());
             }
         });
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                // Thêm EventFilter cho MouseEvent.MOUSE_CLICKED vào scene hoặc root pane của bạn.
+                staff_table.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Node node = mouseEvent.getPickResult().getIntersectedNode();
+                        Boolean clickedOn = false;
+                        while (node != null) {
+                            if (node == staff_table) {
+                                clickedOn = true;
+                                break;
+                            }
+                            if (node instanceof TextField) {
+                                clickedOn = true;
+                                break;
+                            }
+                            if (node instanceof Button) {
+                                clickedOn = true;
+                                break;
+                            }
+                            node = node.getParent();
+                        }
+
+                        if (!clickedOn) {
+                            staff_table.getSelectionModel().clearSelection();
+                            staffidTextfield.clear();
+                            staffnameTextfield.clear();
+                            staffphoneTextfield.clear();
+                            staffaddressTextfield.clear();
+                            staffemailTextfield.clear();
+                            staffpasswordTextfield.clear();
+                            staff_table.refresh();
+                        }
+                    }
+                });
+            }
+        });
+
     }
 }
 

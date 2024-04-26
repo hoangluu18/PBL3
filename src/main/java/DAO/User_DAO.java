@@ -75,6 +75,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         return 0;
     }
 
+
     @Override
     public int delete(User entity) {
 
@@ -190,5 +191,29 @@ public class User_DAO implements DAO_Interface<User, Integer>{
     public static User_DAO getInstance(){
         return new User_DAO();
     }
+    public int update(User entity, boolean isUsernameChanged) {
+        // Chỉ kiểm tra trùng lặp khi tên người dùng thay đổi
+        if (isUsernameChanged && checkDuplicateAccounts(entity.getUserName(), entity.getPassword(), entity.getRole())){
+            return isDuplicate;
+        }
+        String sql = "UPDATE users SET userName = ?, password = ? WHERE user_id = ?";
+        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, entity.getUserName());
+            statement.setString(2, entity.getPassword());
+            statement.setInt(3, entity.getUser_id());
+
+            int result = statement.executeUpdate();
+            System.out.println("Số dòng bị ảnh hưởng: " + result);
+
+            JDBC_Util.closeConnection(connection);
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
 }
+
+
