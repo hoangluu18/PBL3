@@ -2,7 +2,6 @@ package DAO;
 
 import Database.JDBC_Util;
 import Model.Product;
-import com.mysql.cj.xdevapi.PreparableStatement;
 
 import java.sql.*;
 import java.util.ArrayList;

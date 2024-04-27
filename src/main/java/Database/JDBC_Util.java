@@ -12,7 +12,7 @@ public class JDBC_Util {
         Connection c = null;
 
         try{
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
             // thong so ket noi
             String url = "jdbc:mysql://localhost:3306/pbl3";
