@@ -40,6 +40,8 @@ public class cardProductController {
     private int quantity;
     private String description;
     private int type_id;
+
+
     public void setData(Product productData){
         this.productData = productData;
         this.product_id = productData.getProduct_id();
@@ -54,7 +56,7 @@ public class cardProductController {
     }
 
     public void setProductInfo(Product product){
-        Price.setText(Integer.toString(product.getPrice()));
+        Price.setText((Integer.toString(product.getPrice()) + "$"));
         Name.setText(product.getName());
         setImageByPath(product, this.Image);
     }

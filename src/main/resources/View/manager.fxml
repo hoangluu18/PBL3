@@ -218,9 +218,9 @@
                     </font>
                 </Label>
                 <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
-            <ScrollPane layoutX="63.0" layoutY="97.0" prefHeight="723.0" prefWidth="1381.0">
+            <ScrollPane layoutX="63.0" layoutY="97.0" prefHeight="723.0" prefWidth="1393.0">
                <content>
-                      <GridPane fx:id="gridCardPane" prefHeight="706.0" prefWidth="1286.0">
+                      <GridPane fx:id="gridCardPane" prefHeight="706.0" prefWidth="1381.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
