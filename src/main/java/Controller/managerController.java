@@ -250,14 +250,15 @@ public class managerController implements Initializable {
         gridCardPane.getRowConstraints().clear();
         gridCardPane.getColumnConstraints().clear();
 
-        for (int q = 0; q < cardListData.size(); q++) {
+        for (int i = 0; i < cardListData.size(); i++) {
 
             try {
                 FXMLLoader load = new FXMLLoader();
                 load.setLocation(getClass().getResource("/View/cardProduct.fxml"));
                 AnchorPane pane = load.load();
                 cardProductController cardC = load.getController();
-                cardC.setData(cardListData.get(q));
+                cardC.setData(cardListData.get(i));
+                cardC.setProductInfo(cardListData.get(i));
 
                 if (column == 6) {
                     column = 0;

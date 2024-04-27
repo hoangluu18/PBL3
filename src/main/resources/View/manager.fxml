@@ -8,6 +8,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -61,7 +62,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
                 <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
                 <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -209,7 +210,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+        <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
             <children>
                 <Label layoutX="25.0" layoutY="15.0" text="Product List">
                     <font>
@@ -217,21 +218,25 @@
                     </font>
                 </Label>
                 <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
-                <GridPane fx:id="gridCardPane" layoutX="125.0" layoutY="117.0" prefHeight="706.0" prefWidth="1286.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                </GridPane>
+            <ScrollPane layoutX="63.0" layoutY="97.0" prefHeight="723.0" prefWidth="1381.0">
+               <content>
+                      <GridPane fx:id="gridCardPane" prefHeight="706.0" prefWidth="1286.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                      </GridPane>
+               </content>
+            </ScrollPane>
             </children>
         </AnchorPane>
     </children>
