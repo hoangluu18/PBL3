@@ -82,5 +82,16 @@
     -fx-font-size: 20px;
 }
 
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #8DECB4;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+}
+
+
 
 

@@ -97,11 +97,41 @@ public class managerController implements Initializable {
     @FXML
     private TableView<Employee> staff_table;
     @FXML
-    private TableView table_billList, table_productDetail;
+    private TableView bill_table, productDetail_table;
     @FXML
     private PasswordField staffpasswordTextfield;
     @FXML
     private ObservableList<Product> cardListData = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Product, Integer> productidColumn;
+    @FXML
+    private TableColumn<Order, Integer>idColumn;
+    @FXML
+    private TableColumn<Order, Integer>customer_id;
+    @FXML
+    private TableColumn<Order, String>Date;
+    @FXML
+    private TableColumn<Order, Integer>Employee_id;
+    @FXML
+    private TableColumn<Order, Integer>totalPrice;
+    @FXML
+    private TableColumn<Order, Integer>status;
+    private ArrayList<Order> orderData;
+    private ObservableList<Order> orderList;
+
+    ArrayList<OrderDetail> detailList;
+    @FXML
+    TableColumn<OrderDetail, Integer>productorder_idcolumn;
+    @FXML
+    TableColumn<OrderDetail, Integer>order_detail_id;
+    @FXML
+    TableColumn<OrderDetail, Integer>detailproduct_id;
+    @FXML
+    TableColumn<OrderDetail, Integer>quantity;
+    @FXML
+    TableColumn<OrderDetail, Integer>unit_price;
+
+
 
 
     @FXML
@@ -143,6 +173,7 @@ public class managerController implements Initializable {
             tt.play();
             switch_pane.setPrefWidth(staffBtn.getWidth());
         }
+
         @FXML
         public void anchorBillappear(){
             anchorBill.setMinWidth(67);
@@ -157,7 +188,6 @@ public class managerController implements Initializable {
             tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
             tt.play();
             switch_pane.setPrefWidth(billBtn.getWidth());
-            addTable_bill();
         }
 
     @FXML
@@ -258,39 +288,6 @@ public class managerController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    public void addTable_bill(){
-
-        ArrayList<Order> order = Order_DAO.getInstance().findAll();
-
-
-
-        TableColumn<Order, Integer>idColumn = new TableColumn<Order, Integer>("ID");
-        TableColumn<Order, Integer>customer_id = new TableColumn<Order, Integer>("Customer_id");
-        TableColumn<Order, String>Date = new TableColumn<Order, String>("Date");
-        TableColumn<Order, Integer>Employee_id = new TableColumn<Order, Integer>("Employee_id");
-        TableColumn<Order, Integer>totalPrice = new TableColumn<Order, Integer>("Total Price");
-        TableColumn<Order, Integer>status = new TableColumn<Order, Integer>("Status");
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("order_id"));
-        customer_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("customer_id"));
-        Date.setCellValueFactory(new PropertyValueFactory<Order, String>("order_date"));
-        Employee_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("employee_id"));
-        totalPrice.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
-        status.setCellValueFactory(new PropertyValueFactory<Order, Integer>("status"));
-
-        idColumn.setPrefWidth(200);
-        customer_id.setPrefWidth(200);
-        Date.setPrefWidth(430);
-        Employee_id.setPrefWidth(250);
-        totalPrice.setPrefWidth(250);
-        status.setPrefWidth(100);
-
-        ObservableList<Order> orderdata = FXCollections.observableArrayList(order);
-
-        table_billList.getColumns().addAll(idColumn,customer_id,Date,Employee_id,totalPrice,status);
-        table_billList.setItems(orderdata);
-
-    }
 
 
 //        table_billList.getSelectionModel().selectedItemProperty().addListener(((observableValue, o, newSelection) -> {
@@ -300,32 +297,19 @@ public class managerController implements Initializable {
 //        } ));
 
     public int getOrderID(){
-        Order selectedOrder = (Order) table_billList.getSelectionModel().getSelectedItem();
+        Order selectedOrder = (Order) bill_table.getSelectionModel().getSelectedItem();
         int values = selectedOrder.getOrder_id();
         return values;
     }
 
     public void addProductDetail(){
 
-        ArrayList<OrderDetail> detailList = OrderDetail_DAO.getInstance().findAll();
-
-        TableColumn<OrderDetail, Integer>idcolumn = new TableColumn<OrderDetail, Integer>("Order ID");
-        TableColumn<OrderDetail, Integer>order_detail_id = new TableColumn<OrderDetail, Integer>("Order detail ID");
-        TableColumn<OrderDetail, Integer>product_id = new TableColumn<OrderDetail, Integer>("Product id");
-        TableColumn<OrderDetail, Integer>quantity = new TableColumn<OrderDetail, Integer>("Quantity");
-        TableColumn<OrderDetail, Integer>unit_price = new TableColumn<OrderDetail, Integer>("Unit Price");
-
-        idcolumn.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_id"));
+        detailList = OrderDetail_DAO.getInstance().findAll();
+        productorder_idcolumn.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_id"));
         order_detail_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_detail_id"));
-        product_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("product_id"));
+        detailproduct_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("product_id"));
         quantity.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("quantity"));
         unit_price.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("unit_price"));
-
-        idcolumn.setPrefWidth(1430 / 5);
-        order_detail_id.setPrefWidth(1430 / 5);
-        product_id.setPrefWidth(1430 / 5);
-        quantity.setPrefWidth(1430 / 5);
-        unit_price.setPrefWidth(1430 / 5);
         int orderID = getOrderID();
         ArrayList<OrderDetail> selected = new ArrayList<>();
 
@@ -336,8 +320,7 @@ public class managerController implements Initializable {
             }
         }
         ObservableList<OrderDetail> orderDetailsdata = FXCollections.observableArrayList(selected);
-        table_productDetail.getColumns().addAll(idcolumn,order_detail_id, product_id, quantity, unit_price);
-        table_productDetail.setItems(orderDetailsdata);
+        productDetail_table.setItems(orderDetailsdata);
     }
 
 
@@ -418,6 +401,18 @@ public class managerController implements Initializable {
         staffaddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         staffemailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         staff_table.setItems(employeeList);
+
+        orderData = Order_DAO.getInstance().findAll();
+        orderList = FXCollections.observableArrayList(orderData);
+        idColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("order_id"));
+        customer_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("customer_id"));
+        Date.setCellValueFactory(new PropertyValueFactory<Order, String>("order_date"));
+        Employee_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("employee_id"));
+        totalPrice.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
+        status.setCellValueFactory(new PropertyValueFactory<Order, Integer>("status"));
+        bill_table.setItems(orderList);
+
+
 
         staff_table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

@@ -22,191 +22,217 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="982.0" prefWidth="1512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.managerController">
-   <children>
-      <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background" />
-      <AnchorPane prefHeight="70.0" prefWidth="1512.0" styleClass="navbar">
-         <children>
-            <ImageView fitHeight="54.0" fitWidth="161.0" layoutX="11.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Picture/Salework-logo-full.png" />
-               </image>
-            </ImageView>
+    <children>
+        <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background" />
+        <AnchorPane prefHeight="70.0" prefWidth="1512.0" styleClass="navbar">
+            <children>
+                <ImageView fitHeight="54.0" fitWidth="161.0" layoutX="11.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Picture/Salework-logo-full.png" />
+                    </image>
+                </ImageView>
 
-            <Label layoutX="1288.0" layoutY="16.0" text="NameLabel">
-               <font>
-                  <Font name="Inter SemiBold" size="19.0" />
-               </font></Label>
-            <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
-            <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
-               <font>
-                  <Font name="Inter ExtraBold" size="28.0" />
-               </font>
-            </Button>
-            <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="916.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="54.0" prefWidth="110.0" styleClass="switch-btn" text="Staff">
-               <font>
-                  <Font name="Inter ExtraBold" size="28.0" />
-               </font>
-            </Button>
-            <Button fx:id="billBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1111.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="50.0" prefWidth="80.0" styleClass="switch-btn" text="Bill">
-               <font>
-                  <Font name="Inter ExtraBold" size="28.0" />
-               </font>
-            </Button>
-            <Pane fx:id="switch_pane" layoutX="526.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-            <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
-               <font>
-                  <Font name="Inter ExtraBold" size="28.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
-         <children>
-            <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
-            <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
-               <xAxis>
-                  <CategoryAxis side="BOTTOM" />
-               </xAxis>
-               <yAxis>
-                  <NumberAxis side="LEFT" />
-               </yAxis>
-            </BarChart>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
-         <children>
-            <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
-               <font>
-                  <Font name="Inter Bold" size="36.0" />
-               </font>
-            </Label>
-            <Line endX="1027.0" endY="-7.62939453125E-6" layoutX="449.0" layoutY="36.0" startX="-8.078460693359375" startY="-3.0517578125E-5" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="line-color" />
-            <Label layoutX="45.0" layoutY="96.0" text="Staff ID:">
-               <font>
-                  <Font name="Inter SemiBold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="staffidTextfield" editable="false" layoutX="180.0" layoutY="90.0" prefHeight="35.0" prefWidth="528.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
-               <font>
-                  <Font name="Inter Medium" size="22.0" />
-               </font></TextField>
-            <Label layoutX="46.0" layoutY="185.0" text="Name:">
-               <font>
-                  <Font name="Inter SemiBold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="staffnameTextfield" layoutX="180.0" layoutY="180.0" prefHeight="43.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
-               <font>
-                  <Font name="Inter Medium" size="22.0" />
-               </font></TextField>
-            <Label layoutX="45.0" layoutY="272.0" text="Address:">
-               <font>
-                  <Font name="Inter SemiBold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="staffaddressTextfield" layoutX="180.0" layoutY="270.0" prefHeight="41.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
-               <font>
-                  <Font name="Inter Medium" size="21.0" />
-               </font></TextField>
-            <Label layoutX="755.0" layoutY="96.0" text="Email:">
-               <font>
-                  <Font name="Inter SemiBold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="staffemailTextfield" layoutX="964.0" layoutY="90.0" prefHeight="35.0" prefWidth="521.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
-               <font>
-                  <Font name="Inter Medium" size="22.0" />
-               </font></TextField>
-            <Label layoutX="750.0" layoutY="186.0" text="Password:">
-               <font>
-                  <Font name="Inter SemiBold" size="28.0" />
-               </font>
-            </Label>
-            <Label layoutX="752.0" layoutY="277.0" text="Phone Number:">
-               <font>
-                  <Font name="Inter SemiBold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="staffphoneTextfield" layoutX="964.0" layoutY="270.0" prefHeight="35.0" prefWidth="520.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
-               <font>
-                  <Font name="Inter Medium" size="22.0" />
-               </font></TextField>
-            <Button fx:id="saveBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1221.0" layoutY="339.0" mnemonicParsing="false" onAction="#saveStaff" prefHeight="50.0" prefWidth="115.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save" textFill="WHITE">
-               <font>
-                  <Font name="Inter SemiBold" size="30.0" />
-               </font>
-            </Button>
-            <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1092.0" layoutY="339.0" mnemonicParsing="false" onAction="#addStaff" prefHeight="50.0" prefWidth="110.0" style="-fx-border-radius: 15; -fx-background-radius: 15;" styleClass="main_btn" text="Add" textFill="WHITE">
-               <font>
-                  <Font name="Inter SemiBold" size="30.0" />
-               </font>
-            </Button>
-            <Button fx:id="deleteBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1353.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteStaff" prefHeight="56.0" prefWidth="137.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Delete" textFill="WHITE">
-               <font>
-                  <Font name="Inter SemiBold" size="30.0" />
-               </font>
-            </Button>
-            <TableView fx:id="staff_table" layoutX="45.0" layoutY="417.0" prefHeight="471.0" prefWidth="1430.0">
-              <columns>
-                <TableColumn fx:id="staffidColumn" prefWidth="161.07345581054688" text="Staff ID" />
-                <TableColumn fx:id="staffnameColumn" prefWidth="321.1993865966797" text="Name" />
-                  <TableColumn fx:id="staffphoneComlumn" prefWidth="309.3006896972656" text="Phone Numer" />
-                  <TableColumn fx:id="staffaddressColumn" prefWidth="329.2481689453125" text="Address" />
-                  <TableColumn fx:id="staffemailColumn" prefWidth="313.251953125" text="Email" />
-              </columns>
-            </TableView>
-            <Label layoutX="47.0" layoutY="343.0" text="STAFF LIST">
-               <font>
-                  <Font name="Inter Bold" size="36.0" />
-               </font>
-            </Label>
-            <Line endX="691.30078125" endY="-3.0517578125E-5" layoutX="368.0" layoutY="364.0" startX="-98.8504638671875" startY="-3.0517578125E-5" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="line-color" />
-            <PasswordField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="45.0" prefWidth="521.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
-         <children>
-            <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL">
-               <font>
-                  <Font name="Inter Bold" size="36.0" />
-               </font>
-            </Label>
-            <Line endX="1068.0" endY="-7.62939453125E-6" layoutX="412.0" layoutY="37.0" startX="-50.049072265625" startY="-1.52587890625E-5" strokeWidth="3.0" styleClass="line-color" />
-            <TableView fx:id="table_productDetail" layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0" />
-            <Label layoutX="25.0" layoutY="450.0" text="BILL LIST">
-               <font>
-                  <Font name="Inter Bold" size="36.0" />
-               </font>
-            </Label>
-            <TableView fx:id="table_billList" layoutX="25.0" layoutY="503.0" prefHeight="360.0" prefWidth="1430.0" />
-            <Line endX="1170.89599609375" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
-            <Button layoutX="62.0" layoutY="860.0" mnemonicParsing="false" onAction="#addProductDetail" prefHeight="43.0" prefWidth="87.0" text="See Detail" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
-         <children>
-            <Label layoutX="25.0" layoutY="15.0" text="Product List">
-               <font>
-                  <Font name="Inter Bold" size="36.0" />
-               </font>
-            </Label>
-            <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
-            <GridPane fx:id="gridCardPane" layoutX="125.0" layoutY="117.0" prefHeight="706.0" prefWidth="1286.0">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
-         </children>
-      </AnchorPane>
-   </children>
+                <Label layoutX="1288.0" layoutY="16.0" text="NameLabel">
+                    <font>
+                        <Font name="Inter SemiBold" size="19.0" />
+                    </font>
+                </Label>
+                <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
+                <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
+                    <font>
+                        <Font name="Inter ExtraBold" size="28.0" />
+                    </font>
+                </Button>
+                <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="916.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="54.0" prefWidth="110.0" styleClass="switch-btn" text="Staff">
+                    <font>
+                        <Font name="Inter ExtraBold" size="28.0" />
+                    </font>
+                </Button>
+                <Button fx:id="billBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1111.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="50.0" prefWidth="80.0" styleClass="switch-btn" text="Bill">
+                    <font>
+                        <Font name="Inter ExtraBold" size="28.0" />
+                    </font>
+                </Button>
+                <Pane fx:id="switch_pane" layoutX="526.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
+                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
+                    <font>
+                        <Font name="Inter ExtraBold" size="28.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+            <children>
+                <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
+                <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+            <children>
+                <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
+                    <font>
+                        <Font name="Inter Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Line endX="1027.0" endY="-7.62939453125E-6" layoutX="449.0" layoutY="36.0" startX="-8.078460693359375" startY="-3.0517578125E-5" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="line-color" />
+                <Label layoutX="45.0" layoutY="96.0" text="Staff ID:">
+                    <font>
+                        <Font name="Inter SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="staffidTextfield" editable="false" layoutX="180.0" layoutY="90.0" prefHeight="35.0" prefWidth="528.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+                    <font>
+                        <Font name="Inter Medium" size="22.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="46.0" layoutY="185.0" text="Name:">
+                    <font>
+                        <Font name="Inter SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="staffnameTextfield" layoutX="180.0" layoutY="180.0" prefHeight="43.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+                    <font>
+                        <Font name="Inter Medium" size="22.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="45.0" layoutY="272.0" text="Address:">
+                    <font>
+                        <Font name="Inter SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="staffaddressTextfield" layoutX="180.0" layoutY="270.0" prefHeight="41.0" prefWidth="526.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+                    <font>
+                        <Font name="Inter Medium" size="21.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="755.0" layoutY="96.0" text="Email:">
+                    <font>
+                        <Font name="Inter SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="staffemailTextfield" layoutX="964.0" layoutY="90.0" prefHeight="35.0" prefWidth="521.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+                    <font>
+                        <Font name="Inter Medium" size="22.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="750.0" layoutY="186.0" text="Password:">
+                    <font>
+                        <Font name="Inter SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <Label layoutX="752.0" layoutY="277.0" text="Phone Number:">
+                    <font>
+                        <Font name="Inter SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="staffphoneTextfield" layoutX="964.0" layoutY="270.0" prefHeight="35.0" prefWidth="520.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+                    <font>
+                        <Font name="Inter Medium" size="22.0" />
+                    </font>
+                </TextField>
+                <Button fx:id="saveBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1221.0" layoutY="339.0" mnemonicParsing="false" onAction="#saveStaff" prefHeight="50.0" prefWidth="115.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save" textFill="WHITE">
+                    <font>
+                        <Font name="Inter SemiBold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1092.0" layoutY="339.0" mnemonicParsing="false" onAction="#addStaff" prefHeight="50.0" prefWidth="110.0" style="-fx-border-radius: 15; -fx-background-radius: 15;" styleClass="main_btn" text="Add" textFill="WHITE">
+                    <font>
+                        <Font name="Inter SemiBold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="deleteBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1353.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteStaff" prefHeight="56.0" prefWidth="137.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Delete" textFill="WHITE">
+                    <font>
+                        <Font name="Inter SemiBold" size="30.0" />
+                    </font>
+                </Button>
+                <TableView fx:id="staff_table" layoutX="45.0" layoutY="417.0" prefHeight="471.0" prefWidth="1430.0">
+                    <columns>
+                        <TableColumn fx:id="staffidColumn" prefWidth="161.07345581054688" text="Staff ID" />
+                        <TableColumn fx:id="staffnameColumn" prefWidth="321.1993865966797" text="Name" />
+                        <TableColumn fx:id="staffphoneComlumn" prefWidth="309.3006896972656" text="Phone Numer" />
+                        <TableColumn fx:id="staffaddressColumn" prefWidth="329.2481689453125" text="Address" />
+                        <TableColumn fx:id="staffemailColumn" prefWidth="313.251953125" text="Email" />
+                    </columns>
+                </TableView>
+                <Label layoutX="47.0" layoutY="343.0" text="STAFF LIST">
+                    <font>
+                        <Font name="Inter Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Line endX="691.30078125" endY="-3.0517578125E-5" layoutX="368.0" layoutY="364.0" startX="-98.8504638671875" startY="-3.0517578125E-5" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="line-color" />
+                <PasswordField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="45.0" prefWidth="521.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+            <children>
+                <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL">
+                    <font>
+                        <Font name="Inter Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Line endX="1042.977783203125" endY="-1.52587890625E-5" layoutX="412.0" layoutY="37.0" startX="-50.049072265625" startY="-1.52587890625E-5" strokeWidth="3.0" styleClass="line-color" />
+                <TableView fx:id="productDetail_table" layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0">
+               <columns>
+                  <TableColumn fx:id="productorder_idcolumn" prefWidth="235.98557662963867" text="Order ID" />
+                  <TableColumn fx:id="order_detail_id" prefWidth="244.01446533203125" text="Order Detail ID" />
+                  <TableColumn fx:id="detailproduct_id" prefWidth="256.3285217285156" text="Product ID" />
+                  <TableColumn fx:id="quantity" prefWidth="254.785400390625" text="Quantity" />
+                  <TableColumn fx:id="unit_price" prefWidth="443.71466064453125" text="Unit Price" />
+               </columns></TableView>
+                <Label layoutX="25.0" layoutY="450.0" text="BILL LIST">
+                    <font>
+                        <Font name="Inter Bold" size="36.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="bill_table" layoutX="25.0" layoutY="503.0" prefHeight="360.0" prefWidth="1430.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="158.19258880615234" text="Bill ID" />
+                        <TableColumn fx:id="customer_id" prefWidth="190.94520568847656" text="Customer ID" />
+                        <TableColumn fx:id="Date" prefWidth="345.5992126464844" text="Order Date" />
+                        <TableColumn fx:id="Employee_id" prefWidth="234.3460693359375" text="Staff ID" />
+                        <TableColumn fx:id="totalPrice" prefWidth="322.654052734375" text="Total Price" />
+                        <TableColumn fx:id="status" prefWidth="181.5438232421875" text="Status" />
+                    </columns>
+                </TableView>
+                <Line endX="1031.4334716796875" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
+                <Button layoutX="1349.0" layoutY="443.0" mnemonicParsing="false" onAction="#addProductDetail" prefHeight="48.0" prefWidth="102.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="main_btn" text="Detail">
+                    <font>
+                        <Font name="Inter Black" size="19.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="getAnchorProduct" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+            <children>
+                <Label layoutX="25.0" layoutY="15.0" text="Product List">
+                    <font>
+                        <Font name="Inter Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Line endX="1063.333251953125" layoutX="380.0" layoutY="37.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
+                <GridPane fx:id="gridCardPane" layoutX="125.0" layoutY="117.0" prefHeight="706.0" prefWidth="1286.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                </GridPane>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>
