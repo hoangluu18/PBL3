@@ -4,8 +4,7 @@ import Model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
-import java.awt.*;
+import javafx.scene.control.Label;
 
 public class cardProductController {
     @FXML

@@ -1,7 +1,7 @@
 .product {
     -fx-background-color: antiquewhite;
     -fx-border-radius: 10px;
-    -fx-border-style: bold;
+    -fx-border-width: bold;
 }
 
 .product-content {
@@ -48,8 +48,8 @@
     -fx-row-gap: 30px;
 }
 .product-list-container {
-    -fx-width: 100%;
+    -fx-width: 1270px;
     -fx-max-width: 1270px;
-    -fx-margin: 0 auto;
+    /*-fx-margin: 0 auto;*/
 }
 

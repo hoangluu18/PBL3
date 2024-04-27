@@ -38,12 +38,12 @@
                     </font>
                 </Label>
                 <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
-                <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="719.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
+                <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="792.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-                <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="916.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="54.0" prefWidth="110.0" styleClass="switch-btn" text="Staff">
+                <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="964.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="54.0" prefWidth="110.0" styleClass="switch-btn" text="Staff">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
@@ -53,15 +53,15 @@
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-                <Pane fx:id="switch_pane" layoutX="526.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
+                <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
+                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="648.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
             <children>
                 <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
                 <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -76,7 +76,7 @@
         </AnchorPane>
         <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
-                <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION">
+                <Label layoutX="43.0" layoutY="15.0" text="STAFF INFORMATION" textFill="#141e46">
                     <font>
                         <Font name="Inter Bold" size="36.0" />
                     </font>
@@ -161,7 +161,7 @@
                         <TableColumn fx:id="staffemailColumn" prefWidth="313.251953125" text="Email" />
                     </columns>
                 </TableView>
-                <Label layoutX="47.0" layoutY="343.0" text="STAFF LIST">
+                <Label layoutX="47.0" layoutY="343.0" text="STAFF LIST" textFill="#141e46">
                     <font>
                         <Font name="Inter Bold" size="36.0" />
                     </font>
@@ -170,9 +170,9 @@
                 <PasswordField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="45.0" prefWidth="521.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
-                <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL">
+                <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL" textFill="#141e46">
                     <font>
                         <Font name="Inter Bold" size="36.0" />
                     </font>
@@ -186,7 +186,7 @@
                   <TableColumn fx:id="quantity" prefWidth="254.785400390625" text="Quantity" />
                   <TableColumn fx:id="unit_price" prefWidth="443.71466064453125" text="Unit Price" />
                </columns></TableView>
-                <Label layoutX="25.0" layoutY="450.0" text="BILL LIST">
+                <Label layoutX="25.0" layoutY="450.0" text="BILL LIST" textFill="#141e46">
                     <font>
                         <Font name="Inter Bold" size="36.0" />
                     </font>

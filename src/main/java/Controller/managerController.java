@@ -205,7 +205,7 @@ public class managerController implements Initializable {
 
     public ObservableList<Product> menuGetData() throws SQLException {
 
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM products";
 
         ObservableList<Product> listData = FXCollections.observableArrayList();
         connect = JDBC_Util.getConnection();
@@ -225,7 +225,7 @@ public class managerController implements Initializable {
                         result.getString("size"),
                         result.getInt("quantity"),
                         result.getString("description"),
-                        result.getString("image"),
+                        result.getString("image_path"),
                         result.getInt("type_id")
                 );
 
@@ -254,7 +254,7 @@ public class managerController implements Initializable {
 
             try {
                 FXMLLoader load = new FXMLLoader();
-                load.setLocation(getClass().getResource("cardProduct.fxml"));
+                load.setLocation(getClass().getResource("/View/cardProduct.fxml"));
                 AnchorPane pane = load.load();
                 cardProductController cardC = load.getController();
                 cardC.setData(cardListData.get(q));
