@@ -1,9 +1,6 @@
 package Controller;
 
-import DAO.Employee_DAO;
-import DAO.OrderDetail_DAO;
-import DAO.Order_DAO;
-import DAO.User_DAO;
+import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
@@ -199,37 +196,8 @@ public class managerController implements Initializable {
     }
 
     public ObservableList<Product> menuGetData() throws SQLException {
-
-        String sql = "SELECT * FROM products";
-
-        ObservableList<Product> listData = FXCollections.observableArrayList();
-        connect = JDBC_Util.getConnection();
-
-        try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            Product prod;
-
-            while (result.next()) {
-                prod = new Product(
-                        result.getInt("product_id"),
-                        result.getString("name"),
-                        result.getInt("price"),
-                        result.getString("color"),
-                        result.getString("size"),
-                        result.getInt("quantity"),
-                        result.getString("description"),
-                        result.getString("image_path"),
-                        result.getInt("type_id")
-                );
-
-                listData.add(prod);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ArrayList<Product> data = Product_DAO.getInstance().findAll();
+        ObservableList<Product> listData = FXCollections.observableArrayList(data);
 
         return listData;
     }
