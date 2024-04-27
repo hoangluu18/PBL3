@@ -130,65 +130,60 @@ public class managerController implements Initializable {
     TableColumn<OrderDetail, Integer>quantity;
     @FXML
     TableColumn<OrderDetail, Integer>unit_price;
-
-
-
+    @FXML
+    public void anchorHomeappear(){
+        anchorStaff.setVisible(false);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(true);
+        getAnchorProduct.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(0);
+        tt.play();
+        switch_pane.setPrefWidth(homeBtn.getWidth());
+    }
+    @FXML
+    public void anchorStaffappear(){
+        anchorStaff.setMinWidth(87.5);
+        anchorStaff.setMaxWidth(87.5);
+        anchorStaff.setMinHeight(53);
+        anchorStaff.setMaxHeight(53);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(false);
+        anchorStaff.setVisible(true);
+        getAnchorProduct.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
+        tt.play();
+        switch_pane.setPrefWidth(staffBtn.getWidth());
+    }
+    @FXML
+    public void anchorProductappear() throws IOException, SQLException {
+        anchorStaff.setVisible(false);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(productBtn.getLayoutX() - switch_pane.getLayoutX());
+        tt.play();
+        switch_pane.setPrefWidth(productBtn.getWidth());
+        getAnchorProduct.setVisible(true);
+        menuDisplayCard();
+    }
 
     @FXML
-        public void anchorProductappear() throws IOException, SQLException {
-            anchorStaff.setVisible(false);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(productBtn.getLayoutX() - switch_pane.getLayoutX());
-            tt.play();
-            switch_pane.setPrefWidth(productBtn.getWidth());
-            getAnchorProduct.setVisible(true);
-            menuDisplayCard();
-        }
-
-        @FXML
-        public void anchorHomeappear(){
-            anchorStaff.setVisible(false);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(true);
-            getAnchorProduct.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(0);
-            tt.play();
-            switch_pane.setPrefWidth(homeBtn.getWidth());
-        }
-        @FXML
-        public void anchorStaffappear(){
-            anchorStaff.setMinWidth(87.5);
-            anchorStaff.setMaxWidth(87.5);
-            anchorStaff.setMinHeight(53);
-            anchorStaff.setMaxHeight(53);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(false);
-            anchorStaff.setVisible(true);
-            getAnchorProduct.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
-            tt.play();
-            switch_pane.setPrefWidth(staffBtn.getWidth());
-        }
-
-        @FXML
-        public void anchorBillappear(){
-            anchorBill.setMinWidth(67);
-            anchorBill.setMaxWidth(67);
-            anchorBill.setMinHeight(53);
-            anchorBill.setMaxHeight(53);
-            anchorStaff.setVisible(false);
-            anchorHome.setVisible(false);
-            anchorBill.setVisible(true);
-            getAnchorProduct.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
-            tt.play();
-            switch_pane.setPrefWidth(billBtn.getWidth());
-        }
+    public void anchorBillappear(){
+        anchorBill.setMinWidth(67);
+        anchorBill.setMaxWidth(67);
+        anchorBill.setMinHeight(53);
+        anchorBill.setMaxHeight(53);
+        anchorStaff.setVisible(false);
+        anchorHome.setVisible(false);
+        anchorBill.setVisible(true);
+        getAnchorProduct.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
+        tt.play();
+        switch_pane.setPrefWidth(billBtn.getWidth());
+    }
 
     @FXML
     public void show() {
