@@ -18,22 +18,6 @@ public class staffController implements Initializable {
     @FXML
     private TableView billList_table;
     @FXML
-    private TableColumn<Order, Integer> idColumn;
-    @FXML
-    private TableColumn<Order, Integer>customer_id;
-    @FXML
-    private TableColumn<Order, String>Date;
-    @FXML
-    private TableColumn<Order, Integer>Employee_id;
-    @FXML
-    private TableColumn<Order, Integer>totalPrice;
-    @FXML
-    private TableColumn<Order, Integer>status;
-    @FXML
-    ArrayList<Order> orderData;
-    @FXML
-    ObservableList<Order> orderList;
-    @FXML
     public void addBillList(){
         ArrayList<Order> order = Order_DAO.getInstance().findAll();
         TableColumn<Order, Integer>idColumn = new TableColumn<Order, Integer>("ID");
