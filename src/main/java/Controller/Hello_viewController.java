@@ -64,11 +64,6 @@ public class Hello_viewController {
         String condition = "userName = '" + account + "' AND password = '" + pass + "' AND role = " + role;
         try {
             if(user_dao.findByCondition(condition) != null){
-                this.alert = new Alert(Alert.AlertType.INFORMATION);
-                this.alert.setTitle("Information Message");
-                this.alert.setHeaderText((String)null);
-                this.alert.setContentText("Successfully Login!");
-                this.alert.showAndWait();
                 Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/manager.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
