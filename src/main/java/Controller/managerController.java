@@ -1,9 +1,6 @@
 package Controller;
 
-import DAO.Employee_DAO;
-import DAO.OrderDetail_DAO;
-import DAO.Order_DAO;
-import DAO.User_DAO;
+import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
@@ -130,65 +127,60 @@ public class managerController implements Initializable {
     TableColumn<OrderDetail, Integer>quantity;
     @FXML
     TableColumn<OrderDetail, Integer>unit_price;
-
-
-
+    @FXML
+    public void anchorHomeappear(){
+        anchorStaff.setVisible(false);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(true);
+        getAnchorProduct.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(0);
+        tt.play();
+        switch_pane.setPrefWidth(homeBtn.getWidth());
+    }
+    @FXML
+    public void anchorStaffappear(){
+        anchorStaff.setMinWidth(87.5);
+        anchorStaff.setMaxWidth(87.5);
+        anchorStaff.setMinHeight(53);
+        anchorStaff.setMaxHeight(53);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(false);
+        anchorStaff.setVisible(true);
+        getAnchorProduct.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
+        tt.play();
+        switch_pane.setPrefWidth(staffBtn.getWidth());
+    }
+    @FXML
+    public void anchorProductappear() throws IOException, SQLException {
+        anchorStaff.setVisible(false);
+        anchorBill.setVisible(false);
+        anchorHome.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(productBtn.getLayoutX() - switch_pane.getLayoutX());
+        tt.play();
+        switch_pane.setPrefWidth(productBtn.getWidth());
+        getAnchorProduct.setVisible(true);
+        menuDisplayCard();
+    }
 
     @FXML
-        public void anchorProductappear() throws IOException, SQLException {
-            anchorStaff.setVisible(false);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(productBtn.getLayoutX() - switch_pane.getLayoutX());
-            tt.play();
-            switch_pane.setPrefWidth(productBtn.getWidth());
-            getAnchorProduct.setVisible(true);
-            menuDisplayCard();
-        }
-
-        @FXML
-        public void anchorHomeappear(){
-            anchorStaff.setVisible(false);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(true);
-            getAnchorProduct.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(0);
-            tt.play();
-            switch_pane.setPrefWidth(homeBtn.getWidth());
-        }
-        @FXML
-        public void anchorStaffappear(){
-            anchorStaff.setMinWidth(87.5);
-            anchorStaff.setMaxWidth(87.5);
-            anchorStaff.setMinHeight(53);
-            anchorStaff.setMaxHeight(53);
-            anchorBill.setVisible(false);
-            anchorHome.setVisible(false);
-            anchorStaff.setVisible(true);
-            getAnchorProduct.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(staffBtn.getLayoutX() - switch_pane.getLayoutX());
-            tt.play();
-            switch_pane.setPrefWidth(staffBtn.getWidth());
-        }
-
-        @FXML
-        public void anchorBillappear(){
-            anchorBill.setMinWidth(67);
-            anchorBill.setMaxWidth(67);
-            anchorBill.setMinHeight(53);
-            anchorBill.setMaxHeight(53);
-            anchorStaff.setVisible(false);
-            anchorHome.setVisible(false);
-            anchorBill.setVisible(true);
-            getAnchorProduct.setVisible(false);
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
-            tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
-            tt.play();
-            switch_pane.setPrefWidth(billBtn.getWidth());
-        }
+    public void anchorBillappear(){
+        anchorBill.setMinWidth(67);
+        anchorBill.setMaxWidth(67);
+        anchorBill.setMinHeight(53);
+        anchorBill.setMaxHeight(53);
+        anchorStaff.setVisible(false);
+        anchorHome.setVisible(false);
+        anchorBill.setVisible(true);
+        getAnchorProduct.setVisible(false);
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), switch_pane);
+        tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
+        tt.play();
+        switch_pane.setPrefWidth(billBtn.getWidth());
+    }
 
     @FXML
     public void show() {
@@ -204,37 +196,8 @@ public class managerController implements Initializable {
     }
 
     public ObservableList<Product> menuGetData() throws SQLException {
-
-        String sql = "SELECT * FROM products";
-
-        ObservableList<Product> listData = FXCollections.observableArrayList();
-        connect = JDBC_Util.getConnection();
-
-        try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            Product prod;
-
-            while (result.next()) {
-                prod = new Product(
-                        result.getInt("product_id"),
-                        result.getString("name"),
-                        result.getInt("price"),
-                        result.getString("color"),
-                        result.getString("size"),
-                        result.getInt("quantity"),
-                        result.getString("description"),
-                        result.getString("image_path"),
-                        result.getInt("type_id")
-                );
-
-                listData.add(prod);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ArrayList<Product> data = Product_DAO.getInstance().findAll();
+        ObservableList<Product> listData = FXCollections.observableArrayList(data);
 
         return listData;
     }
