@@ -1,0 +1,78 @@
+.navbar{
+    -fx-border-color: transparent transparent linear-gradient(to right, #141e46, #003a63, #005678, #007382, #008e83, #00a084, #12b17e, #3dc173, #3ace76, #36da79, #31e77c, #2cf47e)
+    transparent;
+    -fx-border-width: 0 0 3 0;
+}
+
+.main-background{
+    -fx-background-color: #fdf8ee;
+}
+
+.switch-btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.line-color{
+    -fx-stroke: linear-gradient(to right, #141e46, #003a63, #005678, #007382, #008e83, #00a084, #12b17e, #3dc173, #3ace76, #36da79, #31e77c, #2cf47e);;
+}
+
+.main_btn{
+    -fx-background-color: #141E46;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, #1f2449, 10, 0, 0, 0);
+}
+
+.main_btn:hover{
+    -fx-background-color: #22357e;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+    -fx-start-margin: 0px;
+    -fx-end-margin: 0px;
+}
+
+.table-view .column-header .label {
+    -fx-background-color: #141E46;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: transparent transparent #141E46 transparent;
+    -fx-border-width: 1px;
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #f8efc3;
+}
+
+.table-view .table-row-cell:filled {
+    -fx-background-color: transparent;
+}
+
+
+.table-view .table-row-cell:filled:selected .text {
+    -fx-fill: black;
+}
+
+
+.table-view .table-cell {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #8DECB4;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+}
