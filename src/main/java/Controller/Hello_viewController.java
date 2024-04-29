@@ -63,7 +63,7 @@ public class Hello_viewController {
         User_DAO user_dao = new User_DAO();
         String condition = "userName = '" + account + "' AND password = '" + pass + "' AND role = " + role;
         try {
-            if(user_dao.findByCondition(condition) != null){
+            if(user_dao.findByCondition(condition) != null && this.role == User.ADMIN){
                 Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/manager.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -75,6 +75,17 @@ public class Hello_viewController {
                 stage.show();
                 stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
+            } else if (user_dao.findByCondition(condition) != null && this.role == User.EMPLOYEE){
+                Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/Staff.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add(getClass().getResource("/staff.css").toExternalForm());
+                stage.setTitle("Shop Management System");
+                stage.setMinWidth(1512.0);
+                stage.setMinHeight(982.0);
+                stage.setScene(scene);
+                stage.show();
+                stage.setMaximized(true);
             } else {
                 this.notificationlABEL.setText("Invalid account or password!");
             }
