@@ -7,16 +7,22 @@ public class Customer {
     private String name;
     private String date_of_birth;
     private String phone_number;
-    public Customer(String name, int customer_id, String date_of_birth, String phone_number) {
-        this.name = name;
-        this.customer_id = customer_id;
-        this.date_of_birth = date_of_birth;
-        this.phone_number = phone_number;
-    }
+    private int gender;// 0 male, 1 female, 2 other
+
+    public static final int MALE = 0;
+    public static final int FEMALE = 1;
+    public static final int OTHER = 2;
 
     public Customer() {
     }
 
+    public Customer(int customer_id, String name, String date_of_birth, String phone_number, int gender) {
+        this.customer_id = customer_id;
+        this.name = name;
+        this.date_of_birth = date_of_birth;
+        this.phone_number = phone_number;
+        this.gender = gender;
+    }
 
     public int getCustomer_id() {
         return customer_id;
@@ -48,5 +54,13 @@ public class Customer {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }

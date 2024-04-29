@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -22,6 +23,11 @@ public class staffController implements Initializable {
     @FXML
     private TableView billList_table;
 
+    @FXML
+    private AnchorPane AnchorPaneBillList;
+
+    @FXML
+    private AnchorPane AnchorPaneStaffInformation;
 
     @FXML
     public void addBillList(){
@@ -112,6 +118,17 @@ public class staffController implements Initializable {
         billList_table.setItems(List);
         System.out.println("Add bill list");
     }
+
+    @FXML
+    public void clickBtnAdd(){
+        //display
+        AnchorPaneBillList.setVisible(false);
+        AnchorPaneStaffInformation.setVisible(true);
+
+        //getdata
+
+    }
+
 
     public void initialize(URL url, ResourceBundle rb) {
         addBillList();
