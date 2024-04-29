@@ -1,13 +1,14 @@
 package Controller;
 
+import DAO.Customer_DAO;
 import Database.JDBC_Util;
 import Model.Bill;
+import Model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -20,14 +21,39 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class staffController implements Initializable {
-    @FXML
-    private TableView billList_table;
+
 
     @FXML
     private AnchorPane AnchorPaneBillList;
 
+    //AnchorPaneStaffInformation
     @FXML
     private AnchorPane AnchorPaneStaffInformation;
+
+
+    //VARIABLE ANCHORPANE CUSTOMER
+    @FXML
+    private AnchorPane AnchorPaneCustomer;
+
+    @FXML
+    private ComboBox ComboBoxGender;
+
+    @FXML
+    private TextField TextFieldCustomerName;
+
+    @FXML
+    private DatePicker DatePickerDateOfBirth;
+
+    @FXML
+    private TextField TextFieldPhoneNumber;
+
+    @FXML
+    private  Button ButtonNext;
+
+
+    //AnchorPaneBillList
+    @FXML
+    private TableView billList_table;
 
     @FXML
     public void addBillList(){
@@ -86,13 +112,6 @@ public class staffController implements Initializable {
 
         System.out.println("Add bill list");
 
-//        private int Bill_Id;
-//        private String customer_name;
-//        private String date;
-//        private String employee_name;
-//        private int total_price;
-//        private int status; // 0: chưa xác nhận, 1: đã xác nhận
-
         idColumn.setPrefWidth(200);
         idColumn.setResizable(false);
 
@@ -119,18 +138,38 @@ public class staffController implements Initializable {
         System.out.println("Add bill list");
     }
 
+
+    //EVENT ANCHORPANE CUSTOMER
     @FXML
     public void clickBtnAdd(){
-        //display
+        //display AnchorPaneCustomer
         AnchorPaneBillList.setVisible(false);
-        AnchorPaneStaffInformation.setVisible(true);
+        AnchorPaneCustomer.setVisible(true);
 
-        //getdata
+    }
 
+    @FXML public void ClickButtonNext(){
+        //get data from scene builder
+        String name = TextFieldCustomerName.getText();
+        String date = DatePickerDateOfBirth.getValue().toString();
+        String phone = TextFieldPhoneNumber.getText();
+        int gender = ComboBoxGender.getSelectionModel().getSelectedIndex();
+        System.out.println(name + " " + date + " " + phone + gender + "");
+        System.out.println("Click button next");
+
+        //create new customer
+        Customer newCustomer = new Customer();
+        newCustomer.setName(name);
+        newCustomer.setDate_of_birth(date);
+        newCustomer.setPhone_number(phone);
+        newCustomer.setGender(gender);
+        //add to database
+        Customer_DAO.getInstance().insert(newCustomer);
     }
 
 
     public void initialize(URL url, ResourceBundle rb) {
+        ComboBoxGender.getItems().addAll("Male", "Female", "Other");
         addBillList();
     }
 }
