@@ -51,7 +51,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
+      <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="BILL LIST">
                <font>
@@ -59,7 +59,7 @@
                </font>
             </Label>
             <Line endX="961.0" endY="-7.62939453125E-6" layoutX="301.0" layoutY="37.0" startX="-100.0" />
-            <Button layoutX="1272.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickBtnAdd" prefHeight="44.0" prefWidth="89.0" text="Add">
+            <Button layoutX="1272.0" layoutY="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="89.0" text="Add">
                <font>
                   <Font name="Inter Bold" size="18.0" />
                </font>
@@ -70,9 +70,10 @@
                </font>
             </Button>
             <TableView fx:id="billList_table" layoutX="25.0" layoutY="86.0" prefHeight="801.0" prefWidth="1452.0" />
+            <Button layoutX="374.0" layoutY="47.0" mnemonicParsing="false" onAction="#addBillList" text="Button" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneStaffInformation" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
