@@ -1,12 +1,7 @@
 package Controller;
 
-import DAO.Customer_DAO;
-import DAO.Employee_DAO;
-import DAO.Order_DAO;
 import Database.JDBC_Util;
-import Model.Customer;
-import Model.Employee;
-import Model.Order;
+import Model.Bill;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,76 +18,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-//new class bill
-class  Bill{
-    private int Bill_Id;
-    private String customer_name;
-    private String date;
-    private String employee_name;
-    private int total_price;
-    private int status; // 0: chưa xác nhận, 1: đã xác nhận
-
-    public Bill(int id, String customer_name, String date, String employee_name, int total_price, int status) {
-        this.Bill_Id = id;
-        this.customer_name = customer_name;
-        this.date = date;
-        this.employee_name = employee_name;
-        this.total_price = total_price;
-        this.status = status;
-    }
-    public Bill(){
-
-    }
-
-    public int getBill_Id() {
-        return Bill_Id;
-    }
-
-    public void setBill_Id(int id) {
-        this.Bill_Id = id;
-    }
-
-    public String getCustomer_name() {
-        return customer_name;
-    }
-
-    public void setCustomer_name(String customer_name) {
-        this.customer_name = customer_name;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getEmployee_name() {
-        return employee_name;
-    }
-
-    public void setEmployee_name(String employee_name) {
-        this.employee_name = employee_name;
-    }
-
-    public int getTotal_price() {
-        return total_price;
-    }
-
-    public void setTotal_price(int total_price) {
-        this.total_price = total_price;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-}
 public class staffController implements Initializable {
     @FXML
     private TableView billList_table;
@@ -145,12 +70,15 @@ public class staffController implements Initializable {
         TableColumn<Bill, Integer>totalPrice = new TableColumn<Bill, Integer>("Total Price");
         TableColumn<Bill, Integer>status = new TableColumn<Bill, Integer>("Status");
 
+        System.out.println("Add bill list");
         idColumn.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("Bill_Id"));
         customer_name.setCellValueFactory(new PropertyValueFactory<Bill, String>("customer_name"));
         Date.setCellValueFactory(new PropertyValueFactory<Bill, String>("date"));
         Employee_name.setCellValueFactory(new PropertyValueFactory<Bill, String>("employee_name"));
         totalPrice.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("total_price"));
         status.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("status"));
+
+        System.out.println("Add bill list");
 
 //        private int Bill_Id;
 //        private String customer_name;
@@ -178,8 +106,11 @@ public class staffController implements Initializable {
         status.setResizable(false);
 
         ObservableList<Bill> List = FXCollections.observableArrayList(BillList);
+        System.out.println("Add bill list");
         billList_table.getColumns().addAll(idColumn,customer_name,Date,Employee_name,totalPrice,status);
+        System.out.println("Add bill list");
         billList_table.setItems(List);
+        System.out.println("Add bill list");
     }
 
     public void initialize(URL url, ResourceBundle rb) {
