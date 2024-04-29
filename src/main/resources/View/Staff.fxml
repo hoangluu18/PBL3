@@ -2,6 +2,8 @@
 
 <?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -51,7 +53,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
+      <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="BILL LIST">
                <font>
@@ -70,7 +72,6 @@
                </font>
             </Button>
             <TableView fx:id="billList_table" layoutX="25.0" layoutY="86.0" prefHeight="801.0" prefWidth="1452.0" />
-            <Button layoutX="374.0" layoutY="47.0" mnemonicParsing="false" onAction="#addBillList" text="Button" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
@@ -162,7 +163,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="2.0" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane layoutX="2.0" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="CUSTOMER">
                <font>
@@ -175,19 +176,17 @@
                   <Font name="Inter Bold" size="24.0" />
                </font></Label>
             <TextField layoutX="45.0" layoutY="140.0" prefHeight="60.0" prefWidth="1398.0" />
-            <Label layoutX="40.0" layoutY="230.0" text="Customer Name">
+            <Label layoutX="40.0" layoutY="230.0" text="Date of birth">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="45.0" layoutY="260.0" prefHeight="60.0" prefWidth="665.0" />
-            <Label layoutX="770.0" layoutY="230.0" text="Customer Name">
+            <Label layoutX="770.0" layoutY="230.0" text="Gender">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="775.0" layoutY="260.0" prefHeight="60.0" prefWidth="665.0" />
-            <Label layoutX="40.0" layoutY="350.0" text="Customer Name">
+            <Label layoutX="40.0" layoutY="350.0" text="Customer Phone Number">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
@@ -198,6 +197,8 @@
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Button>
+            <DatePicker layoutX="45.0" layoutY="260.0" prefHeight="60.0" prefWidth="665.0" />
+            <ComboBox layoutX="775.0" layoutY="260.0" prefHeight="60.0" prefWidth="665.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1519.0" visible="false">
