@@ -11,13 +11,14 @@ public class Customer_DAO implements DAO_Interface<Customer, String>{
     @Override
     public int insert(Customer entity) {
 
-        String sql = "INSERT INTO customers (customer_id, Name, dateOfBirth, phone_number) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO customers (customer_id, Name, dateOfBirth, phone_number, gender) VALUES (?,?,?,?,?)";
 
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, entity.getCustomer_id());
             statement.setString(2, entity.getName());
             statement.setString(3, entity.getDate_of_birth());
             statement.setString(4, entity.getPhone_number());
+            statement.setInt(5, entity.getGender());
 
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
@@ -33,12 +34,13 @@ public class Customer_DAO implements DAO_Interface<Customer, String>{
     @Override
     public int update(Customer entity) {
 
-        String sql = "UPDATE customers SET Name = ?, dateOfBirth = ?, phone_number = ? WHERE customer_id = ?";
+        String sql = "UPDATE customers SET Name = ?, dateOfBirth = ?, phone_number = ?, gender = ? WHERE customer_id = ?";
         try (Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getDate_of_birth());
             statement.setString(3, entity.getPhone_number());
-            statement.setInt(4, entity.getCustomer_id());
+            statement.setInt(4, entity.getGender());
+            statement.setInt(5, entity.getCustomer_id());
 
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
@@ -83,6 +85,7 @@ public class Customer_DAO implements DAO_Interface<Customer, String>{
                 customer.setName(resultSet.getString("Name"));
                 customer.setDate_of_birth(resultSet.getString("dateOfBirth"));
                 customer.setPhone_number(resultSet.getString("phone_number"));
+                customer.setGender(resultSet.getInt("gender"));
 
                 listCustomer.add(customer);
 
@@ -109,6 +112,7 @@ public class Customer_DAO implements DAO_Interface<Customer, String>{
                 customer.setName(resultSet.getString("Name"));
                 customer.setDate_of_birth(resultSet.getString("dateOfBirth"));
                 customer.setPhone_number(resultSet.getString("phone_number"));
+                customer.setGender(resultSet.getInt("gender"));
             }
             JDBC_Util.closeConnection(connection);
             return customer;
@@ -134,7 +138,7 @@ public class Customer_DAO implements DAO_Interface<Customer, String>{
                 customer.setName(resultSet.getString("Name"));
                 customer.setDate_of_birth(resultSet.getString("dateOfBirth"));
                 customer.setPhone_number(resultSet.getString("phone_number"));
-
+                customer.setGender(resultSet.getInt("gender"));
                 listCustomer.add(customer);
             }
             JDBC_Util.closeConnection(connection);
