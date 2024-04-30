@@ -92,6 +92,12 @@
     -fx-background-insets: 0;
 }
 
+.dimPane{
+    -fx-background-color: #00000088;
+}
+
+
+
 
 
 

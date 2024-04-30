@@ -129,6 +129,28 @@ public class managerController implements Initializable {
     TableColumn<OrderDetail, Integer>quantity;
     @FXML
     TableColumn<OrderDetail, Integer>unit_price;
+
+    @FXML
+    private TextField productName_txtfd;
+    @FXML
+    private TextField productPrice_txtfd;
+    @FXML
+    private TextField productQuantity_txtfd;
+    @FXML
+    private TextField productColor_txtfd;
+    @FXML
+    private TextField productSize_txtfd;
+    @FXML
+    private TextArea productDescription_txtfd;
+    @FXML
+    private Button addImage_btn;
+    @FXML
+    private Button removeImage_btn;
+    @FXML
+    private Button saveProduct_btn;
+
+    @FXML
+    private Pane dimPane;
     @FXML
     public void anchorHomeappear(){
         anchorStaff.setVisible(false);
