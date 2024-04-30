@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="addProductPane" onMouseClicked="#keyPressedProduct" prefHeight="291.0" prefWidth="210.0" stylesheets="@../product.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addProductController">
+   <children>
+      <ImageView fx:id="addImage" fitHeight="210.0" fitWidth="220.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/AddProduct.png" />
+         </image>
+      </ImageView>
+   </children>
+   <styleClass>
+      <String fx:value="addproduct" />
+      <String fx:value="product" />
+   </styleClass>
+</AnchorPane>

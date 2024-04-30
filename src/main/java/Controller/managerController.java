@@ -60,6 +60,8 @@ public class managerController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
 
+    public static int lastColumn;
+    public static int lastRow;
     //employee
     @FXML
     private GridPane gridCardPane;
@@ -209,6 +211,7 @@ public class managerController implements Initializable {
         int row = 0;
         int column = 0;
 
+
         gridCardPane.getChildren().clear();
         gridCardPane.getRowConstraints().clear();
         gridCardPane.getColumnConstraints().clear();
@@ -229,12 +232,27 @@ public class managerController implements Initializable {
                 }
 
                 gridCardPane.add(pane, column++, row);
-
+                lastColumn = column;
+                lastRow = row;
                 GridPane.setMargin(pane, new Insets(10));
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        try{
+            FXMLLoader load = new FXMLLoader();
+            load.setLocation(getClass().getResource("/View/addProduct.fxml"));
+            AnchorPane addPane = load.load();
+            if (lastColumn == 6) {
+                lastColumn = 0;
+                lastRow += 1;
+            }
+
+            gridCardPane.add(addPane, lastColumn, lastRow);
+            GridPane.setMargin(addPane, new Insets(10));
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

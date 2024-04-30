@@ -12,14 +12,14 @@ public class JDBC_Util {
         Connection c = null;
 
         try{
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
             // thong so ket noi
             String url = "jdbc:mysql://localhost:3306/pbl3";
             String username = "root"; //sua theo may cua ban
             String password = ""; //sua theo may cua ban
 
-            c = DriverManager.getConnection(url,username,password);
+            c = DriverManager.  getConnection(url,username,password);
         }catch (SQLException e){
             e.printStackTrace();
         }
