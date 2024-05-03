@@ -329,6 +329,8 @@ public class managerController implements Initializable {
         temp = choosePictureFromDialog(productImageView);
     }
 
+
+
     public String choosePictureFromDialog(ImageView imgView) throws MalformedURLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose");
