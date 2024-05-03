@@ -7,32 +7,43 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Product_DAO implements DAO_Interface<Product, String>{
+    Connection connection = null;
+    PreparedStatement statement = null;
+    ResultSet result = null;
+    int product_id;
     @Override
     public int insert(Product entity) {
         //product_id, name, price, color, size, quantity, description, type_id
-        String sql = "INSERT INTO products (product_id, name, price, color, size, quantity, description, type_id, image_path) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO products (name, price, color, size, quantity, description, type_id, image_path) VALUES (?,?,?,?,?,?,?,?)";
 
-        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setInt(1, entity.getProduct_id());
-            statement.setString(2, entity.getName());
-            statement.setInt(3, entity.getPrice());
-            statement.setString(4, entity.getColor());
-            statement.setString(5, entity.getSize());
-            statement.setInt(6, entity.getQuantity());
-            statement.setString(7, entity.getDescription());
-            statement.setInt(8, entity.getType_id());
-            statement.setString(9,entity.getImage());
+        try{
+            connection = JDBC_Util.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, entity.getName());
+            statement.setInt(2, entity.getPrice());
+            statement.setString(3, entity.getColor());
+            statement.setString(4, entity.getSize());
+            statement.setInt(5, entity.getQuantity());
+            statement.setString(6, entity.getDescription());
+            statement.setInt(7, entity.getType_id());
+            statement.setString(8,entity.getImage());
 
-            int result = statement.executeUpdate();
-            System.out.println("Số dòng bị ảnh hưởng: " + result);
-
-            JDBC_Util.closeConnection(connection);
-
-        }catch (SQLException e){
+            statement.executeUpdate();
+            result = statement.getGeneratedKeys();
+            if(result.next()){
+                product_id = result.getInt(1);
+            }
+        } catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            try {
+                if (result != null) result.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
-
         return  0;
     }
 
