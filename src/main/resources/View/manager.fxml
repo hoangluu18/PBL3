@@ -64,7 +64,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
                 <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
                 <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -242,7 +242,7 @@
             </children>
         </AnchorPane>
       <Pane fx:id="dimPane" prefHeight="985.0" prefWidth="1518.0" styleClass="dimPane" visible="false" />
-      <AnchorPane fx:id="productInfoAnchorpane" layoutX="31.0" layoutY="140.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
+      <AnchorPane fx:id="productInfoAnchorpane" layoutX="31.0" layoutY="140.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background">
          <children>
             <Label layoutX="67.0" layoutY="27.0" text="Name">
                <font>
@@ -314,12 +314,12 @@
                </font>
             </Button>
             <ImageView fx:id="productImageView" fitHeight="498.0" fitWidth="394.0" layoutX="972.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="487.0" layoutY="34.0" text="Product Type">
+            <Label layoutX="487.0" layoutY="27.0" text="Product Type">
                <font>
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <ComboBox fx:id="productTypeComboBox" layoutX="487.0" layoutY="89.0" prefHeight="46.0" prefWidth="400.0" />
+            <ComboBox fx:id="productTypeComboBox" layoutX="487.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="spinner" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="productInfoAnchorpane2" layoutX="41.0" layoutY="150.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
