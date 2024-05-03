@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="210.0" styleClass="product" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="210.0" styleClass="product" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CardProductStaffController">
    <children>
-      <ImageView fitHeight="210.0" fitWidth="210.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ImageViewStaffCard" fitHeight="210.0" fitWidth="210.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="Price" alignment="CENTER_RIGHT" contentDisplay="RIGHT" disable="true" layoutY="254.0" prefHeight="20.0" prefWidth="202.0" styleClass="label-price" stylesheets="@../product.css">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
       <Label fx:id="Name" disable="true" layoutX="4.0" layoutY="227.0" prefHeight="20.0" prefWidth="202.0" styleClass="label-name" stylesheets="@../product.css" />
-      <Spinner layoutX="101.0" layoutY="281.0" prefHeight="25.0" prefWidth="109.0" />
-      <Label disable="true" layoutX="8.0" layoutY="285.0" prefHeight="17.0" prefWidth="89.0" />
+      <Spinner fx:id="spinner" layoutX="101.0" layoutY="281.0" onMouseClicked="#mouseClicked" prefHeight="25.0" prefWidth="109.0" />
+      <Label disable="true" layoutX="8.0" layoutY="285.0" prefHeight="17.0" prefWidth="89.0" text="Quantity" />
    </children>
 </AnchorPane>

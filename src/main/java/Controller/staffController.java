@@ -1,16 +1,21 @@
 package Controller;
 
 import DAO.Customer_DAO;
+import DAO.Product_DAO;
 import Database.JDBC_Util;
 import Model.Bill;
 import Model.Customer;
+import Model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -18,6 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class staffController implements Initializable {
@@ -50,10 +56,26 @@ public class staffController implements Initializable {
     @FXML
     private  Button ButtonNext;
 
+    //AnchorPaneProductList
+    @FXML
+    private AnchorPane AnchorPaneProductList;
 
     //AnchorPaneBillList
     @FXML
     private TableView billList_table;
+
+    public static List<Product> listProductPick = new ArrayList<Product>();
+
+    //grid pane
+    @FXML
+    private GridPane GridPane;
+    public static int lastColumn;
+    public static int lastRow;
+
+    @FXML
+    private Button ButtonNextProduct;
+
+    private ObservableList<Product> CardListData;
 
     @FXML
     public void addBillList(){
@@ -148,7 +170,7 @@ public class staffController implements Initializable {
 
     }
 
-    @FXML public void ClickButtonNext(){
+    @FXML public void ClickButtonNext() throws SQLException {
         //get data from scene builder
         String name = TextFieldCustomerName.getText();
         String date = DatePickerDateOfBirth.getValue().toString();
@@ -165,7 +187,62 @@ public class staffController implements Initializable {
         newCustomer.setGender(gender);
         //add to database
         Customer_DAO.getInstance().insert(newCustomer);
+        this.displayAnchorPaneBillList();
     }
+
+    public ObservableList<Product> menuGetData() throws SQLException {
+        ArrayList<Product> data = Product_DAO.getInstance().findAll();
+        ObservableList<Product> listData = FXCollections.observableArrayList(data);
+
+        return listData;
+    }
+
+    public void displayAnchorPaneBillList() throws SQLException {
+        AnchorPaneCustomer.setVisible(false);
+        AnchorPaneProductList.setVisible(true);
+
+       // CardListData.clear();
+        if (CardListData == null) {
+            CardListData = FXCollections.observableArrayList();
+        }
+        CardListData.addAll(menuGetData());
+
+        int row = 0;
+        int column = 0;
+
+        GridPane.getChildren().clear();
+        GridPane.getRowConstraints().clear();
+        GridPane.getColumnConstraints().clear();
+
+        for(int i = 0; i < CardListData.size(); i++){
+            try{
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("/View/staffcardProduct.fxml"));
+                AnchorPane pane = load.load();
+                CardProductStaffController cardProductStaffController = load.getController();
+                cardProductStaffController.setData(CardListData.get(i));
+                cardProductStaffController.setProductInfo(CardListData.get(i));
+
+                if(column == 6){
+                    column = 0;
+                    row += 1;
+                }
+
+                GridPane.add(pane, column++, row);
+                lastColumn = column;
+                lastRow = row;
+                GridPane.setMargin(pane, new Insets(10));
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+
+
 
 
     public void initialize(URL url, ResourceBundle rb) {

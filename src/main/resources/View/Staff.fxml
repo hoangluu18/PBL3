@@ -57,7 +57,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="BILL LIST">
                <font>
@@ -76,7 +76,6 @@
                </font>
             </Button>
             <TableView fx:id="billList_table" layoutX="25.0" layoutY="86.0" prefHeight="801.0" prefWidth="1452.0" />
-            <Button layoutX="374.0" layoutY="47.0" mnemonicParsing="false" onAction="#addBillList" text="Button" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchorPaneStaffInformation" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
@@ -271,7 +270,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-5.0" layoutY="70.0" prefHeight="912.0" prefWidth="1533.0">
+      <AnchorPane fx:id="AnchorPaneProductList" layoutX="-5.0" layoutY="70.0" prefHeight="912.0" prefWidth="1533.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="PRODUCT LIST">
                <font>
@@ -280,31 +279,28 @@
             </Label>
             <Line endX="1092.0" endY="-7.62939453125E-6" layoutX="350.0" layoutY="37.0" startX="-35.999969482421875" startY="-7.62939453125E-6" />
             <ScrollPane layoutX="45.0" layoutY="72.0" prefHeight="765.0" prefWidth="1398.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <GridPane layoutX="6.0" prefHeight="765.0" prefWidth="1389.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-              </content>
+               <content>
+                  <GridPane fx:id="GridPane" prefHeight="765.0" prefWidth="1389.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
             </ScrollPane>
+            <Button fx:id="ButtonNextProduct" layoutX="291.0" layoutY="14.0" mnemonicParsing="false" text="NEXT" />
          </children>
       </AnchorPane>
    </children>
