@@ -284,6 +284,27 @@ public class managerController implements Initializable {
                 cardC.setData(cardListData.get(i));
                 cardC.setProductInfo(cardListData.get(i));
 
+                // Tạo một ScaleTransition
+                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+
+                // Thiết lập thuộc tính cho ScaleTransition
+                st.setFromX(0);  // Bắt đầu từ scale x = 0
+                st.setFromY(0);  // Bắt đầu từ scale y = 0
+                st.setToX(1);    // Kết thúc tại scale x = 1
+                st.setToY(1);    // Kết thúc tại scale y = 1
+                st.setCycleCount(1);  // Chỉ chạy 1 lần
+                st.setFromX(0);  // Bắt đầu từ scale x = 0
+                st.setFromY(0);  // Bắt đầu từ scale y = 0
+                st.setToX(1);    // Kết thúc tại scale x = 1
+                st.setToY(1);    // Kết thúc tại scale y = 1
+                st.setCycleCount(1);  // Chỉ chạy 1 lần
+
+                pane.setOnMouseClicked(event -> {
+                    dimPane.setVisible(true);
+                    productInfoAnchorpane.setVisible(true);
+                    st.play();
+                });
+
                 if (column == 6) {
                     column = 0;
                     row += 1;
