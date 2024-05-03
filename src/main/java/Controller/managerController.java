@@ -86,6 +86,8 @@ public class managerController implements Initializable {
     private Button removeImageButton;
     @FXML
     private Button saveProductButton;
+    @FXML
+    private ComboBox<String> productTypeComboBox;
 
     //employee
     @FXML
@@ -231,6 +233,11 @@ public class managerController implements Initializable {
     }
 
     public void menuDisplayCard() throws IOException, SQLException {
+        ArrayList<ProductType> data = ProductType_DAO.getInstance().findAll();
+        for (int i = 0; i < data.size(); i++) {
+            productTypeComboBox.getItems().add(data.get(i).getCategory());
+        }
+
         cardListData.clear();
         cardListData.addAll(menuGetData());
 
@@ -300,6 +307,7 @@ public class managerController implements Initializable {
 
     public Product getProductInfo() throws SQLException, MalformedURLException {
         Product product = new Product();
+        ArrayList<ProductType> data = ProductType_DAO.getInstance().findAll();
         product.setName(productNameTxtField.getText());
         product.setPrice(Integer.parseInt(productPriceTxtField.getText()));
         product.setColor(productColorTxtField.getText());
@@ -307,7 +315,13 @@ public class managerController implements Initializable {
         product.setQuantity(Integer.parseInt(productQuantityTxtField.getText()));
         product.setImage(temp);
         product.setDescription(productDescriptionTxtArea.getText());
-        product.setType_id(50);
+        int typeID = -1;
+        for (int i = 0; i < data.size(); i++) {
+            if (productTypeComboBox.getSelectionModel().getSelectedItem().equals(data.get(i).getCategory())) {
+                typeID = data.get(i).getType_id();
+            }
+        }
+        product.setType_id(typeID);
         return product;
     }
 

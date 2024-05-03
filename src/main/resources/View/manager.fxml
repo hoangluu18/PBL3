@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -248,7 +249,7 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productNameTxtField" layoutX="62.0" layoutY="68.0" prefHeight="69.0" prefWidth="829.0" promptText="Product Name" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productNameTxtField" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" promptText="Product Name" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextField>
@@ -313,6 +314,12 @@
                </font>
             </Button>
             <ImageView fx:id="productImageView" fitHeight="498.0" fitWidth="394.0" layoutX="972.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="487.0" layoutY="34.0" text="Product Type">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="productTypeComboBox" layoutX="487.0" layoutY="89.0" prefHeight="46.0" prefWidth="400.0" />
          </children>
       </AnchorPane>
     </children>
