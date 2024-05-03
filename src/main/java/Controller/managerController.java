@@ -231,9 +231,9 @@ public class managerController implements Initializable {
 
         return listData;
     }
-
+    ArrayList<ProductType> data;
     public void menuDisplayCard() throws IOException, SQLException {
-        ArrayList<ProductType> data = ProductType_DAO.getInstance().findAll();
+        data = ProductType_DAO.getInstance().findAll();
         for (int i = 0; i < data.size(); i++) {
             productTypeComboBox.getItems().add(data.get(i).getCategory());
         }
@@ -301,8 +301,21 @@ public class managerController implements Initializable {
         product = getProductInfo();
         Product_DAO.getInstance().insert(product);
         menuDisplayCard();
+        clearAddInfo();
         dimPane.setVisible(false);
         productInfoAnchorpane.setVisible(false);
+    }
+
+    public void clearAddInfo() throws IOException, SQLException {
+        productTypeComboBox.setDisable(true);
+        productImageView.setImage(null);
+        productColorTxtField.setText("");
+        productNameTxtField.setText("");
+        productPriceTxtField.setText("");
+        productQuantityTxtField.setText("");
+        productDescriptionTxtArea.setText("");
+        productSizeTxtField.setText("");
+        productTypeComboBox.getSelectionModel().clearSelection();
     }
 
     public Product getProductInfo() throws SQLException, MalformedURLException {
@@ -326,6 +339,7 @@ public class managerController implements Initializable {
     }
 
     public void setAddImageButton() throws MalformedURLException {
+        productImageView.setImage(null);
         temp = choosePictureFromDialog(productImageView);
     }
 

@@ -303,7 +303,7 @@
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
-            <Button fx:id="removeImageButton" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Remove">
+            <Button fx:id="removeImageButton" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" onAction="#clearAddInfo" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Remove">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>

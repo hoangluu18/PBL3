@@ -1,6 +1,6 @@
 .product {
     -fx-background-color: #8DECB4;
-    -fx-border-width: bold;
+    -fx-border-width: 3px;
 }
 
 .product-content {
