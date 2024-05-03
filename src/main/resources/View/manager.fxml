@@ -64,7 +64,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
                 <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
                 <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
@@ -320,6 +320,92 @@
                </font>
             </Label>
             <ComboBox fx:id="productTypeComboBox" layoutX="487.0" layoutY="89.0" prefHeight="46.0" prefWidth="400.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="productInfoAnchorpane1" layoutX="41.0" layoutY="150.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background">
+         <children>
+            <Label layoutX="67.0" layoutY="27.0" text="Name">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productNameTxtField2" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" promptText="Product Name" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="64.0" layoutY="171.0" text="Price">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productPriceTxtField2" layoutX="58.0" layoutY="210.0" prefHeight="69.0" prefWidth="400.0" promptText="Price" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="495.0" layoutY="156.0" text="Color">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productColorTxtField2" layoutX="489.0" layoutY="209.0" prefHeight="69.0" prefWidth="400.0" promptText="Color" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="64.0" layoutY="293.0" text="Size">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productSizeTxtField2" layoutX="58.0" layoutY="332.0" prefHeight="69.0" prefWidth="400.0" promptText="Size" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="495.0" layoutY="288.0" text="Quantity">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productQuantityTxtField2" layoutX="489.0" layoutY="330.0" prefHeight="69.0" prefWidth="400.0" promptText="Quantity" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="61.0" layoutY="416.0" text="Description">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="productDescriptionTxtArea2" layoutX="64.0" layoutY="460.0" prefHeight="298.0" prefWidth="829.0" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextArea>
+            <Button fx:id="addImageButton1" layoutX="1016.0" layoutY="576.0" mnemonicParsing="false" onAction="#setAddImageButton" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Add">
+               <font>
+                  <Font name="Inter Black" size="23.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteProductButton" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Delete">
+               <font>
+                  <Font name="Inter Black" size="23.0" />
+               </font>
+            </Button>
+            <Button fx:id="updateProductButton" layoutX="1017.0" layoutY="677.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="81.0" prefWidth="314.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Update Information">
+               <font>
+                  <Font name="Inter Black" size="23.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="productImageView1" fitHeight="498.0" fitWidth="394.0" layoutX="972.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="487.0" layoutY="34.0" text="Product Type">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="productTypeComboBox2" layoutX="487.0" layoutY="89.0" prefHeight="46.0" prefWidth="400.0" />
          </children>
       </AnchorPane>
     </children>
