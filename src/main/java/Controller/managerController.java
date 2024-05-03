@@ -307,6 +307,7 @@ public class managerController implements Initializable {
         product.setQuantity(Integer.parseInt(productQuantityTxtField.getText()));
         product.setImage(temp);
         product.setDescription(productDescriptionTxtArea.getText());
+        product.setType_id(50);
         return product;
     }
 

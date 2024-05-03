@@ -307,7 +307,7 @@
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
-            <Button fx:id="saveProductButton" layoutX="1017.0" layoutY="677.0" mnemonicParsing="false" onAction="#getProductInfo" prefHeight="81.0" prefWidth="314.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Save Information">
+            <Button fx:id="saveProductButton" layoutX="1017.0" layoutY="677.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="81.0" prefWidth="314.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Save Information">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>
