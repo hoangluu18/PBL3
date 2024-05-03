@@ -307,7 +307,6 @@ public class managerController implements Initializable {
     }
 
     public void clearAddInfo() throws IOException, SQLException {
-        productTypeComboBox.setDisable(true);
         productImageView.setImage(null);
         productColorTxtField.setText("");
         productNameTxtField.setText("");
@@ -315,7 +314,7 @@ public class managerController implements Initializable {
         productQuantityTxtField.setText("");
         productDescriptionTxtArea.setText("");
         productSizeTxtField.setText("");
-        productTypeComboBox.getSelectionModel().clearSelection();
+        productTypeComboBox.getSelectionModel().select(-1);
     }
 
     public Product getProductInfo() throws SQLException, MalformedURLException {
