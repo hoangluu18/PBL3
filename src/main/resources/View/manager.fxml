@@ -21,7 +21,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="982.0" prefWidth="1512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.managerController">
@@ -241,15 +240,15 @@
             </ScrollPane>
             </children>
         </AnchorPane>
-      <Pane fx:id="dimpane" prefHeight="985.0" prefWidth="1518.0" styleClass="dimPane" visible="false" />
-      <AnchorPane fx:id="productInfo_anchorpane" layoutX="31.0" layoutY="140.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
+      <Pane fx:id="dimPane" prefHeight="985.0" prefWidth="1518.0" styleClass="dimPane" visible="false" />
+      <AnchorPane fx:id="productInfoAnchorpane" layoutX="31.0" layoutY="140.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
          <children>
             <Label layoutX="67.0" layoutY="27.0" text="Name">
                <font>
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productName_txtfd" layoutX="62.0" layoutY="68.0" prefHeight="69.0" prefWidth="829.0" promptText="Product Name" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productNameTxtField" layoutX="62.0" layoutY="68.0" prefHeight="69.0" prefWidth="829.0" promptText="Product Name" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextField>
@@ -258,7 +257,7 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productPrice_txtfd" layoutX="58.0" layoutY="210.0" prefHeight="69.0" prefWidth="400.0" promptText="Price" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productPriceTxtField" layoutX="58.0" layoutY="210.0" prefHeight="69.0" prefWidth="400.0" promptText="Price" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextField>
@@ -267,7 +266,7 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productColor_txtfd" layoutX="489.0" layoutY="209.0" prefHeight="69.0" prefWidth="400.0" promptText="Color" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productColorTxtField" layoutX="489.0" layoutY="209.0" prefHeight="69.0" prefWidth="400.0" promptText="Color" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextField>
@@ -276,7 +275,7 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productSize_txtfd" layoutX="58.0" layoutY="332.0" prefHeight="69.0" prefWidth="400.0" promptText="Size" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productSizeTxtField" layoutX="58.0" layoutY="332.0" prefHeight="69.0" prefWidth="400.0" promptText="Size" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextField>
@@ -285,7 +284,7 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productQuantity_txtfd" layoutX="489.0" layoutY="330.0" prefHeight="69.0" prefWidth="400.0" promptText="Quantity" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productQuantityTxtField" layoutX="489.0" layoutY="330.0" prefHeight="69.0" prefWidth="400.0" promptText="Quantity" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextField>
@@ -294,26 +293,26 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextArea fx:id="productDescription_txtarea" layoutX="64.0" layoutY="460.0" prefHeight="298.0" prefWidth="829.0" styleClass="txtfd">
+            <TextArea fx:id="productDescriptionTxtArea" layoutX="64.0" layoutY="460.0" prefHeight="298.0" prefWidth="829.0" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font></TextArea>
-            <Button fx:id="addImage_btn" layoutX="1016.0" layoutY="576.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Add">
+            <Button fx:id="addImageButton" layoutX="1016.0" layoutY="576.0" mnemonicParsing="false" onAction="#setAddImageButton" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Add">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
-            <Button fx:id="removeImage_btn" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Remove">
+            <Button fx:id="removeImageButton" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Remove">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
-            <Rectangle fx:id="imageShape" arcHeight="30.0" arcWidth="30.0" fill="#8decb4" height="498.0" layoutX="972.0" layoutY="65.0" stroke="#141e46" strokeType="INSIDE" strokeWidth="3.0" width="394.0" />
-            <Button fx:id="saveProduct_btn" layoutX="1017.0" layoutY="677.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="314.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Save Information">
+            <Button fx:id="saveProductButton" layoutX="1017.0" layoutY="677.0" mnemonicParsing="false" onAction="#getProductInfo" prefHeight="81.0" prefWidth="314.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Save Information">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
+            <ImageView fx:id="productImageView" fitHeight="498.0" fitWidth="394.0" layoutX="972.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
     </children>

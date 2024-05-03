@@ -1,7 +1,6 @@
 package Controller;
 
 import DAO.*;
-import Database.JDBC_Util;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
 import javafx.animation.TranslateTransition;
@@ -15,6 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,8 +24,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.scene.Node;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -34,11 +36,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
 import javafx.util.Duration;
-
-
-import javax.xml.crypto.Data;
 
 public class managerController implements Initializable {
 
@@ -59,9 +57,36 @@ public class managerController implements Initializable {
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
-
+    // Add product
     public static int lastColumn;
     public static int lastRow;
+    @FXML
+    private Pane dimPane;
+    @FXML
+    private AnchorPane productInfoAnchorpane;
+    @FXML
+    private TextField productNameTxtField;
+    @FXML
+    private TextField productPriceTxtField;
+    @FXML
+    private TextField productSizeTxtField;
+    @FXML
+    private TextField productColorTxtField;
+    @FXML
+    private TextField productQuantityTxtField;
+    @FXML
+    private TextArea productDescriptionTxtArea;
+    @FXML
+    private Rectangle imageShape;
+    @FXML
+    private ImageView productImageView;
+    @FXML
+    private Button addImageButton;
+    @FXML
+    private Button removeImageButton;
+    @FXML
+    private Button saveProductButton;
+
     //employee
     @FXML
     private GridPane gridCardPane;
@@ -130,27 +155,6 @@ public class managerController implements Initializable {
     @FXML
     TableColumn<OrderDetail, Integer>unit_price;
 
-    @FXML
-    private TextField productName_txtfd;
-    @FXML
-    private TextField productPrice_txtfd;
-    @FXML
-    private TextField productQuantity_txtfd;
-    @FXML
-    private TextField productColor_txtfd;
-    @FXML
-    private TextField productSize_txtfd;
-    @FXML
-    private TextArea productDescription_txtfd;
-    @FXML
-    private Button addImage_btn;
-    @FXML
-    private Button removeImage_btn;
-    @FXML
-    private Button saveProduct_btn;
-
-    @FXML
-    private Pane dimPane;
     @FXML
     public void anchorHomeappear(){
         anchorStaff.setVisible(false);
@@ -266,6 +270,10 @@ public class managerController implements Initializable {
             FXMLLoader load = new FXMLLoader();
             load.setLocation(getClass().getResource("/View/addProduct.fxml"));
             AnchorPane addPane = load.load();
+            addPane.setOnMouseClicked(event -> {
+                dimPane.setVisible(true);
+                productInfoAnchorpane.setVisible(true);
+            });
             if (lastColumn == 6) {
                 lastColumn = 0;
                 lastRow += 1;
@@ -276,6 +284,34 @@ public class managerController implements Initializable {
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    private String temp = "";
+
+    public void addProduct() throws IOException, SQLException {
+        Product product = new Product();
+        product = getProductInfo();
+        Product_DAO.getInstance().insert(product);
+        menuDisplayCard();
+        dimPane.setVisible(false);
+        productInfoAnchorpane.setVisible(false);
+    }
+
+    public Product getProductInfo() throws SQLException, MalformedURLException {
+        Product product = new Product();
+        product.setName(productNameTxtField.getText());
+        product.setPrice(Integer.parseInt(productPriceTxtField.getText()));
+        product.setColor(productColorTxtField.getText());
+        product.setSize(productSizeTxtField.getText());
+        product.setQuantity(Integer.parseInt(productQuantityTxtField.getText()));
+        product.setImage(temp);
+        product.setDescription(productDescriptionTxtArea.getText());
+        return product;
+    }
+
+    public void setAddImageButton() throws MalformedURLException {
+        temp = choosePictureFromDialog(productImageView);
     }
 
     public String choosePictureFromDialog(ImageView imgView) throws MalformedURLException {
