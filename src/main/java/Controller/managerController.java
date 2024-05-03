@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
+import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -156,6 +157,30 @@ public class managerController implements Initializable {
     TableColumn<OrderDetail, Integer>quantity;
     @FXML
     TableColumn<OrderDetail, Integer>unit_price;
+    @FXML
+    private TextField productSizeTxtField2;
+    @FXML
+    private Button deleteProductButton;
+    @FXML
+    private TextField productColorTxtField2;
+    @FXML
+    private AnchorPane productInfoAnchorpane1;
+    @FXML
+    private Button updateProductButton;
+    @FXML
+    private TextField productNameTxtField2;
+    @FXML
+    private TextField productQuantityTxtField2;
+    @FXML
+    private TextArea productDescriptionTxtArea2;
+    @FXML
+    private Button addImageButton1;
+    @FXML
+    private ImageView productImageView1;
+    @FXML
+    private TextField productPriceTxtField2;
+    @FXML
+    private ComboBox productTypeComboBox2;
 
     @FXML
     public void anchorHomeappear(){
@@ -277,9 +302,24 @@ public class managerController implements Initializable {
             FXMLLoader load = new FXMLLoader();
             load.setLocation(getClass().getResource("/View/addProduct.fxml"));
             AnchorPane addPane = load.load();
+            // Tạo một ScaleTransition
+            ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+
+            // Thiết lập thuộc tính cho ScaleTransition
+            st.setFromX(0);  // Bắt đầu từ scale x = 0
+            st.setFromY(0);  // Bắt đầu từ scale y = 0
+            st.setToX(1);    // Kết thúc tại scale x = 1
+            st.setToY(1);    // Kết thúc tại scale y = 1
+            st.setCycleCount(1);  // Chỉ chạy 1 lần
+            st.setFromX(0);  // Bắt đầu từ scale x = 0
+            st.setFromY(0);  // Bắt đầu từ scale y = 0
+            st.setToX(1);    // Kết thúc tại scale x = 1
+            st.setToY(1);    // Kết thúc tại scale y = 1
+            st.setCycleCount(1);  // Chỉ chạy 1 lần
             addPane.setOnMouseClicked(event -> {
                 dimPane.setVisible(true);
                 productInfoAnchorpane.setVisible(true);
+                st.play();
             });
             if (lastColumn == 6) {
                 lastColumn = 0;
@@ -393,6 +433,27 @@ public class managerController implements Initializable {
         productDetail_table.setItems(orderDetailsdata);
     }
 
+    @FXML
+    public void updateProduct() throws IOException, SQLException {
+        Product product = new Product();
+        product = getProductInfo();
+        product.setProduct_id(Integer.parseInt(productSizeTxtField2.getText()));
+        Product_DAO.getInstance().update(product);
+        menuDisplayCard();
+        clearAddInfo();
+        dimPane.setVisible(false);
+        productInfoAnchorpane.setVisible(false);
+    }
+    @FXML
+    public void deleteProduct() throws IOException, SQLException {
+        Product product = new Product();
+        product = getProductInfo();
+        Product_DAO.getInstance().delete(product);
+        menuDisplayCard();
+        clearAddInfo();
+        dimPane.setVisible(false);
+        productInfoAnchorpane.setVisible(false);
+    }
 
     @FXML
     public void addStaff(ActionEvent actionEvent) {
@@ -481,8 +542,31 @@ public class managerController implements Initializable {
         totalPrice.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
         status.setCellValueFactory(new PropertyValueFactory<Order, Integer>("status"));
         bill_table.setItems(orderList);
+        // Tạo một ScaleTransition
+        ScaleTransition stOut = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
 
+        // Thiết lập thuộc tính cho ScaleTransition
+        stOut.setFromX(1);  // Bắt đầu từ scale x = 1
+        stOut.setFromY(1);  // Bắt đầu từ scale y = 1
+        stOut.setToX(0);    // Kết thúc tại scale x = 0
+        stOut.setToY(0);    // Kết thúc tại scale y = 0
+        stOut.setCycleCount(1);  // Chỉ chạy 1 lần
 
+// Khi nhấn nút save, chạy hiệu ứng và sau đó ẩn searchPane và dimPane
+        dimPane.setOnMouseClicked(event -> {
+            stOut.setOnFinished(e -> {
+                productInfoAnchorpane.setVisible(false);
+                dimPane.setVisible(false);
+            });
+            stOut.play();  // Chạy hiệu ứng
+            try {
+                clearAddInfo();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
 
         staff_table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
