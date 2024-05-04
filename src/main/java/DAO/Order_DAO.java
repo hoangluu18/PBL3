@@ -150,6 +150,34 @@ public class Order_DAO implements DAO_Interface<Order, String>{
         return null;
     }
 
+    public ArrayList<Order> databarchart(String datebegin, String dateend) {
+            ArrayList<Order> listorder = new ArrayList<Order>();
+            String sql = "Select date_format(order_date, '%Y-%m-%d') as date, SUM(totalPrice) as totalprice\n" +
+                    "from orders\n" +
+                    "where order_date >= ? and order_date < ? \n" +
+                    "group by Date_format(order_date, '%Y-%m-%d')\n" +
+                    "order by date;";
+            try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, datebegin);
+                statement.setString(2, dateend);
+                ResultSet res  = statement.executeQuery();
+                while (res.next()) {
+                    Order order = new Order();
+                    order.setCustomer_id(0);
+                    order.setOrder_date(res.getString("date"));
+                    order.setCustomer_id(0);
+                    order.setStatus(0);
+                    order.setTotalPrice(res.getInt("totalprice"));
+
+                    listorder.add(order);
+                }
+                JDBC_Util.closeConnection(connection);
+                return listorder;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+    }
+
     public static Order_DAO getInstance(){
         return new Order_DAO();
     }

@@ -14,6 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -33,6 +37,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
@@ -160,6 +165,10 @@ public class managerController implements Initializable {
     @FXML
     private TextField productSizeTxtField2;
     @FXML
+    private DatePicker datebegin;
+    @FXML
+    private DatePicker dateend;
+    @FXML
     private Button deleteProductButton;
     @FXML
     private TextField productColorTxtField2;
@@ -181,7 +190,8 @@ public class managerController implements Initializable {
     private TextField productPriceTxtField2;
     @FXML
     private ComboBox productTypeComboBox2;
-
+    @FXML
+    private BarChart<String, Integer> barchart;
     @FXML
     public void anchorHomeappear(){
         anchorStaff.setVisible(false);
@@ -642,6 +652,24 @@ public class managerController implements Initializable {
             }
         });
 
+    }
+
+    public void setBarchart() {
+        if(datebegin.getValue() != null && dateend.getValue() != null) {
+            ArrayList<Order> orders = Order_DAO.getInstance().databarchart(datebegin.getValue().toString(), dateend.getValue().toString());
+
+//            ObservableList<XYChart.Data<String, Number>> data = FXCollections.observableArrayList();
+            XYChart.Series<String, Integer> data = new XYChart.Series();
+            for(int i = 0; i < orders.size(); i++) {
+                System.out.println(orders.get(i).getOrder_date());
+                System.out.println(orders.get(i).getTotalPrice());
+                data.getData().add(new XYChart.Data(orders.get(i).getOrder_date(), orders.get(i).getTotalPrice()));
+            }
+            barchart.setCategoryGap(30);
+            barchart.getData().clear();
+            barchart.getData().add(data);
+
+        }
     }
 }
 

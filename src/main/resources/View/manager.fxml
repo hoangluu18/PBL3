@@ -64,10 +64,10 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
             <children>
-                <DatePicker layoutX="32.0" layoutY="46.0" prefHeight="43.0" prefWidth="704.0" />
-                <BarChart layoutX="14.0" layoutY="115.0" prefHeight="689.0" prefWidth="1478.0">
+                <DatePicker fx:id="datebegin" layoutX="112.0" layoutY="45.0" prefHeight="45.0" prefWidth="550.0" />
+                <BarChart fx:id="barchart" layoutX="14.0" layoutY="159.0" prefHeight="689.0" prefWidth="1478.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -75,6 +75,22 @@
                         <NumberAxis side="LEFT" />
                     </yAxis>
                 </BarChart>
+            <DatePicker fx:id="dateend" layoutX="768.0" layoutY="45.0" prefHeight="43.0" prefWidth="550.0" />
+            <Button layoutX="1374.0" layoutY="46.0" mnemonicParsing="false" onAction="#setBarchart" prefHeight="41.0" prefWidth="103.0" text="See">
+               <font>
+                  <Font name="Inter Bold" size="24.0" />
+               </font>
+            </Button>
+            <Label layoutX="34.0" layoutY="53.0" text="Start">
+               <font>
+                  <Font name="Inter Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="707.0" layoutY="54.0" text="End">
+               <font>
+                  <Font name="Inter Bold" size="24.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="anchorStaff" layoutX="-14.0" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
