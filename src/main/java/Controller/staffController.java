@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static Controller.Hello_viewController.IdEmployeeCurrent;
+
 public class staffController implements Initializable {
 
 
@@ -68,6 +70,8 @@ public class staffController implements Initializable {
     private TableView billList_table;
 
     public static List<Product> listProductPick = new ArrayList<Product>();
+
+    public static  Customer newCustomer;
 
     //grid pane
     @FXML
@@ -201,14 +205,14 @@ public class staffController implements Initializable {
         System.out.println("Click button next");
 
         //create new customer
-        Customer newCustomer = new Customer();
+        newCustomer = new Customer();
         newCustomer.setName(name);
         newCustomer.setDate_of_birth(date);
         newCustomer.setPhone_number(phone);
         newCustomer.setGender(gender);
         //add to database
         Customer_DAO.getInstance().insert(newCustomer);
-        this.displayAnchorPaneBillList();
+        displayAnchorPaneBillList();
     }
 
     public ObservableList<Product> menuGetData() throws SQLException {
@@ -218,11 +222,8 @@ public class staffController implements Initializable {
         return listData;
     }
 
-    public void displayAnchorPaneBillList() throws SQLException {
-        AnchorPaneCustomer.setVisible(false);
-        AnchorPaneProductList.setVisible(true);
-
-       // CardListData.clear();
+    public void initCardList() throws SQLException {
+               // CardListData.clear();
         if (CardListData == null) {
             CardListData = FXCollections.observableArrayList();
         }
@@ -259,9 +260,28 @@ public class staffController implements Initializable {
             }
         }
 
-
+    }
+    public void displayAnchorPaneBillList() throws SQLException {
+        AnchorPaneCustomer.setVisible(false);
+        AnchorPaneProductList.setVisible(true);
     }
 
+    @FXML
+    void clickButtonNextProduct() {
+        System.out.println("Click button next product");
+        System.out.println(listProductPick.size());
+        for(Product product: listProductPick){
+            System.out.println(product.getName());
+            System.out.println(product.getQuantity());
+            System.out.println("\n");
+        }
+
+        System.out.println("id employee current: " +  IdEmployeeCurrent);
+        String condition = "name = '" + newCustomer.getName() + "' AND dateOfBirth = '" + newCustomer.getDate_of_birth() + "' AND phone_number = '" + newCustomer.getPhone_number() + "'";
+        int customer_id = Customer_DAO.getInstance().findByCondition(condition).get(0).getCustomer_id();
+        System.out.println("customer id: " + customer_id);
+
+    }
 
 
 
@@ -269,5 +289,11 @@ public class staffController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
         addBillList();
+        try {
+            initCardList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        AnchorPaneProductList.setVisible(false);
     }
 }

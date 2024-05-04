@@ -55,6 +55,8 @@ public class Hello_viewController {
     @FXML
     private Label notificationlABEL;
 
+    public static int IdEmployeeCurrent;
+
 
     @FXML
     public void checklogin(javafx.event.ActionEvent actionEvent) {
@@ -76,6 +78,9 @@ public class Hello_viewController {
                 stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
             } else if (user_dao.findByCondition(condition) != null && this.role == User.EMPLOYEE){
+                //save Employee ID current
+                IdEmployeeCurrent = user_dao.findByCondition(condition).get(0).getUser_id();
+
                 Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/Staff.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);

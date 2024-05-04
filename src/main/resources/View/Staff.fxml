@@ -296,7 +296,7 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <Button fx:id="ButtonNextProduct" layoutX="1221.0" layoutY="10.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="97.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="NEXT">
+            <Button fx:id="ButtonNextProduct" layoutX="1221.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickButtonNextProduct" prefHeight="51.0" prefWidth="97.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="NEXT">
                <font>
                   <Font name="Inter Black" size="20.0" />
                </font></Button>
