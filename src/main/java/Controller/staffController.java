@@ -32,6 +32,9 @@ public class staffController implements Initializable {
     @FXML
     private AnchorPane AnchorPaneBillList;
 
+    @FXML
+    private AnchorPane AnchorPaneBillInfor;
+
     //AnchorPaneStaffInformation
     @FXML
     private AnchorPane AnchorPaneStaffInformation;
@@ -167,8 +170,26 @@ public class staffController implements Initializable {
         //display AnchorPaneCustomer
         AnchorPaneBillList.setVisible(false);
         AnchorPaneCustomer.setVisible(true);
-
     }
+
+    @FXML
+    public void clickButtonBack(){
+        AnchorPaneBillList.setVisible(true);
+        AnchorPaneCustomer.setVisible(false);
+    }
+
+    @FXML
+    public void clickButtonBack2(){
+        AnchorPaneCustomer.setVisible(true);
+        AnchorPaneProductList.setVisible(false);
+    }
+
+    @FXML
+    public void clickButtonBack3(){
+        AnchorPaneProductList.setVisible(true);
+        AnchorPaneBillInfor.setVisible(false);
+    }
+
 
     @FXML public void ClickButtonNext() throws SQLException {
         //get data from scene builder

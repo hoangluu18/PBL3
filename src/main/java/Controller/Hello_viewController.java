@@ -86,6 +86,7 @@ public class Hello_viewController {
                 stage.setScene(scene);
                 stage.show();
                 stage.setMaximized(true);
+                this.sigin_btn.getScene().getWindow().hide();
             } else {
                 this.notificationlABEL.setText("Invalid account or password!");
             }
