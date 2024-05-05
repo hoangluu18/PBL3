@@ -1,11 +1,11 @@
 package Controller;
 
 import DAO.Customer_DAO;
+import DAO.OrderDetail_DAO;
+import DAO.Order_DAO;
 import DAO.Product_DAO;
 import Database.JDBC_Util;
-import Model.Bill;
-import Model.Customer;
-import Model.Product;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +22,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -72,7 +74,7 @@ public class staffController implements Initializable {
     public static List<Product> listProductPick = new ArrayList<Product>();
 
     public static  Customer newCustomer;
-
+    public static  boolean isSaved = false;
     //grid pane
     @FXML
     private GridPane GridPane;
@@ -112,7 +114,7 @@ public class staffController implements Initializable {
                 bill.setDate(resultSet.getString("date"));
                 bill.setEmployee_name(resultSet.getString("employee_name"));
                 bill.setTotal_price(resultSet.getInt("total_price"));
-                bill.setStatus(resultSet.getInt("status"));
+                bill.setStatus(resultSet.getInt("status") == 0 ? "unconfimred" : "confirmed");
                 BillList.add(bill);
             }
             JDBC_Util.closeConnection(connection);
@@ -129,7 +131,7 @@ public class staffController implements Initializable {
         TableColumn<Bill, String>Date = new TableColumn<Bill, String>("Date");
         TableColumn<Bill, String>Employee_name = new TableColumn<Bill, String>("Employee_Name");
         TableColumn<Bill, Integer>totalPrice = new TableColumn<Bill, Integer>("Total Price");
-        TableColumn<Bill, Integer>status = new TableColumn<Bill, Integer>("Status");
+        TableColumn<Bill, String>status = new TableColumn<Bill, String>("Status");
 
         System.out.println("Add bill list");
         idColumn.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("Bill_Id"));
@@ -137,7 +139,7 @@ public class staffController implements Initializable {
         Date.setCellValueFactory(new PropertyValueFactory<Bill, String>("date"));
         Employee_name.setCellValueFactory(new PropertyValueFactory<Bill, String>("employee_name"));
         totalPrice.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("total_price"));
-        status.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("status"));
+        status.setCellValueFactory(new PropertyValueFactory<Bill, String>("status"));
 
         System.out.println("Add bill list");
 
@@ -172,6 +174,25 @@ public class staffController implements Initializable {
     @FXML
     public void clickBtnAdd(){
         //display AnchorPaneCustomer
+
+        //if click element in table view display AnchorPaneProductList
+        if(billList_table.getSelectionModel().getSelectedItem() != null){
+            Bill bill = (Bill) billList_table.getSelectionModel().getSelectedItem();
+            Order order = Order_DAO.getInstance().findById(bill.getBill_Id()+"");
+            Customer customer = Customer_DAO.getInstance().findById(order.getCustomer_id()+"");
+            String nameCustomer = bill.getCustomer_name();
+            String dateOfBirth = customer.getDate_of_birth();
+            String phoneNumber = customer.getPhone_number();
+            int gender = customer.getGender();
+
+            //set data
+            TextFieldCustomerName.setText(nameCustomer);
+            TextFieldPhoneNumber.setText(phoneNumber);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDate date = LocalDate.parse(dateOfBirth, formatter);
+            DatePickerDateOfBirth.setValue(date);
+            ComboBoxGender.getSelectionModel().select(gender);
+        }
         AnchorPaneBillList.setVisible(false);
         AnchorPaneCustomer.setVisible(true);
     }
@@ -198,20 +219,42 @@ public class staffController implements Initializable {
     @FXML public void ClickButtonNext() throws SQLException {
         //get data from scene builder
         String name = TextFieldCustomerName.getText();
-        String date = DatePickerDateOfBirth.getValue().toString();
+        String date = (DatePickerDateOfBirth.getValue() != null) ? DatePickerDateOfBirth.getValue().toString() : null;
         String phone = TextFieldPhoneNumber.getText();
         int gender = ComboBoxGender.getSelectionModel().getSelectedIndex();
         System.out.println(name + " " + date + " " + phone + gender + "");
         System.out.println("Click button next");
+        //check input
+        if(name.equals("") || date == null || phone.equals("") || gender == -1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill all the information");
+            alert.showAndWait();
+            return;
 
+        }
         //create new customer
-        newCustomer = new Customer();
-        newCustomer.setName(name);
-        newCustomer.setDate_of_birth(date);
-        newCustomer.setPhone_number(phone);
-        newCustomer.setGender(gender);
-        //add to database
-        Customer_DAO.getInstance().insert(newCustomer);
+
+        if(!isSaved){
+            newCustomer = new Customer();
+            newCustomer.setName(name);
+            newCustomer.setDate_of_birth(date);
+            newCustomer.setPhone_number(phone);
+            newCustomer.setGender(gender);
+            Customer_DAO.getInstance().insert(newCustomer);
+            isSaved = true;
+        }
+        else{
+            String condition = "name = '" + newCustomer.getName() + "' AND dateOfBirth = '" + newCustomer.getDate_of_birth() + "' AND phone_number = '" + newCustomer.getPhone_number()+ "' AND gender = '"+newCustomer.getGender()+ "'";
+            int customer_id = Customer_DAO.getInstance().findByCondition(condition).get(0).getCustomer_id();
+            newCustomer.setCustomer_id(customer_id);
+            newCustomer.setName(name);
+            newCustomer.setDate_of_birth(date);
+            newCustomer.setPhone_number(phone);
+            newCustomer.setGender(gender);
+            Customer_DAO.getInstance().update(newCustomer);
+        }
+
         displayAnchorPaneBillList();
     }
 
@@ -261,7 +304,7 @@ public class staffController implements Initializable {
         }
 
     }
-    public void displayAnchorPaneBillList() throws SQLException {
+    public void displayAnchorPaneBillList() {
         AnchorPaneCustomer.setVisible(false);
         AnchorPaneProductList.setVisible(true);
     }
@@ -281,19 +324,53 @@ public class staffController implements Initializable {
         int customer_id = Customer_DAO.getInstance().findByCondition(condition).get(0).getCustomer_id();
         System.out.println("customer id: " + customer_id);
 
+        AnchorPaneProductList.setVisible(false);
+        AnchorPaneBillInfor.setVisible(true);
     }
 
 
+    @FXML
+    void clickButtonDelete(){
+        //chi xoa khi chua xac nhan
+
+        Bill bill = (Bill) billList_table.getSelectionModel().getSelectedItem();
+        if(bill.getStatus() == "unconfimred"){
+            ArrayList<OrderDetail> orderDetail = OrderDetail_DAO.getInstance().findByCondition("order_id = " + bill.getBill_Id());
+            for(OrderDetail o : orderDetail){
+                OrderDetail_DAO.getInstance().delete(o);
+            }
+
+            Order order = Order_DAO.getInstance().findById(bill.getBill_Id()+"");
+            Order_DAO.getInstance().delete(order);
+            //alert
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Delete successfully");
+            alert.showAndWait();
+            //refresh
+            addBillList();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Can't delete confirmed bill");
+            alert.showAndWait();
+        }
+
+    }
 
 
     public void initialize(URL url, ResourceBundle rb) {
+        //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
+        //set up bill list
         addBillList();
+        //set up product list
         try {
             initCardList();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        AnchorPaneProductList.setVisible(false);
+
     }
 }

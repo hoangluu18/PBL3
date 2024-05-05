@@ -7,9 +7,9 @@ public class  Bill{
     private String date;
     private String employee_name;
     private int total_price;
-    private int status; // 0: chưa xác nhận, 1: đã xác nhận
+    private String status; // 0: chưa xác nhận, 1: đã xác nhận
 
-    public Bill(int id, String customer_name, String date, String employee_name, int total_price, int status) {
+    public Bill(int id, String customer_name, String date, String employee_name, int total_price, String status) {
         this.Bill_Id = id;
         this.customer_name = customer_name;
         this.date = date;
@@ -61,11 +61,11 @@ public class  Bill{
         this.total_price = total_price;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
