@@ -64,7 +64,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
                 <DatePicker fx:id="datebegin" layoutX="112.0" layoutY="45.0" prefHeight="45.0" prefWidth="550.0" />
                 <BarChart fx:id="barchart" layoutX="14.0" layoutY="159.0" prefHeight="689.0" prefWidth="1478.0">
@@ -189,7 +189,7 @@
                 <PasswordField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="45.0" prefWidth="521.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
             <children>
                 <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL" textFill="#141e46">
                     <font>
@@ -199,12 +199,16 @@
                 <Line endX="1042.977783203125" endY="-1.52587890625E-5" layoutX="412.0" layoutY="37.0" startX="-50.049072265625" startY="-1.52587890625E-5" strokeWidth="3.0" styleClass="line-color" />
                 <TableView fx:id="productDetail_table" layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0">
                <columns>
-                  <TableColumn fx:id="productorder_idcolumn" prefWidth="235.98557662963867" text="Order ID" />
-                  <TableColumn fx:id="order_detail_id" prefWidth="244.01446533203125" text="Order Detail ID" />
-                  <TableColumn fx:id="detailproduct_id" prefWidth="256.3285217285156" text="Product ID" />
-                  <TableColumn fx:id="quantity" prefWidth="254.785400390625" text="Quantity" />
-                  <TableColumn fx:id="unit_price" prefWidth="443.71466064453125" text="Unit Price" />
-               </columns></TableView>
+                  <TableColumn fx:id="order_id" editable="false" prefWidth="110.66669273376465" text="Order ID" />
+                  <TableColumn fx:id="order_detail_id" editable="false" prefWidth="146.66664123535156" text="Order Detail ID" />
+                  <TableColumn fx:id="product_name" editable="false" prefWidth="588.6667175292969" text="Product" />
+                  <TableColumn fx:id="quantity" editable="false" prefWidth="225.9998779296875" text="Quantity" />
+                  <TableColumn fx:id="unit_price" prefWidth="357.333251953125" text="Unit Price" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
                 <Label layoutX="25.0" layoutY="450.0" text="BILL LIST" textFill="#141e46">
                     <font>
                         <Font name="Inter Bold" size="36.0" />

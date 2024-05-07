@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
+import com.mysql.cj.xdevapi.Table;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -151,17 +152,17 @@ public class managerController implements Initializable {
     private ArrayList<Order> orderData;
     private ObservableList<Order> orderList;
 
-    ArrayList<OrderDetail> detailList;
-    @FXML
-    TableColumn<OrderDetail, Integer>productorder_idcolumn;
-    @FXML
-    TableColumn<OrderDetail, Integer>order_detail_id;
-    @FXML
-    TableColumn<OrderDetail, Integer>detailproduct_id;
-    @FXML
-    TableColumn<OrderDetail, Integer>quantity;
-    @FXML
-    TableColumn<OrderDetail, Integer>unit_price;
+//    ArrayList<OrderDetail> detailList;
+//    @FXML
+//    TableColumn<OrderDetail, Integer>productorder_idcolumn;
+//    @FXML
+//    TableColumn<OrderDetail, Integer>order_detail_id;
+//    @FXML
+//    TableColumn<OrderDetail, Integer>detailproduct_id;
+//    @FXML
+//    TableColumn<OrderDetail, Integer>quantity;
+//    @FXML
+//    TableColumn<OrderDetail, Integer>unit_price;
     @FXML
     private TextField productSizeTxtField2;
     @FXML
@@ -192,6 +193,19 @@ public class managerController implements Initializable {
     private ComboBox productTypeComboBox2;
     @FXML
     private BarChart<String, Integer> barchart;
+    @FXML
+    ArrayList<BillDetail> listBillDetail = new ArrayList<BillDetail>();
+    @FXML
+    TableColumn<BillDetail, Integer> order_id = new TableColumn<BillDetail, Integer>("Order ID");
+    @FXML
+    TableColumn<BillDetail, Integer> order_detail_id = new TableColumn<BillDetail, Integer>("Order Detail ID");
+    @FXML
+    TableColumn<BillDetail, String> product_name = new TableColumn<BillDetail, String>("Product");
+    @FXML
+    TableColumn<BillDetail, Integer> quantity = new TableColumn<BillDetail, Integer>("Quantity");
+    @FXML
+    TableColumn<BillDetail, Integer> unit_price = new TableColumn<BillDetail, Integer>("Unit Price");
+
     @FXML
     public void anchorHomeappear(){
         anchorStaff.setVisible(false);
@@ -445,23 +459,37 @@ public class managerController implements Initializable {
 
     public void addProductDetail(){
 
-        detailList = OrderDetail_DAO.getInstance().findAll();
-        productorder_idcolumn.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_id"));
-        order_detail_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_detail_id"));
-        detailproduct_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("product_id"));
-        quantity.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("quantity"));
-        unit_price.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("unit_price"));
-        int orderID = getOrderID();
-        ArrayList<OrderDetail> selected = new ArrayList<>();
+//        detailList = OrderDetail_DAO.getInstance().findAll();
+//        productorder_idcolumn.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_id"));
+//        order_detail_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_detail_id"));
+//        detailproduct_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("product_id"));
+//        quantity.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("quantity"));
+//        unit_price.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("unit_price"));
+//        int orderID = getOrderID();
+//        ArrayList<OrderDetail> selected = new ArrayList<>();
+//
+//        for(int i = 0; i < detailList.size(); i++) {
+//            int index = detailList.get(i).getOrder_id();
+//            if(index == orderID) {
+//                selected.add(detailList.get(i));
+//            }
+//        }
+//        ObservableList<OrderDetail> orderDetailsdata = FXCollections.observableArrayList(selected);
+//        productDetail_table.setItems(orderDetailsdata);
+        if(bill_table.getSelectionModel().getSelectedItem() != null) {
+            int id = getOrderID();
+            listBillDetail = BillDetail_DAO.getInstance().getBillDetail(id);
 
-        for(int i = 0; i < detailList.size(); i++) {
-            int index = detailList.get(i).getOrder_id();
-            if(index == orderID) {
-                selected.add(detailList.get(i));
-            }
+            order_id.setCellValueFactory(new PropertyValueFactory<BillDetail, Integer>("order_id"));
+            order_detail_id.setCellValueFactory(new PropertyValueFactory<BillDetail, Integer>("orderdetail_id"));
+            product_name.setCellValueFactory(new PropertyValueFactory<BillDetail, String>("product_name"));
+            quantity.setCellValueFactory(new PropertyValueFactory<BillDetail, Integer>("quantity"));
+            unit_price.setCellValueFactory(new PropertyValueFactory<BillDetail, Integer>("unit_price"));
+
+            ObservableList<BillDetail> billDetailsdata = FXCollections.observableArrayList(listBillDetail);
+            productDetail_table.setItems(billDetailsdata);
         }
-        ObservableList<OrderDetail> orderDetailsdata = FXCollections.observableArrayList(selected);
-        productDetail_table.setItems(orderDetailsdata);
+
     }
 
     @FXML
