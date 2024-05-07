@@ -16,9 +16,10 @@
       </Label>
       <Label fx:id="Name" layoutX="4.0" layoutY="227.0" prefHeight="20.0" prefWidth="202.0" styleClass="label-name" stylesheets="@../staffcardProduct.css" />
       <Spinner fx:id="spinner" layoutX="94.0" layoutY="279.0" onMouseClicked="#mouseClicked" prefHeight="25.0" prefWidth="109.0" style="-fx-background-radius: 15; -fx-background-radius: 15;" />
-      <Label layoutX="5.0" layoutY="285.0" prefHeight="17.0" prefWidth="89.0" text="Quantity">
+      <Label layoutY="285.0" prefHeight="18.0" prefWidth="68.0" text="Quantity:">
          <font>
             <Font name="Inter Black" size="13.0" />
          </font></Label>
+      <Label fx:id="LabelQuantity" layoutX="65.0" layoutY="286.0" />
    </children>
 </AnchorPane>

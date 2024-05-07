@@ -6,14 +6,18 @@ import DAO.Order_DAO;
 import DAO.Product_DAO;
 import Database.JDBC_Util;
 import Model.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -70,6 +74,10 @@ public class staffController implements Initializable {
     //AnchorPaneBillList
     @FXML
     private TableView billList_table;
+    @FXML
+    private Button ButtonRemove;
+    @FXML
+    private Button ButtonAdd;
 
     public static List<Product> listProductPick = new ArrayList<Product>();
 
@@ -80,7 +88,7 @@ public class staffController implements Initializable {
     private GridPane GridPane;
     public static int lastColumn;
     public static int lastRow;
-
+    public static int idCustomerIfPickStatusUnconfirmed = -1;
     @FXML
     private Button ButtonNextProduct;
 
@@ -172,7 +180,7 @@ public class staffController implements Initializable {
 
     //EVENT ANCHORPANE CUSTOMER
     @FXML
-    public void clickBtnAdd(){
+    public void clickBtnAdd() throws SQLException {
         //display AnchorPaneCustomer
 
         //if click element in table view display AnchorPaneProductList
@@ -185,13 +193,54 @@ public class staffController implements Initializable {
             String phoneNumber = customer.getPhone_number();
             int gender = customer.getGender();
 
-            //set data
-            TextFieldCustomerName.setText(nameCustomer);
-            TextFieldPhoneNumber.setText(phoneNumber);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDate date = LocalDate.parse(dateOfBirth, formatter);
-            DatePickerDateOfBirth.setValue(date);
-            ComboBoxGender.getSelectionModel().select(gender);
+            if(bill.getStatus() == "confirmed"){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Can't edit confirmed bill");
+                alert.showAndWait();
+                idCustomerIfPickStatusUnconfirmed = -1; //reset
+                return;
+            }
+            else {
+                //reset list product
+                CardListData.clear();
+                listProductPick.clear();
+//                GridPane.getChildren().clear();
+//                GridPane.getRowConstraints().clear();
+//                GridPane.getColumnConstraints().clear();
+                idCustomerIfPickStatusUnconfirmed = customer.getCustomer_id();
+                //set data
+                TextFieldCustomerName.setText(nameCustomer);
+                TextFieldPhoneNumber.setText(phoneNumber);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDate date = LocalDate.parse(dateOfBirth, formatter);
+                DatePickerDateOfBirth.setValue(date);
+                ComboBoxGender.getSelectionModel().select(gender);
+                //set data to listProductPick
+                int order_id = bill.getBill_Id();
+                ArrayList<OrderDetail> orderDetails = OrderDetail_DAO.getInstance().findByCondition("order_id = " + order_id);
+                for(OrderDetail orderDetail: orderDetails){
+                    Product product = Product_DAO.getInstance().findById(orderDetail.getProduct_id()+"");
+                    product.setQuantity(orderDetail.getQuantity());
+                    if (!listProductPick.contains(product)) {
+                        listProductPick.add(product);
+                    }
+                }
+
+                initCardList();
+
+            }
+
+        }
+        else {
+            idCustomerIfPickStatusUnconfirmed = -1; //reset
+            TextFieldCustomerName.setText("");
+            TextFieldPhoneNumber.setText("");
+            DatePickerDateOfBirth.setValue(null);
+            ComboBoxGender.getSelectionModel().clearSelection();
+            CardListData.clear();
+            listProductPick.clear();
+            initCardList();
         }
         AnchorPaneBillList.setVisible(false);
         AnchorPaneCustomer.setVisible(true);
@@ -217,6 +266,8 @@ public class staffController implements Initializable {
 
 
     @FXML public void ClickButtonNext() throws SQLException {
+
+
         //get data from scene builder
         String name = TextFieldCustomerName.getText();
         String date = (DatePickerDateOfBirth.getValue() != null) ? DatePickerDateOfBirth.getValue().toString() : null;
@@ -224,6 +275,19 @@ public class staffController implements Initializable {
         int gender = ComboBoxGender.getSelectionModel().getSelectedIndex();
         System.out.println(name + " " + date + " " + phone + gender + "");
         System.out.println("Click button next");
+        //if click element in table view display AnchorPaneProductList , status = unconfirmed
+        if(idCustomerIfPickStatusUnconfirmed != -1){
+            //update customer
+            Customer customer =  new Customer();
+            customer.setCustomer_id(idCustomerIfPickStatusUnconfirmed);
+            customer.setName(name);
+            customer.setDate_of_birth(date);
+            customer.setPhone_number(phone);
+            customer.setGender(gender);
+            Customer_DAO.getInstance().update(customer);
+            displayAnchorPaneBillList();
+            return;
+        }
         //check input
         if(name.equals("") || date == null || phone.equals("") || gender == -1){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -235,7 +299,7 @@ public class staffController implements Initializable {
         }
         //create new customer
 
-        if(!isSaved){
+        if(!isSaved ){
             newCustomer = new Customer();
             newCustomer.setName(name);
             newCustomer.setDate_of_birth(date);
@@ -359,6 +423,33 @@ public class staffController implements Initializable {
 
     }
 
+    public void pressOutOfRange(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                // Thêm EventFilter cho MouseEvent.MOUSE_CLICKED vào scene hoặc root pane của bạn.
+                billList_table.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Node node = mouseEvent.getPickResult().getIntersectedNode();
+                        Boolean clickedOn = false;
+                        while (node != null) {
+                            if (node == billList_table || node == ButtonRemove || node == ButtonAdd) {
+                                clickedOn = true;
+                                break;
+                            }
+                            node = node.getParent();
+                        }
+
+                        if (!clickedOn) {
+                            billList_table.getSelectionModel().clearSelection();
+
+                        }
+                    }
+                });
+            }
+        });
+    }
 
     public void initialize(URL url, ResourceBundle rb) {
         //set up combobox
@@ -371,6 +462,8 @@ public class staffController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        pressOutOfRange();
 
     }
+
 }

@@ -45,12 +45,12 @@
                </font>
             </Label>
             <Line endX="929.29052734375" endY="-7.62939453125E-6" layoutX="301.0" layoutY="47.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
-            <Button layoutX="1255.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickBtnAdd" prefHeight="56.0" prefWidth="95.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Add">
+            <Button fx:id="ButtonAdd" layoutX="1255.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickBtnAdd" prefHeight="56.0" prefWidth="95.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Add">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="1369.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickButtonDelete" prefHeight="58.0" prefWidth="128.0" style="-fx-border-radius: 15; -fx-background-radius: 15;" styleClass="main_btn" text="Remove">
+            <Button fx:id="ButtonRemove" layoutX="1369.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickButtonDelete" prefHeight="58.0" prefWidth="128.0" style="-fx-border-radius: 15; -fx-background-radius: 15;" styleClass="main_btn" text="Remove">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>

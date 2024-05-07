@@ -28,6 +28,9 @@ public class CardProductStaffController {
     @FXML
     private Label Name;
 
+    @FXML
+    private Label LabelQuantity;
+
 
 
     @FXML
@@ -42,6 +45,7 @@ public class CardProductStaffController {
         data.setType_id(type_id);
         data.setImage(productData.getImage());
         data.setQuantity(spinner.getValue());
+
 
         // Kiểm tra xem sản phẩm đã tồn tại trong danh sách hay chưa
         Product existingProduct = findProductInList(data.getProduct_id());
@@ -91,6 +95,8 @@ public class CardProductStaffController {
         this.quantity = productData.getQuantity();
         this.description = productData.getDescription();
         this.type_id = productData.getType_id();
+        this.LabelQuantity.setText("" +productData.getQuantity());
+
     }
 
     public void setImageByPath(Product product, ImageView imageView) {
@@ -109,6 +115,13 @@ public class CardProductStaffController {
         //spinner =  new Spinner<Integer>();
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getQuantity(), 0);
         spinner.setValueFactory(valueFactory);
+        int product_id = product.getProduct_id();
+        for(Product p : listProductPick){
+            if(p.getProduct_id() == product_id){
+                spinner.getValueFactory().setValue(p.getQuantity());
+
+            }
+        }
     }
 }
 
