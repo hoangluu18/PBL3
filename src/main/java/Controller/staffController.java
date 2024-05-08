@@ -15,12 +15,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,6 +51,10 @@ public class staffController implements Initializable {
     @FXML
     private AnchorPane AnchorPaneStaffInformation;
 
+    @FXML
+    private MenuButton menubutton;
+    @FXML
+    private MenuItem logout;
 
     //VARIABLE ANCHORPANE CUSTOMER
     @FXML
@@ -451,6 +459,21 @@ public class staffController implements Initializable {
         });
     }
 
+    @FXML
+    public void logout() throws IOException {
+        Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/hello-view.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/hello-view.css").toExternalForm());
+        stage.setTitle("Shop Management System");
+        stage.setMinWidth(1512.0);
+        stage.setMinHeight(982.0);
+        stage.setScene(scene);
+        stage.show();
+        stage.setMaximized(true);
+        Stage Current = (Stage) menubutton.getScene().getWindow();
+        Current.close();
+    }
     public void initialize(URL url, ResourceBundle rb) {
         //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");

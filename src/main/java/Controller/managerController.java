@@ -16,6 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -44,6 +46,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class managerController implements Initializable {
@@ -192,6 +195,8 @@ public class managerController implements Initializable {
     private TextField productPriceTxtField2;
     @FXML
     private ComboBox productTypeComboBox2;
+    @FXML
+    private MenuButton menubutton;
     @FXML
     private BarChart<String, Integer> barchart;
     @FXML
@@ -724,6 +729,21 @@ public class managerController implements Initializable {
             }
         });
 
+    }
+
+    public void logout() throws IOException {
+        Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/hello-view.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/hello-view.css").toExternalForm());
+        stage.setTitle("Shop Management System");
+        stage.setMinWidth(1512.0);
+        stage.setMinHeight(982.0);
+        stage.setScene(scene);
+        stage.show();
+        stage.setMaximized(true);
+        Stage Current = (Stage) menubutton.getScene().getWindow();
+        Current.close();
     }
 
     public void setBarchart() {

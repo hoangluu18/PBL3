@@ -8,6 +8,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -34,34 +36,36 @@
                         <Image url="@../Picture/Salework-logo-full.png" />
                     </image>
                 </ImageView>
-
-                <Label layoutX="1288.0" layoutY="16.0" text="NameLabel">
-                    <font>
-                        <Font name="Inter SemiBold" size="19.0" />
-                    </font>
-                </Label>
                 <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
-                <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="792.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
+                <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="692.0" layoutY="12.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-                <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="964.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="54.0" prefWidth="110.0" styleClass="switch-btn" text="Staff">
+                <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="889.0" layoutY="12.0" mnemonicParsing="false" onAction="#anchorStaffappear" prefHeight="54.0" prefWidth="110.0" styleClass="switch-btn" text="Staff">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-                <Button fx:id="billBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1111.0" layoutY="2.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="50.0" prefWidth="80.0" styleClass="switch-btn" text="Bill">
+                <Button fx:id="billBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1046.0" layoutY="10.0" mnemonicParsing="false" onAction="#anchorBillappear" prefHeight="50.0" prefWidth="80.0" styleClass="switch-btn" text="Bill">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
                 <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="648.0" layoutY="5.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
+                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="529.0" layoutY="8.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
+            <MenuButton fx:id="menubutton" layoutX="1175.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Lê Minh Duyệt">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="Log out" />
+              </items>
+               <font>
+                  <Font name="Inter Bold" size="22.0" />
+               </font>
+            </MenuButton>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">

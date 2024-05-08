@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -28,16 +30,19 @@
                   <Image url="@../Picture/Salework-logo-full.png" />
                </image>
             </ImageView>
-            <Label layoutX="1288.0" layoutY="16.0" text="NameLabel">
-               <font>
-                  <Font name="Inter SemiBold" size="19.0" />
-               </font>
-            </Label>
             <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
             <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
+            <MenuButton fx:id="menubutton" layoutX="1175.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="218.0" style="-fx-background-color: none;" text="Lê Minh Duyệt">
+              <items>
+                <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="Log out" />
+              </items>
+               <font>
+                  <Font name="Inter Bold" size="22.0" />
+               </font>
+            </MenuButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
+      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="22.0" text="BILL LIST">
                <font>
@@ -58,7 +63,7 @@
             <TableView fx:id="billList_table" layoutX="25.0" layoutY="86.0" prefHeight="801.0" prefWidth="1452.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneStaffInformation" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane fx:id="AnchorPaneStaffInformation" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
