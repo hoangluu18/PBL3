@@ -77,6 +77,7 @@ public class Employee_DAO implements DAO_Interface<Employee, String> {
         return 0;
     }
 
+
     @Override
     public ArrayList<Employee> findAll() {
         ArrayList<Employee> listEmployee = new ArrayList<Employee>();
@@ -149,6 +150,23 @@ public class Employee_DAO implements DAO_Interface<Employee, String> {
             e.printStackTrace();
         }
         return null;
+    }
+    public String getemployeeName(int id) {
+        String sql = "select name from employees\n" +
+                "where employees.employee_id = ?;";
+        String name = "";
+        try (Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                name = resultSet.getString("name");
+                System.out.println(name);
+            }
+            return name;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Employee_DAO getInstance(){

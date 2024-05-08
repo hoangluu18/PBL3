@@ -1,9 +1,6 @@
 package Controller;
 
-import DAO.Customer_DAO;
-import DAO.OrderDetail_DAO;
-import DAO.Order_DAO;
-import DAO.Product_DAO;
+import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
 import javafx.application.Platform;
@@ -475,6 +472,8 @@ public class staffController implements Initializable {
         Current.close();
     }
     public void initialize(URL url, ResourceBundle rb) {
+        String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
+        menubutton.setText(name);
         //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
         //set up bill list
