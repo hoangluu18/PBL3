@@ -42,7 +42,7 @@
             </MenuButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
          <children>
             <Label layoutX="25.0" layoutY="22.0" text="BILL LIST">
                <font>
@@ -63,7 +63,7 @@
             <TableView fx:id="billList_table" layoutX="25.0" layoutY="86.0" prefHeight="801.0" prefWidth="1452.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneStaffInformation" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
+      <AnchorPane fx:id="AnchorPaneStaffInformation" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="STAFF INFORMATION">
                <font>
@@ -214,31 +214,31 @@
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="59.0" layoutY="112.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldBillId" layoutX="59.0" layoutY="112.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
             <Label layoutX="794.0" layoutY="80.0" text="Order Date">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="792.0" layoutY="110.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldOrderDate" layoutX="792.0" layoutY="110.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
             <Label layoutX="64.0" layoutY="186.0" text="Staff">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="61.0" layoutY="218.0" prefHeight="59.0" prefWidth="667.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldStaffName" layoutX="61.0" layoutY="218.0" prefHeight="59.0" prefWidth="667.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
             <Label layoutX="794.0" layoutY="186.0" text="Customer">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="792.0" layoutY="216.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldCustomer" layoutX="792.0" layoutY="216.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
             <Label layoutX="59.0" layoutY="303.0" text="Items">
                <font>
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <TableView layoutX="58.0" layoutY="347.0" prefHeight="326.0" prefWidth="1405.0">
+            <TableView fx:id="tableViewBillInformation" layoutX="58.0" layoutY="347.0" prefHeight="326.0" prefWidth="1405.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
@@ -254,12 +254,12 @@
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <Button layoutX="1276.0" layoutY="750.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="152.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Purchase">
+            <Button fx:id="buttonPurchase" layoutX="1276.0" layoutY="750.0" mnemonicParsing="false" onAction="#clickButtonPurchase" prefHeight="54.0" prefWidth="152.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Purchase">
                <font>
                   <Font name="Inter Black" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="1125.0" layoutY="750.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="119.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save">
+            <Button fx:id="buttonSave" layoutX="1125.0" layoutY="750.0" mnemonicParsing="false" onAction="#clickButtonSave" prefHeight="54.0" prefWidth="119.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save">
                <font>
                   <Font name="Inter Black" size="24.0" />
                </font>
@@ -269,6 +269,7 @@
                   <Font name="Inter Black" size="24.0" />
                </font>
             </Button>
+            <Label fx:id="LabelTotalPrice" layoutX="1119.0" layoutY="691.0" prefHeight="36.0" prefWidth="120.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchorPaneProductList" layoutX="-5.0" layoutY="70.0" prefHeight="912.0" prefWidth="1533.0" visible="false">

@@ -31,6 +31,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static Controller.Hello_viewController.IdEmployeeCurrent;
@@ -97,10 +98,34 @@ public class staffController implements Initializable {
     @FXML
     private Button ButtonNextProduct;
 
+
+    //bill list
+    @FXML
+    TextField textFieldBillId;
+    @FXML
+    TextField textFieldCustomer;
+    @FXML
+    TextField textFieldStaffName;
+    @FXML
+    TextField textFieldOrderDate;
+
+    @FXML
+    TableView tableViewBillInformation;
+    @FXML
+    Label LabelTotalPrice;
+    @FXML
+    Button buttonSave;
+    @FXML
+    Button buttonPurchase;
+    public static int  IdOrderCurrentIfPickStatusUnconfirmed = -1;
+
     private ObservableList<Product> CardListData;
 
     @FXML
     public void addBillList(){
+        //clear data
+        billList_table.getColumns().clear();
+        billList_table.getItems().clear();
         //init
         ArrayList<Bill> BillList = new ArrayList<Bill>();
         //query database
@@ -207,6 +232,8 @@ public class staffController implements Initializable {
                 return;
             }
             else {
+                //get order current if pick status unconfirmed
+                IdOrderCurrentIfPickStatusUnconfirmed = bill.getBill_Id();
                 //reset list product
                 CardListData.clear();
                 listProductPick.clear();
@@ -253,6 +280,7 @@ public class staffController implements Initializable {
 
     @FXML
     public void clickButtonBack(){
+        addBillList();
         AnchorPaneBillList.setVisible(true);
         AnchorPaneCustomer.setVisible(false);
     }
@@ -290,6 +318,7 @@ public class staffController implements Initializable {
             customer.setPhone_number(phone);
             customer.setGender(gender);
             Customer_DAO.getInstance().update(customer);
+            newCustomer = customer;
             displayAnchorPaneBillList();
             return;
         }
@@ -395,7 +424,189 @@ public class staffController implements Initializable {
 
         AnchorPaneProductList.setVisible(false);
         AnchorPaneBillInfor.setVisible(true);
+
+
+        //cal total price
+        int totalPrice = 0;
+        for(Product product: listProductPick){
+            totalPrice += product.getPrice() * product.getQuantity();
+        }
+        //display
+        tableViewBillInformation.getColumns().clear();
+        tableViewBillInformation.getItems().clear();
+
+        Order order = new Order();
+        textFieldBillId.setText(order.getOrder_id()+"");
+        textFieldCustomer.setText(newCustomer.getName());
+        Employee employeeCurrent = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
+        textFieldStaffName.setText(employeeCurrent.getName());
+        textFieldOrderDate.setText(order.getCurrentTime());
+        LabelTotalPrice.setText(totalPrice + "VND");
+
+        TableColumn<Product,String> nameProduct = new TableColumn<Product,String>("Product Name");
+        TableColumn<Product,Integer> unitPrice = new TableColumn<Product,Integer>("Unit Price");
+        TableColumn<Product,Integer> quantity = new TableColumn<Product,Integer>("Quantity");
+
+        nameProduct.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        unitPrice.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
+        quantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
+
+        nameProduct.setPrefWidth(1000);
+        nameProduct.setResizable(false);
+
+        unitPrice.setPrefWidth(200);
+        unitPrice.setResizable(false);
+
+        quantity.setPrefWidth(200);
+        quantity.setResizable(false);
+
+        ObservableList<Product> List = FXCollections.observableArrayList(listProductPick);
+        tableViewBillInformation.getColumns().addAll(nameProduct,unitPrice,quantity);
+        tableViewBillInformation.setItems(List);
+
     }
+
+    @FXML
+    void clickButtonPurchase(){
+        if(IdOrderCurrentIfPickStatusUnconfirmed != -1){
+            //delete data in order detail
+            ArrayList<OrderDetail> orderDetails = OrderDetail_DAO.getInstance().findByCondition("order_id = " + IdOrderCurrentIfPickStatusUnconfirmed);
+            for(OrderDetail orderDetail: orderDetails){
+                OrderDetail_DAO.getInstance().delete(orderDetail);
+            }
+
+            //delete data in order
+            Order order = Order_DAO.getInstance().findById(IdOrderCurrentIfPickStatusUnconfirmed+"");
+            Order_DAO.getInstance().delete(order);
+            IdOrderCurrentIfPickStatusUnconfirmed = -1;//reset
+        }
+        //get text
+        int order_id = Integer.parseInt(textFieldBillId.getText());
+        String condition = "name = '" + newCustomer.getName() + "' AND dateOfBirth = '" + newCustomer.getDate_of_birth() + "' AND phone_number = '" + newCustomer.getPhone_number() + "'";
+        int customer_id = Customer_DAO.getInstance().findByCondition(condition).get(0).getCustomer_id();
+        String order_date = textFieldOrderDate.getText();
+        int employee_id = IdEmployeeCurrent;
+        int total_price = Integer.parseInt(LabelTotalPrice.getText().replace("VND",""));
+        int status = 1; //confirmed
+        //save order
+        Order newOrder = new Order();
+        newOrder.setOrder_id(order_id);
+        newOrder.setCustomer_id(customer_id);
+        newOrder.setOrder_date(order_date);
+        newOrder.setEmployee_id(employee_id);
+        newOrder.setTotalPrice(total_price);
+        newOrder.setStatus(status);
+        //save order detail
+        List<OrderDetail> OrderDetails = new ArrayList<>();
+        for(Product product: listProductPick){
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setOrder_id(order_id);
+            orderDetail.setProduct_id(product.getProduct_id());
+            orderDetail.setQuantity(product.getQuantity());
+            orderDetail.setUnit_price(product.getPrice());
+            OrderDetails.add(orderDetail);
+        }
+        //update quantity
+        for(OrderDetail orderDetail: OrderDetails){
+            Product product = Product_DAO.getInstance().findById(orderDetail.getProduct_id()+"");
+            product.setQuantity(product.getQuantity() - orderDetail.getQuantity());
+            Product_DAO.getInstance().update(product);
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Purchase Confirmation");
+        alert.setContentText("Do you want to save the purchase to the database?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // User chose OK, save to database
+            Order_DAO.getInstance().insert(newOrder);
+            for(OrderDetail orderDetail: OrderDetails){
+                OrderDetail_DAO.getInstance().insert(orderDetail);
+            }
+            //alert
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Information");
+            alert1.setHeaderText("Purchase successfully");
+            alert1.showAndWait();
+        } else {
+            // User chose Cancel, do nothing
+        }
+        //reload bill list
+        addBillList();
+        //show bill list
+        AnchorPaneBillList.setVisible(true);
+        AnchorPaneBillInfor.setVisible(false);
+    }
+
+    @FXML
+    void clickButtonSave(){
+        if(IdOrderCurrentIfPickStatusUnconfirmed != -1){
+            //delete data in order detail
+            ArrayList<OrderDetail> orderDetails = OrderDetail_DAO.getInstance().findByCondition("order_id = " + IdOrderCurrentIfPickStatusUnconfirmed);
+            for(OrderDetail orderDetail: orderDetails){
+                OrderDetail_DAO.getInstance().delete(orderDetail);
+            }
+
+            //delete data in order
+            Order order = Order_DAO.getInstance().findById(IdOrderCurrentIfPickStatusUnconfirmed+"");
+            Order_DAO.getInstance().delete(order);
+            IdOrderCurrentIfPickStatusUnconfirmed = -1;//reset
+        }
+        //get text
+        int order_id = Integer.parseInt(textFieldBillId.getText());
+        String condition = "name = '" + newCustomer.getName() + "' AND dateOfBirth = '" + newCustomer.getDate_of_birth() + "' AND phone_number = '" + newCustomer.getPhone_number() + "'";
+        int customer_id = Customer_DAO.getInstance().findByCondition(condition).get(0).getCustomer_id();
+        String order_date = textFieldOrderDate.getText();
+        int employee_id = IdEmployeeCurrent;
+        int total_price = Integer.parseInt(LabelTotalPrice.getText().replace("VND",""));
+        int status = 0; //unconfirmed
+        //save order
+        Order newOrder = new Order();
+        newOrder.setOrder_id(order_id);
+        newOrder.setCustomer_id(customer_id);
+        newOrder.setOrder_date(order_date);
+        newOrder.setEmployee_id(employee_id);
+        newOrder.setTotalPrice(total_price);
+        newOrder.setStatus(status);
+        //save order detail
+        List<OrderDetail> OrderDetails = new ArrayList<>();
+        for(Product product: listProductPick){
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setOrder_id(order_id);
+            orderDetail.setProduct_id(product.getProduct_id());
+            orderDetail.setQuantity(product.getQuantity());
+            orderDetail.setUnit_price(product.getPrice());
+            OrderDetails.add(orderDetail);
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Save Confirmation");
+        alert.setContentText("Do you want to save the save to the database?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // User chose OK, save to database
+            Order_DAO.getInstance().insert(newOrder);
+            for(OrderDetail orderDetail: OrderDetails){
+                OrderDetail_DAO.getInstance().insert(orderDetail);
+            }
+            //alert
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Information");
+            alert1.setHeaderText("Save successfully");
+            alert1.showAndWait();
+        } else {
+            // User chose Cancel, do nothing
+        }
+
+        //reload bill list
+        addBillList();
+        //show bill list
+        AnchorPaneBillList.setVisible(true);
+        AnchorPaneBillInfor.setVisible(false);
+    }
+
 
 
     @FXML

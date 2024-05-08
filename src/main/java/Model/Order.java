@@ -1,5 +1,9 @@
 package Model;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Order {
     private int order_id;
     private int customer_id; // khóa ngoại của bảng customer
@@ -19,7 +23,16 @@ public class Order {
     }
 
     public Order() {
+        this.order_id = (int) Instant.now().getEpochSecond();
+        this.order_date = getCurrentTime();
     }
+
+    public String getCurrentTime(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+
 
     public int getOrder_id() {
         return order_id;
