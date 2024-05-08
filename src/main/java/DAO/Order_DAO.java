@@ -154,7 +154,7 @@ public class Order_DAO implements DAO_Interface<Order, String>{
             ArrayList<Order> listorder = new ArrayList<Order>();
             String sql = "Select date_format(order_date, '%Y-%m-%d') as date, SUM(totalPrice) as totalprice\n" +
                     "from orders\n" +
-                    "where order_date >= ? and order_date < ? \n" +
+                    "where order_date >= ? and order_date < ? and orders.status = 1 \n" +
                     "group by Date_format(order_date, '%Y-%m-%d')\n" +
                     "order by date;";
             try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {

@@ -64,7 +64,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
             <children>
                 <DatePicker fx:id="datebegin" layoutX="112.0" layoutY="45.0" prefHeight="45.0" prefWidth="550.0" />
                 <BarChart fx:id="barchart" layoutX="14.0" layoutY="159.0" prefHeight="689.0" prefWidth="1478.0">
@@ -76,7 +76,7 @@
                     </yAxis>
                 </BarChart>
             <DatePicker fx:id="dateend" layoutX="768.0" layoutY="45.0" prefHeight="43.0" prefWidth="550.0" />
-            <Button layoutX="1374.0" layoutY="46.0" mnemonicParsing="false" onAction="#setBarchart" prefHeight="41.0" prefWidth="103.0" text="See">
+            <Button layoutX="1374.0" layoutY="46.0" mnemonicParsing="false" onAction="#setBarchart" prefHeight="41.0" prefWidth="103.0" text="SEE">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
@@ -189,7 +189,7 @@
                 <PasswordField fx:id="staffpasswordTextfield" layoutX="964.0" layoutY="180.0" prefHeight="45.0" prefWidth="521.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorBill" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
                 <Label layoutX="25.0" layoutY="15.0" text="PRODUCT DETAIL" textFill="#141e46">
                     <font>
