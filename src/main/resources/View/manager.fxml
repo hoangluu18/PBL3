@@ -215,14 +215,9 @@
                     </font>
                 </Label>
                 <TableView fx:id="bill_table" layoutX="25.0" layoutY="503.0" prefHeight="360.0" prefWidth="1430.0">
-                    <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="158.19258880615234" text="Bill ID" />
-                        <TableColumn fx:id="customer_id" prefWidth="190.94520568847656" text="Customer ID" />
-                        <TableColumn fx:id="Date" prefWidth="345.5992126464844" text="Order Date" />
-                        <TableColumn fx:id="Employee_id" prefWidth="234.3460693359375" text="Staff ID" />
-                        <TableColumn fx:id="totalPrice" prefWidth="322.654052734375" text="Total Price" />
-                        <TableColumn fx:id="status" prefWidth="181.5438232421875" text="Status" />
-                    </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
                 </TableView>
                 <Line endX="1031.4334716796875" layoutX="303.0" layoutY="473.0" startX="-101.0706787109375" strokeWidth="3.0" styleClass="line-color" />
                 <Button layoutX="1349.0" layoutY="443.0" mnemonicParsing="false" onAction="#addProductDetail" prefHeight="48.0" prefWidth="102.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="main_btn" text="Detail">

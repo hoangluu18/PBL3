@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.*;
+import Database.JDBC_Util;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
 import com.mysql.cj.xdevapi.Table;
@@ -452,8 +453,8 @@ public class managerController implements Initializable {
 //        } ));
 
     public int getOrderID(){
-        Order selectedOrder = (Order) bill_table.getSelectionModel().getSelectedItem();
-        int values = selectedOrder.getOrder_id();
+        Bill selectedOrder = (Bill) bill_table.getSelectionModel().getSelectedItem();
+        int values = selectedOrder.getBill_Id();
         return values;
     }
 
@@ -592,15 +593,58 @@ public class managerController implements Initializable {
         staffemailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         staff_table.setItems(employeeList);
 
-        orderData = Order_DAO.getInstance().findAll();
-        orderList = FXCollections.observableArrayList(orderData);
-        idColumn.setCellValueFactory(new PropertyValueFactory<Order, Integer>("order_id"));
-        customer_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("customer_id"));
-        Date.setCellValueFactory(new PropertyValueFactory<Order, String>("order_date"));
-        Employee_id.setCellValueFactory(new PropertyValueFactory<Order, Integer>("employee_id"));
-        totalPrice.setCellValueFactory(new PropertyValueFactory<Order, Integer>("totalPrice"));
-        status.setCellValueFactory(new PropertyValueFactory<Order, Integer>("status"));
-        bill_table.setItems(orderList);
+        ArrayList<Bill> BillList = new ArrayList<Bill>();
+        //query database
+        String sql = "SELECT \n" +
+                "    o.order_id AS id,\n" +
+                "    c.name AS customer_name,\n" +
+                "    o.order_date AS date,\n" +
+                "    e.name AS employee_name,\n" +
+                "    o.totalPrice AS total_price,\n" +
+                "    o.status\n" +
+                "FROM \n" +
+                "    orders o\n" +
+                "JOIN \n" +
+                "    customers c ON o.customer_id = c.customer_id\n" +
+                "JOIN \n" +
+                "    employees e ON o.employee_id = e.employee_id;\n";
+
+        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Bill bill = new Bill();
+                bill.setBill_Id(resultSet.getInt("id")); // Changed "o.order_id" to "id"
+                bill.setCustomer_name(resultSet.getString("customer_name"));
+                bill.setDate(resultSet.getString("date"));
+                bill.setEmployee_name(resultSet.getString("employee_name"));
+                bill.setTotal_price(resultSet.getInt("total_price"));
+                bill.setStatus(resultSet.getInt("status") == 0 ? "unconfimred" : "confirmed");
+                BillList.add(bill);
+            }
+            JDBC_Util.closeConnection(connection);
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        TableColumn<Bill, Integer>idColumn = new TableColumn<Bill, Integer>("ID");
+        TableColumn<Bill, String>customer_name = new TableColumn<Bill,String>("Customer_Name");
+        TableColumn<Bill, String>Date = new TableColumn<Bill, String>("Date");
+        TableColumn<Bill, String>Employee_name = new TableColumn<Bill, String>("Employee_Name");
+        TableColumn<Bill, Integer>totalPrice = new TableColumn<Bill, Integer>("Total Price");
+        TableColumn<Bill, String>status = new TableColumn<Bill, String>("Status");
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("Bill_Id"));
+        customer_name.setCellValueFactory(new PropertyValueFactory<Bill, String>("customer_name"));
+        Date.setCellValueFactory(new PropertyValueFactory<Bill, String>("date"));
+        Employee_name.setCellValueFactory(new PropertyValueFactory<Bill, String>("employee_name"));
+        totalPrice.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("total_price"));
+        status.setCellValueFactory(new PropertyValueFactory<Bill, String>("status"));
+
+        ObservableList<Bill> List = FXCollections.observableArrayList(BillList);
+        bill_table.getColumns().addAll(idColumn,customer_name,Date,Employee_name,totalPrice,status);
+        bill_table.setItems(List);
+        //bill_table.setItems(orderList);
         // Tạo một ScaleTransition
         ScaleTransition stOut = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
 
