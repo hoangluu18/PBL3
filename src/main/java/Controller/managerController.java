@@ -99,7 +99,34 @@ public class managerController implements Initializable {
     private Button saveProductButton;
     @FXML
     private ComboBox<String> productTypeComboBox;
-
+    @FXML
+    private AnchorPane productInfoAnchorpane2;
+    @FXML
+    private TextField productNameTxtField2;
+    @FXML
+    private TextField productPriceTxtField2;
+    @FXML
+    private TextField productSizeTxtField2;
+    @FXML
+    private TextField productColorTxtField2;
+    @FXML
+    private TextField productQuantityTxtField2;
+    @FXML
+    private TextArea productDescriptionTxtArea2;
+    @FXML
+    private Rectangle imageShape2;
+    @FXML
+    private ImageView productImageView2;
+    @FXML
+    private Button addImageButton2;
+    @FXML
+    private Button deleteProductButton2;
+    @FXML
+    private Button updateProductButton2;
+    @FXML
+    private ComboBox<String> productTypeComboBox2;
+    private ArrayList<AnchorPane> nodeList = new ArrayList<>();
+    private int currentId;
     //employee
     @FXML
     private GridPane gridCardPane;
@@ -138,7 +165,7 @@ public class managerController implements Initializable {
     @FXML
     private PasswordField staffpasswordTextfield;
     @FXML
-    private ObservableList<Product> cardListData = FXCollections.observableArrayList();
+    private static final ObservableList<Product> cardListData = FXCollections.observableArrayList();
     @FXML
     private TableColumn<Product, Integer> productidColumn;
     @FXML
@@ -168,33 +195,11 @@ public class managerController implements Initializable {
 //    @FXML
 //    TableColumn<OrderDetail, Integer>unit_price;
     @FXML
-    private TextField productSizeTxtField2;
-    @FXML
     private DatePicker datebegin;
     @FXML
     private DatePicker dateend;
     @FXML
-    private Button deleteProductButton;
-    @FXML
-    private TextField productColorTxtField2;
-    @FXML
     private AnchorPane productInfoAnchorpane1;
-    @FXML
-    private Button updateProductButton;
-    @FXML
-    private TextField productNameTxtField2;
-    @FXML
-    private TextField productQuantityTxtField2;
-    @FXML
-    private TextArea productDescriptionTxtArea2;
-    @FXML
-    private Button addImageButton1;
-    @FXML
-    private ImageView productImageView1;
-    @FXML
-    private TextField productPriceTxtField2;
-    @FXML
-    private ComboBox productTypeComboBox2;
     @FXML
     private MenuButton menubutton;
     @FXML
@@ -286,15 +291,22 @@ public class managerController implements Initializable {
 
         return listData;
     }
+
     ArrayList<ProductType> data;
+
     public void menuDisplayCard() throws IOException, SQLException {
         data = ProductType_DAO.getInstance().findAll();
+        nodeList.clear();
+        cardListData.clear();
+        cardListData.addAll(menuGetData());
+        productTypeComboBox.getItems().clear();
+        productTypeComboBox2.getItems().clear();
         for (int i = 0; i < data.size(); i++) {
             productTypeComboBox.getItems().add(data.get(i).getCategory());
         }
-
-        cardListData.clear();
-        cardListData.addAll(menuGetData());
+        for (int i = 0; i < data.size(); i++) {
+            productTypeComboBox2.getItems().add(data.get(i).getCategory());
+        }
 
         int row = 0;
         int column = 0;
@@ -315,7 +327,7 @@ public class managerController implements Initializable {
                 cardC.setProductInfo(cardListData.get(i));
 
                 // Tạo một ScaleTransition
-                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane2);
 
                 // Thiết lập thuộc tính cho ScaleTransition
                 st.setFromX(0);  // Bắt đầu từ scale x = 0
@@ -329,27 +341,40 @@ public class managerController implements Initializable {
                 st.setToY(1);    // Kết thúc tại scale y = 1
                 st.setCycleCount(1);  // Chỉ chạy 1 lần
 
-                pane.setOnMouseClicked(event -> {
-                    dimPane.setVisible(true);
-                    productInfoAnchorpane.setVisible(true);
-                    st.play();
-                });
-
                 if (column == 6) {
                     column = 0;
                     row += 1;
                 }
+                nodeList.add(pane);
+                pane.setOnMouseClicked(event -> {
+                    int position = nodeList.indexOf(pane);
+                    dimPane.setVisible(true);
+                    currentId = cardListData.get(position).getProduct_id();
+                    productNameTxtField2.setText(cardListData.get(position).getName());
+                    productColorTxtField2.setText(cardListData.get(position).getColor());
+                    productSizeTxtField2.setText(cardListData.get(position).getSize());
+                    productPriceTxtField2.setText(Integer.toString(cardListData.get(position).getPrice()));
+                    productQuantityTxtField2.setText(Integer.toString(cardListData.get(position).getQuantity()));
+                    productDescriptionTxtArea2.setText(cardListData.get(position).getDescription());
+                    productTypeComboBox2.getSelectionModel().select(ProductType_DAO.getInstance().findById(cardListData.get(position).getType_id()).getCategory());
+                    productInfoAnchorpane2.setVisible(true);
 
+                    try {
+                        setCheckImageButton(productImageView2, cardListData.get(position));
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    st.play();
+                });
                 gridCardPane.add(pane, column++, row);
                 lastColumn = column;
                 lastRow = row;
                 GridPane.setMargin(pane, new Insets(10));
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        try{
+        try {
             FXMLLoader load = new FXMLLoader();
             load.setLocation(getClass().getResource("/View/addProduct.fxml"));
             AnchorPane addPane = load.load();
@@ -379,11 +404,12 @@ public class managerController implements Initializable {
 
             gridCardPane.add(addPane, lastColumn, lastRow);
             GridPane.setMargin(addPane, new Insets(10));
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
 
     private String temp = "";
 
@@ -408,6 +434,17 @@ public class managerController implements Initializable {
         productTypeComboBox.getSelectionModel().select(-1);
     }
 
+    public void clearCheckInfo() throws IOException, SQLException {
+        productImageView2.setImage(null);
+        productColorTxtField2.setText("");
+        productNameTxtField2.setText("");
+        productPriceTxtField2.setText("");
+        productQuantityTxtField2.setText("");
+        productDescriptionTxtArea2.setText("");
+        productSizeTxtField2.setText("");
+        productTypeComboBox2.getSelectionModel().select(-1);
+    }
+
     public Product getProductInfo() throws SQLException, MalformedURLException {
         Product product = new Product();
         ArrayList<ProductType> data = ProductType_DAO.getInstance().findAll();
@@ -428,12 +465,42 @@ public class managerController implements Initializable {
         return product;
     }
 
+    public Product getCheckProductInfo() throws SQLException, MalformedURLException {
+        Product product = new Product();
+        ArrayList<ProductType> data = ProductType_DAO.getInstance().findAll();
+        product.setProduct_id(currentId);
+        product.setName(productNameTxtField2.getText());
+        product.setPrice(Integer.parseInt(productPriceTxtField2.getText()));
+        product.setColor(productColorTxtField2.getText());
+        product.setSize(productSizeTxtField2.getText());
+        product.setQuantity(Integer.parseInt(productQuantityTxtField2.getText()));
+        product.setImage(temp);
+        product.setDescription(productDescriptionTxtArea2.getText());
+        int typeID = -1;
+        for (int i = 0; i < data.size(); i++) {
+            if (productTypeComboBox2.getSelectionModel().getSelectedItem().equals(data.get(i).getCategory())) {
+                typeID = data.get(i).getType_id();
+            }
+        }
+        product.setType_id(typeID);
+        return product;
+    }
+
     public void setAddImageButton() throws MalformedURLException {
         productImageView.setImage(null);
         temp = choosePictureFromDialog(productImageView);
     }
 
+    public void setAddImageButton2() throws MalformedURLException {
+        productImageView2.setImage(null);
+        temp = choosePictureFromDialog(productImageView2);
+    }
 
+    public void setCheckImageButton(ImageView imageView,  Product product) throws MalformedURLException {
+        productImageView2.setImage(null);
+        Image image = new Image(product.getImage());
+        productImageView2.setImage(image);
+    }
 
     public String choosePictureFromDialog(ImageView imgView) throws MalformedURLException {
         FileChooser fileChooser = new FileChooser();
@@ -501,24 +568,25 @@ public class managerController implements Initializable {
     @FXML
     public void updateProduct() throws IOException, SQLException {
         Product product = new Product();
-        product = getProductInfo();
-        product.setProduct_id(Integer.parseInt(productSizeTxtField2.getText()));
+        product = getCheckProductInfo();
         Product_DAO.getInstance().update(product);
         menuDisplayCard();
-        clearAddInfo();
+        clearCheckInfo();
         dimPane.setVisible(false);
-        productInfoAnchorpane.setVisible(false);
+        productInfoAnchorpane2.setVisible(false);
     }
     @FXML
     public void deleteProduct() throws IOException, SQLException {
         Product product = new Product();
-        product = getProductInfo();
+        product = getCheckProductInfo();
         Product_DAO.getInstance().delete(product);
         menuDisplayCard();
-        clearAddInfo();
+        clearCheckInfo();
         dimPane.setVisible(false);
-        productInfoAnchorpane.setVisible(false);
+        productInfoAnchorpane2.setVisible(false);
     }
+
+
 
     @FXML
     public void addStaff(ActionEvent actionEvent) {
@@ -664,6 +732,7 @@ public class managerController implements Initializable {
         dimPane.setOnMouseClicked(event -> {
             stOut.setOnFinished(e -> {
                 productInfoAnchorpane.setVisible(false);
+                productInfoAnchorpane2.setVisible(false);
                 dimPane.setVisible(false);
             });
             stOut.play();  // Chạy hiệu ứng
