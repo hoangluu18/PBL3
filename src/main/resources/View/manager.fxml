@@ -52,8 +52,8 @@
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-                <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="529.0" layoutY="8.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
+                <Pane fx:id="switch_pane" layoutX="538.0" layoutY="51.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
+                <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="537.0" layoutY="7.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
@@ -80,7 +80,7 @@
                     </yAxis>
                 </BarChart>
             <DatePicker fx:id="dateend" layoutX="768.0" layoutY="45.0" prefHeight="43.0" prefWidth="550.0" />
-            <Button layoutX="1374.0" layoutY="46.0" mnemonicParsing="false" onAction="#setBarchart" prefHeight="41.0" prefWidth="103.0" text="SEE">
+            <Button layoutX="1364.0" layoutY="43.0" mnemonicParsing="false" onAction="#setBarchart" prefHeight="41.0" prefWidth="103.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="SEE">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
