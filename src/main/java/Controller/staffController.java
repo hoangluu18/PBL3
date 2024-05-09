@@ -529,14 +529,18 @@ public class staffController implements Initializable {
             alert1.setTitle("Information");
             alert1.setHeaderText("Purchase successfully");
             alert1.showAndWait();
+
+            //reload bill list
+            addBillList();
+            //show bill list
+            AnchorPaneBillList.setVisible(true);
+            AnchorPaneBillInfor.setVisible(false);
+
         } else {
             // User chose Cancel, do nothing
+            alert.close();
         }
-        //reload bill list
-        addBillList();
-        //show bill list
-        AnchorPaneBillList.setVisible(true);
-        AnchorPaneBillInfor.setVisible(false);
+
     }
 
     @FXML
@@ -596,15 +600,19 @@ public class staffController implements Initializable {
             alert1.setTitle("Information");
             alert1.setHeaderText("Save successfully");
             alert1.showAndWait();
+
+            //reload bill list
+            addBillList();
+            //show bill list
+            AnchorPaneBillList.setVisible(true);
+            AnchorPaneBillInfor.setVisible(false);
+            
         } else {
             // User chose Cancel, do nothing
+            alert.close();
         }
 
-        //reload bill list
-        addBillList();
-        //show bill list
-        AnchorPaneBillList.setVisible(true);
-        AnchorPaneBillInfor.setVisible(false);
+
     }
 
 
