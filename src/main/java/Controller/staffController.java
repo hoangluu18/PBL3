@@ -117,6 +117,22 @@ public class staffController implements Initializable {
     Button buttonSave;
     @FXML
     Button buttonPurchase;
+    @FXML
+    TextField setStaffID, setStaffName, setStaffPhoneNumber, setStaffAddress, setStaffEmail;
+    @FXML
+    PasswordField setStaffPassword;
+    @FXML
+    PasswordField currentPass_txt, newPass_txt, confirmPass_txt;
+    @FXML
+    Button setProfile_btn, setStaffPass_btn;
+    @FXML
+    Button saveNewPass_btn, BackStaffInfor_btn;
+    @FXML
+    AnchorPane AnchorPaneSetPassword;
+    @FXML
+    Label wrongPass_label, wrongConfirm_label;
+    @FXML
+    Button backBilllist_btn;
     public static int  IdOrderCurrentIfPickStatusUnconfirmed = -1;
 
     private ObservableList<Product> CardListData;
@@ -689,6 +705,69 @@ public class staffController implements Initializable {
         stage.setMaximized(true);
         Stage Current = (Stage) menubutton.getScene().getWindow();
         Current.close();
+    }
+    @FXML
+    public void setProfile_btn(){
+        AnchorPaneBillList.setVisible(false);
+        AnchorPaneStaffInformation.setVisible(true);
+        Employee employee = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
+        if(employee != null){
+            setStaffID.setText(employee.getEmployee_id()+"");
+            setStaffName.setText(employee.getName());
+            setStaffPhoneNumber.setText(employee.getPhone_number());
+            setStaffAddress.setText(employee.getAddress());
+            setStaffEmail.setText(employee.getEmail());
+            User user = User_DAO.getInstance().findByUsername(employee.getEmail());
+            setStaffPassword.setText(user.getPassword());
+        }
+    }
+
+    @FXML
+    public void saveInforamtion(){
+        Employee employee = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
+        employee.setName(setStaffName.getText());
+        employee.setPhone_number(setStaffPhoneNumber.getText());
+        employee.setAddress(setStaffAddress.getText());
+        employee.setEmail(setStaffEmail.getText());
+        Employee_DAO.getInstance().update(employee);
+    }
+
+    @FXML
+    public void setStaffPass_btn(){
+        AnchorPaneStaffInformation.setVisible(false);
+        AnchorPaneSetPassword.setVisible(true);
+    }
+    @FXML
+    public void saveNewPass(){
+        AnchorPaneStaffInformation.setVisible(false);
+        AnchorPaneSetPassword.setVisible(true);
+        User user = User_DAO.getInstance().findById(IdEmployeeCurrent);
+        String currentPass = currentPass_txt.getText();
+        String newPass = newPass_txt.getText();
+        String confirmPass = confirmPass_txt.getText();
+        if(currentPass.equals(user.getPassword()) && newPass.equals(confirmPass)){
+            user.setPassword(newPass);
+            User_DAO.getInstance().update(user,false);
+            AnchorPaneSetPassword.setVisible(false);
+            AnchorPaneBillList.setVisible(true);
+        }
+        else if(!currentPass.equals(user.getPassword())){
+            wrongPass_label.setText("Wrong password");
+        } else if (!newPass.equals(confirmPass)){
+            wrongConfirm_label.setText("Password does not match");
+        }
+    }
+
+    @FXML
+    public void BackStaffInfor(){
+        AnchorPaneSetPassword.setVisible(false);
+        AnchorPaneStaffInformation.setVisible(true);
+    }
+
+    @FXML
+    public void backBilllist(){
+        AnchorPaneStaffInformation.setVisible(false);
+        AnchorPaneBillList.setVisible(true);
     }
     public void initialize(URL url, ResourceBundle rb) {
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
