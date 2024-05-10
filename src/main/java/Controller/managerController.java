@@ -209,6 +209,7 @@ public class managerController implements Initializable {
     @FXML
     private Button updateProductButton;
 
+    @FXML
     private Button addImageButton1;
     @FXML
     private ImageView productImageView1;
