@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -33,12 +34,13 @@
             <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
             <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
             <MenuButton fx:id="menubutton" layoutX="1175.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="218.0" style="-fx-background-color: none;" text="Lê Minh Duyệt">
-              <items>
-                <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="Log out" />
-              </items>
                <font>
                   <Font name="Inter Bold" size="22.0" />
                </font>
+               <items>
+                  <MenuItem fx:id="setProfile" mnemonicParsing="false" onAction="#setProfile_btn" text="Set Profile" />
+                <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="Log out" />
+               </items>
             </MenuButton>
          </children>
       </AnchorPane>
@@ -70,86 +72,121 @@
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <Line endX="849.0" endY="-7.62939453125E-6" layoutX="529.0" layoutY="37.0" startX="-100.0" />
-            <Label layoutX="50.0" layoutY="130.0" text="Staff ID">
+            <Line endX="911.5931396484375" endY="-7.62939453125E-6" layoutX="529.0" layoutY="37.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
+            <Label layoutX="138.0" layoutY="130.0" text="Staff ID">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="45.0" layoutY="162.0" prefHeight="54.0" prefWidth="600.0" />
-            <Label layoutX="745.0" layoutY="130.0" text="Name">
+            <TextField fx:id="setStaffID" editable="false" layoutX="133.0" layoutY="162.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
+            <Label layoutX="833.0" layoutY="130.0" text="Name">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="742.0" layoutY="162.0" prefHeight="54.0" prefWidth="600.0" />
-            <Label layoutX="50.0" layoutY="281.0" text="Phone Number">
+            <TextField fx:id="setStaffName" layoutX="830.0" layoutY="162.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
+            <Label layoutX="138.0" layoutY="281.0" text="Phone Number">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="47.0" layoutY="315.0" prefHeight="54.0" prefWidth="600.0" />
-            <Label layoutX="745.0" layoutY="281.0" text="Address">
+            <TextField fx:id="setStaffPhoneNumber" layoutX="135.0" layoutY="315.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
+            <Label layoutX="833.0" layoutY="281.0" text="Address">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="743.0" layoutY="313.0" prefHeight="54.0" prefWidth="600.0" />
-            <Label layoutX="53.0" layoutY="431.0" text="Email">
+            <TextField fx:id="setStaffAddress" layoutX="831.0" layoutY="313.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
+            <Label layoutX="141.0" layoutY="431.0" text="Email">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="49.0" layoutY="467.0" prefHeight="54.0" prefWidth="600.0" />
-            <Label layoutX="735.0" layoutY="431.0" text="Password">
+            <TextField fx:id="setStaffEmail" layoutX="137.0" layoutY="467.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
+            <Label layoutX="823.0" layoutY="431.0" text="Password">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="734.0" layoutY="466.0" prefHeight="54.0" prefWidth="600.0" />
-            <Button layoutX="1233.0" layoutY="480.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="Set">
+            <PasswordField fx:id="setStaffPassword" editable="false" layoutX="822.0" layoutY="467.0" prefHeight="54.0" prefWidth="609.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <Button layoutX="1337.0" layoutY="474.0" mnemonicParsing="false" onAction="#setStaffPass_btn" prefHeight="41.0" prefWidth="87.0" style="-fx-background-radius: 15;" styleClass="main_btn" text="Set">
                <font>
-                  <Font name="Inter Bold" size="13.0" />
+                  <Font name="Inter Bold" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="1222.0" layoutY="606.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="119.0" text="Save">
+            <Button fx:id="saveInfor_btn" layoutX="1310.0" layoutY="606.0" mnemonicParsing="false" onAction="#saveInforamtion" prefHeight="54.0" prefWidth="119.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save">
+               <font>
+                  <Font name="Inter Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="backBilllist_btn1" layoutX="141.0" layoutY="592.0" mnemonicParsing="false" onAction="#backBilllist" prefHeight="54.0" prefWidth="119.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Back">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane fx:id="AnchorPaneSetPassword" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="SET PASSWORD">
                <font>
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <Line endX="996.333251953125" endY="-7.62939453125E-6" layoutX="439.0" layoutY="37.0" startX="-100.0" />
-            <Label layoutX="65.0" layoutY="120.0" text="Current Password">
+            <Line endX="996.333251953125" endY="-7.62939453125E-6" layoutX="439.0" layoutY="37.0" startX="-100.0" strokeWidth="3.0" styleClass="line-color" />
+            <Label layoutX="106.0" layoutY="120.0" text="Current Password">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="70.0" layoutY="155.0" prefHeight="70.0" prefWidth="1331.0" />
-            <Label layoutX="67.0" layoutY="270.0" text="New Password">
+            <Label layoutX="108.0" layoutY="315.0" text="New Password">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="72.0" layoutY="305.0" prefHeight="70.0" prefWidth="1331.0" />
-            <Label layoutX="67.0" layoutY="420.0" text="Confirm Password">
+            <Label layoutX="107.0" layoutY="508.0" text="Confirm Password">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField layoutX="72.0" layoutY="455.0" prefHeight="70.0" prefWidth="1331.0" />
-            <Button layoutX="1283.0" layoutY="597.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="119.0" text="Save">
+            <Button fx:id="saveNewPass_btn" layoutX="1304.0" layoutY="724.0" mnemonicParsing="false" onAction="#saveNewPass" prefHeight="71.0" prefWidth="122.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Save">
                <font>
-                  <Font name="Inter Bold" size="24.0" />
+                  <Font name="Inter Bold" size="29.0" />
                </font>
             </Button>
+            <Button fx:id="BackStaffInfor_btn" layoutX="112.0" layoutY="707.0" mnemonicParsing="false" onAction="#BackStaffInfor" prefHeight="71.0" prefWidth="122.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="Back">
+               <font>
+                  <Font name="Inter Bold" size="29.0" />
+               </font>
+            </Button>
+            <Label fx:id="wrongPass_label" layoutX="114.0" layoutY="242.0" prefHeight="36.0" prefWidth="1201.0" textFill="#b90c0c">
+               <font>
+                  <Font name="Inter Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="wrongConfirm_label" layoutX="116.0" layoutY="622.0" prefHeight="14.0" prefWidth="1220.0" textFill="#b90c0c">
+               <font>
+                  <Font name="Inter Bold" size="20.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="currentPass_txt" layoutX="102.0" layoutY="156.0" prefHeight="68.0" prefWidth="1332.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <PasswordField fx:id="newPass_txt" layoutX="104.0" layoutY="351.0" prefHeight="68.0" prefWidth="1332.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <PasswordField fx:id="confirmPass_txt" layoutX="104.0" layoutY="544.0" prefHeight="68.0" prefWidth="1332.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchorPaneCustomer" layoutX="2.0" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
@@ -280,7 +317,7 @@
                </font>
             </Label>
             <Line endX="850.2823486328125" endY="-1.52587890625E-5" layoutX="350.0" layoutY="37.0" startX="-35.999969482421875" startY="-7.62939453125E-6" strokeWidth="3.0" styleClass="line-color" />
-            <ScrollPane layoutX="45.0" layoutY="72.0" prefHeight="765.0" prefWidth="1398.0">
+            <ScrollPane layoutX="43.0" layoutY="125.0" prefHeight="765.0" prefWidth="1398.0">
                <content>
                   <GridPane fx:id="GridPane" prefHeight="765.0" prefWidth="1389.0" styleClass="main-background">
                     <columnConstraints>
@@ -311,6 +348,7 @@
                   <Font name="Inter Black" size="20.0" />
                </font>
             </Button>
+            <TextField fx:id="textFieldSearch" promptText="Search" layoutX="44.0" layoutY="58.0" onKeyTyped="#enterText" prefHeight="47.0" prefWidth="1086.0" />
          </children>
       </AnchorPane>
    </children>

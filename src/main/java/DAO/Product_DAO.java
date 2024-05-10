@@ -108,7 +108,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
                 product.setDescription(resultSet.getString("description"));
                 product.setType_id(resultSet.getInt("type_id"));
                 product.setImage(resultSet.getString("image_path"));
-
+                if(product.getQuantity() > 0)
                 listProduct.add(product);
             }
             JDBC_Util.closeConnection(connection);
@@ -166,7 +166,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
                 product.setDescription(resultSet.getString("description"));
                 product.setType_id(resultSet.getInt("type_id"));
                 product.setImage(resultSet.getString("image_path"));
-
+                if(product.getQuantity() > 0)
                 listProduct.add(product);
             }
             JDBC_Util.closeConnection(connection);

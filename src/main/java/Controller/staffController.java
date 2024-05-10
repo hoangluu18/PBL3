@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -117,10 +119,31 @@ public class staffController implements Initializable {
     Button buttonSave;
     @FXML
     Button buttonPurchase;
+    @FXML
+    TextField setStaffID, setStaffName, setStaffPhoneNumber, setStaffAddress, setStaffEmail;
+    @FXML
+    PasswordField setStaffPassword;
+    @FXML
+    PasswordField currentPass_txt, newPass_txt, confirmPass_txt;
+    @FXML
+    Button setProfile_btn, setStaffPass_btn;
+    @FXML
+    Button saveNewPass_btn, BackStaffInfor_btn;
+    @FXML
+    AnchorPane AnchorPaneSetPassword;
+    @FXML
+    Label wrongPass_label, wrongConfirm_label;
+    @FXML
+    Button backBilllist_btn;
     public static int  IdOrderCurrentIfPickStatusUnconfirmed = -1;
 
     private ObservableList<Product> CardListData;
 
+    @FXML
+    private TextField textFieldSearch;
+    boolean isChanged = false;
+    ObservableList<Product> listDataByKey;
+    List<Product> listProductCache;
     @FXML
     public void addBillList(){
         //clear data
@@ -358,17 +381,44 @@ public class staffController implements Initializable {
 
     public ObservableList<Product> menuGetData() throws SQLException {
         ArrayList<Product> data = Product_DAO.getInstance().findAll();
+
         ObservableList<Product> listData = FXCollections.observableArrayList(data);
 
         return listData;
     }
 
-    public void initCardList() throws SQLException {
-               // CardListData.clear();
-        if (CardListData == null) {
-            CardListData = FXCollections.observableArrayList();
+    @FXML
+    public void enterText() throws SQLException {
+        String key = textFieldSearch.getText();
+        System.out.println(key);
+        if(key.equals("") || key == null){
+           isChanged = false;
         }
-        CardListData.addAll(menuGetData());
+        else{
+            isChanged = true;
+        }
+        ArrayList<Product> data = Product_DAO.getInstance().findByCondition("name LIKE '%" + key + "%'");
+        listDataByKey = FXCollections.observableArrayList(data);
+        initCardList();
+
+
+    }
+
+    public void initCardList() throws SQLException {
+        //listenertextfield
+
+
+               // CardListData.clear();
+        if(isChanged){
+            CardListData = listDataByKey;
+        }
+        else{
+            CardListData = menuGetData();
+        }
+//        if (CardListData == null) {
+//            CardListData = FXCollections.observableArrayList();
+//        }
+//        CardListData.addAll(menuGetData());
 
         int row = 0;
         int column = 0;
@@ -460,6 +510,11 @@ public class staffController implements Initializable {
         quantity.setPrefWidth(200);
         quantity.setResizable(false);
 
+        for(Product product: listProductPick){
+           if(product.getQuantity() == 0){
+               listProductPick.remove(product);
+           }
+        }
         ObservableList<Product> List = FXCollections.observableArrayList(listProductPick);
         tableViewBillInformation.getColumns().addAll(nameProduct,unitPrice,quantity);
         tableViewBillInformation.setItems(List);
@@ -529,14 +584,18 @@ public class staffController implements Initializable {
             alert1.setTitle("Information");
             alert1.setHeaderText("Purchase successfully");
             alert1.showAndWait();
+
+            //reload bill list
+            addBillList();
+            //show bill list
+            AnchorPaneBillList.setVisible(true);
+            AnchorPaneBillInfor.setVisible(false);
+
         } else {
             // User chose Cancel, do nothing
+            alert.close();
         }
-        //reload bill list
-        addBillList();
-        //show bill list
-        AnchorPaneBillList.setVisible(true);
-        AnchorPaneBillInfor.setVisible(false);
+
     }
 
     @FXML
@@ -596,15 +655,19 @@ public class staffController implements Initializable {
             alert1.setTitle("Information");
             alert1.setHeaderText("Save successfully");
             alert1.showAndWait();
+
+            //reload bill list
+            addBillList();
+            //show bill list
+            AnchorPaneBillList.setVisible(true);
+            AnchorPaneBillInfor.setVisible(false);
+            
         } else {
             // User chose Cancel, do nothing
+            alert.close();
         }
 
-        //reload bill list
-        addBillList();
-        //show bill list
-        AnchorPaneBillList.setVisible(true);
-        AnchorPaneBillInfor.setVisible(false);
+
     }
 
 
@@ -682,10 +745,74 @@ public class staffController implements Initializable {
         Stage Current = (Stage) menubutton.getScene().getWindow();
         Current.close();
     }
+    @FXML
+    public void setProfile_btn(){
+        AnchorPaneBillList.setVisible(false);
+        AnchorPaneStaffInformation.setVisible(true);
+        Employee employee = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
+        if(employee != null){
+            setStaffID.setText(employee.getEmployee_id()+"");
+            setStaffName.setText(employee.getName());
+            setStaffPhoneNumber.setText(employee.getPhone_number());
+            setStaffAddress.setText(employee.getAddress());
+            setStaffEmail.setText(employee.getEmail());
+            User user = User_DAO.getInstance().findByUsername(employee.getEmail());
+            setStaffPassword.setText(user.getPassword());
+        }
+    }
+
+    @FXML
+    public void saveInforamtion(){
+        Employee employee = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
+        employee.setName(setStaffName.getText());
+        employee.setPhone_number(setStaffPhoneNumber.getText());
+        employee.setAddress(setStaffAddress.getText());
+        employee.setEmail(setStaffEmail.getText());
+        Employee_DAO.getInstance().update(employee);
+    }
+
+    @FXML
+    public void setStaffPass_btn(){
+        AnchorPaneStaffInformation.setVisible(false);
+        AnchorPaneSetPassword.setVisible(true);
+    }
+    @FXML
+    public void saveNewPass(){
+        AnchorPaneStaffInformation.setVisible(false);
+        AnchorPaneSetPassword.setVisible(true);
+        User user = User_DAO.getInstance().findById(IdEmployeeCurrent);
+        String currentPass = currentPass_txt.getText();
+        String newPass = newPass_txt.getText();
+        String confirmPass = confirmPass_txt.getText();
+        if(currentPass.equals(user.getPassword()) && newPass.equals(confirmPass)){
+            user.setPassword(newPass);
+            User_DAO.getInstance().update(user,false);
+            AnchorPaneSetPassword.setVisible(false);
+            AnchorPaneBillList.setVisible(true);
+        }
+        else if(!currentPass.equals(user.getPassword())){
+            wrongPass_label.setText("Wrong password");
+        } else if (!newPass.equals(confirmPass)){
+            wrongConfirm_label.setText("Password does not match");
+        }
+    }
+
+    @FXML
+    public void BackStaffInfor(){
+        AnchorPaneSetPassword.setVisible(false);
+        AnchorPaneStaffInformation.setVisible(true);
+    }
+
+    @FXML
+    public void backBilllist(){
+        AnchorPaneStaffInformation.setVisible(false);
+        AnchorPaneBillList.setVisible(true);
+    }
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(IdEmployeeCurrent);
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
         menubutton.setText(name);
+        listProductCache = Product_DAO.getInstance().findAll();
         //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
         //set up bill list

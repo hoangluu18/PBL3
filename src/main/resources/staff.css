@@ -88,3 +88,23 @@
     -fx-border-width: 1px;
     -fx-border-color: #141E46;
 }
+
+.menu-button{
+    -fx-background-color: transparent;
+}
+
+.context-menu{
+    -fx-background-color: #f8efc3;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 5px;
+    -fx-border-width: 1px;
+    -fx-border-color: #141E46;
+}
+
+.menu-item{
+    -fx-font-weight: bold;
+    -fx-font-size: 21px;
+    -fx-border-width: 0px;
+    -fx-pref-width: 218;
+}
