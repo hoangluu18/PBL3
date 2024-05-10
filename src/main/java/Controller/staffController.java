@@ -683,6 +683,7 @@ public class staffController implements Initializable {
         Current.close();
     }
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(IdEmployeeCurrent);
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
         menubutton.setText(name);
         //set up combobox

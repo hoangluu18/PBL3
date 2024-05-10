@@ -99,7 +99,8 @@ public class managerController implements Initializable {
     private Button saveProductButton;
     @FXML
     private ComboBox<String> productTypeComboBox;
-
+    @FXML
+    private MenuButton menubutton;
     //employee
     @FXML
     private GridPane gridCardPane;
@@ -168,6 +169,8 @@ public class managerController implements Initializable {
 //    @FXML
 //    TableColumn<OrderDetail, Integer>unit_price;
     @FXML
+    private TextField testTextfield;
+    @FXML
     private TextField productSizeTxtField2;
     @FXML
     private DatePicker datebegin;
@@ -196,8 +199,6 @@ public class managerController implements Initializable {
     @FXML
     private ComboBox productTypeComboBox2;
     @FXML
-    private MenuButton menubutton;
-    @FXML
     private BarChart<String, Integer> barchart;
     @FXML
     ArrayList<BillDetail> listBillDetail = new ArrayList<BillDetail>();
@@ -211,6 +212,8 @@ public class managerController implements Initializable {
     TableColumn<BillDetail, Integer> quantity = new TableColumn<BillDetail, Integer>("Quantity");
     @FXML
     TableColumn<BillDetail, Integer> unit_price = new TableColumn<BillDetail, Integer>("Unit Price");
+
+    public static String findString;
 
     @FXML
     public void anchorHomeappear(){
@@ -589,6 +592,108 @@ public class managerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(Hello_viewController.IDManagerCurrent);
+        String managerName = Manager_DAO.getInstance().getmanagerName(Hello_viewController.IDManagerCurrent);
+        menubutton.setText(managerName);
+        testTextfield.textProperty().addListener((observable, oldvalue, newvalue )->  {
+            ArrayList<Product> listProduct = new ArrayList<Product>();
+            listProduct = Product_DAO.getInstance().findByname(newvalue);
+            for(int i = 0; i < listProduct.size(); i++) {
+                System.out.println(listProduct.get(i).getName());
+            }
+            data = ProductType_DAO.getInstance().findAll();
+            for (int i = 0; i < data.size(); i++) {
+                productTypeComboBox.getItems().add(data.get(i).getCategory());
+            }
+
+            cardListData.clear();
+            cardListData.addAll(listProduct);
+            int row = 0;
+            int column = 0;
+            gridCardPane.getChildren().clear();
+            gridCardPane.getRowConstraints().clear();
+            gridCardPane.getColumnConstraints().clear();
+
+            for (int i = 0; i < cardListData.size(); i++) {
+
+                try {
+                    FXMLLoader load = new FXMLLoader();
+                    load.setLocation(getClass().getResource("/View/cardProduct.fxml"));
+                    AnchorPane pane = load.load();
+                    cardProductController cardC = load.getController();
+                    cardC.setData(cardListData.get(i));
+                    cardC.setProductInfo(cardListData.get(i));
+
+                    // Tạo một ScaleTransition
+                    ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+
+                    // Thiết lập thuộc tính cho ScaleTransition
+                    st.setFromX(0);  // Bắt đầu từ scale x = 0
+                    st.setFromY(0);  // Bắt đầu từ scale y = 0
+                    st.setToX(1);    // Kết thúc tại scale x = 1
+                    st.setToY(1);    // Kết thúc tại scale y = 1
+                    st.setCycleCount(1);  // Chỉ chạy 1 lần
+                    st.setFromX(0);  // Bắt đầu từ scale x = 0
+                    st.setFromY(0);  // Bắt đầu từ scale y = 0
+                    st.setToX(1);    // Kết thúc tại scale x = 1
+                    st.setToY(1);    // Kết thúc tại scale y = 1
+                    st.setCycleCount(1);  // Chỉ chạy 1 lần
+
+                    pane.setOnMouseClicked(event -> {
+                        dimPane.setVisible(true);
+                        productInfoAnchorpane.setVisible(true);
+                        st.play();
+                    });
+
+                    if (column == 6) {
+                        column = 0;
+                        row += 1;
+                    }
+
+                    gridCardPane.add(pane, column++, row);
+                    lastColumn = column;
+                    lastRow = row;
+                    GridPane.setMargin(pane, new Insets(10));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            try{
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("/View/addProduct.fxml"));
+                AnchorPane addPane = load.load();
+                // Tạo một ScaleTransition
+                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+
+                // Thiết lập thuộc tính cho ScaleTransition
+                st.setFromX(0);  // Bắt đầu từ scale x = 0
+                st.setFromY(0);  // Bắt đầu từ scale y = 0
+                st.setToX(1);    // Kết thúc tại scale x = 1
+                st.setToY(1);    // Kết thúc tại scale y = 1
+                st.setCycleCount(1);  // Chỉ chạy 1 lần
+                st.setFromX(0);  // Bắt đầu từ scale x = 0
+                st.setFromY(0);  // Bắt đầu từ scale y = 0
+                st.setToX(1);    // Kết thúc tại scale x = 1
+                st.setToY(1);    // Kết thúc tại scale y = 1
+                st.setCycleCount(1);  // Chỉ chạy 1 lần
+                addPane.setOnMouseClicked(event -> {
+                    dimPane.setVisible(true);
+                    productInfoAnchorpane.setVisible(true);
+                    st.play();
+                });
+                if (lastColumn == 6) {
+                    lastColumn = 0;
+                    lastRow += 1;
+                }
+
+                gridCardPane.add(addPane, lastColumn, lastRow);
+                GridPane.setMargin(addPane, new Insets(10));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
         employeeData = Employee_DAO.getInstance().findAll();
         employeeList = FXCollections.observableList(employeeData);
         staffidColumn.setCellValueFactory(new PropertyValueFactory<>("employee_id"));
@@ -763,6 +868,9 @@ public class managerController implements Initializable {
 
         }
     }
+
+
+
 }
 
 

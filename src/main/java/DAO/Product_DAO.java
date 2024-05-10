@@ -178,6 +178,35 @@ public class Product_DAO implements DAO_Interface<Product, String>{
         return null;
     }
 
+    public ArrayList<Product> findByname(String name) {
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String sql = "SELECT * FROM products WHERE name LIKE ?" ;
+
+        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, name + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Product product = new Product();
+                product.setProduct_id(resultSet.getInt("product_id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getInt("price"));
+                product.setColor(resultSet.getString("color"));
+                product.setSize(resultSet.getString("size"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setDescription(resultSet.getString("description"));
+                product.setType_id(resultSet.getInt("type_id"));
+                product.setImage(resultSet.getString("image_path"));
+                listProduct.add(product);
+            }
+            JDBC_Util.closeConnection(connection);
+            return listProduct;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Product_DAO getInstance(){
         return new Product_DAO();
     }

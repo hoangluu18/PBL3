@@ -52,7 +52,7 @@
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-                <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
+                <Pane fx:id="switch_pane" layoutX="529.0" layoutY="59.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
                 <Button fx:id="homeBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="529.0" layoutY="8.0" mnemonicParsing="false" onAction="#anchorHomeappear" prefHeight="54.0" prefWidth="119.0" styleClass="switch-btn" text="Home">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
@@ -258,6 +258,10 @@
                       </GridPane>
                </content>
             </ScrollPane>
+            <TextField fx:id="testTextfield" layoutX="63.0" layoutY="59.0" prefHeight="25.0" prefWidth="1381.0" promptText="What you want to find?">
+               <font>
+                  <Font name="Inter Bold" size="14.0" />
+               </font></TextField>
             </children>
         </AnchorPane>
       <Pane fx:id="dimPane" prefHeight="985.0" prefWidth="1518.0" styleClass="dimPane" visible="false" />
