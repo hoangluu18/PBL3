@@ -108,3 +108,16 @@
     -fx-border-width: 0px;
     -fx-pref-width: 218;
 }
+
+.combo-box{
+    -fx-border-color: #141E46;
+    -fx-border-width: 1px;
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-font-size: 25px;
+}
+
+.date-picker{
+    -fx-font-size: 25px;
+}

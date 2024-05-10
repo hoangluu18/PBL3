@@ -339,16 +339,19 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <Button fx:id="ButtonNextProduct" layoutX="1221.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickButtonNextProduct" prefHeight="51.0" prefWidth="97.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="NEXT">
+            <Button fx:id="ButtonNextProduct" layoutX="1221.0" layoutY="7.0" mnemonicParsing="false" onAction="#clickButtonNextProduct" prefHeight="51.0" prefWidth="97.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="NEXT">
                <font>
                   <Font name="Inter Black" size="20.0" />
                </font></Button>
-            <Button fx:id="ButtonNextProduct1" layoutX="1344.0" layoutY="11.0" mnemonicParsing="false" onAction="#clickButtonBack2" prefHeight="51.0" prefWidth="97.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="BACK">
+            <Button fx:id="ButtonNextProduct1" layoutX="1344.0" layoutY="6.0" mnemonicParsing="false" onAction="#clickButtonBack2" prefHeight="51.0" prefWidth="97.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="main_btn" text="BACK">
                <font>
                   <Font name="Inter Black" size="20.0" />
                </font>
             </Button>
-            <TextField fx:id="textFieldSearch" promptText="Search" layoutX="44.0" layoutY="58.0" onKeyTyped="#enterText" prefHeight="47.0" prefWidth="1086.0" />
+            <TextField fx:id="textFieldSearch" layoutX="44.0" layoutY="66.0" onKeyTyped="#enterText" prefHeight="47.0" prefWidth="1399.0" promptText="Search">
+               <font>
+                  <Font name="Inter Bold" size="21.0" />
+               </font></TextField>
          </children>
       </AnchorPane>
    </children>

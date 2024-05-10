@@ -1,6 +1,5 @@
 package Controller;
 import DAO.User_DAO;
-import Database.JDBC_Util;
 import Model.User;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Hello_viewController {
     @FXML
@@ -78,7 +76,7 @@ public class Hello_viewController {
                 stage.setMinHeight(982.0);
                 stage.setScene(scene);
                 stage.show();
-                //stage.setMaximized(true);
+                stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
             } else if (user_dao.findByCondition(condition) != null && this.role == User.EMPLOYEE){
                 //save Employee ID current
@@ -93,7 +91,7 @@ public class Hello_viewController {
                 stage.setMinHeight(982.0);
                 stage.setScene(scene);
                 stage.show();
-                //stage.setMaximized(true);
+                stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
             } else {
                 this.notificationlABEL.setText("Invalid account or password!");

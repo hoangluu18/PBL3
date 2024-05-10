@@ -1,10 +1,8 @@
 package Controller;
-
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
 import com.gluonhq.charm.glisten.control.Avatar;
-import com.mysql.cj.xdevapi.Table;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -19,8 +17,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -33,17 +29,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.scene.Node;
-
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -64,10 +56,6 @@ public class managerController implements Initializable {
     private Button homeBtn;
     @FXML
     private Pane switch_pane;
-    // Data connect
-    private Connection connect;
-    private PreparedStatement prepare;
-    private ResultSet result;
     // Add product
     public static int lastColumn;
     public static int lastRow;
@@ -87,8 +75,7 @@ public class managerController implements Initializable {
     private TextField productQuantityTxtField;
     @FXML
     private TextArea productDescriptionTxtArea;
-    @FXML
-    private Rectangle imageShape;
+
     @FXML
     private ImageView productImageView;
     @FXML
@@ -113,8 +100,6 @@ public class managerController implements Initializable {
     private TextField productQuantityTxtField2;
     @FXML
     private TextArea productDescriptionTxtArea2;
-    @FXML
-    private Rectangle imageShape2;
     @FXML
     private ImageView productImageView2;
     @FXML
@@ -209,6 +194,7 @@ public class managerController implements Initializable {
     @FXML
     private Button updateProductButton;
 
+    @FXML
     private Button addImageButton1;
     @FXML
     private ImageView productImageView1;
@@ -229,8 +215,6 @@ public class managerController implements Initializable {
     TableColumn<BillDetail, Integer> quantity = new TableColumn<BillDetail, Integer>("Quantity");
     @FXML
     TableColumn<BillDetail, Integer> unit_price = new TableColumn<BillDetail, Integer>("Unit Price");
-
-    public static String findString;
 
     @FXML
     public void anchorHomeappear(){
@@ -285,19 +269,6 @@ public class managerController implements Initializable {
         tt.setToX(billBtn.getLayoutX() - switch_pane.getLayoutX());
         tt.play();
         switch_pane.setPrefWidth(billBtn.getWidth());
-    }
-
-    @FXML
-    public void show() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose");
-        File selected = fileChooser.showOpenDialog(null);
-
-        if (selected != null) {
-            // Tạo một Image từ đường dẫn của tệp đã chọn
-            Image image = new Image(selected.toURI().toString());
-            // Hiển thị hình ảnh trong ImageView
-        }
     }
 
     public ObservableList<Product> menuGetData() throws SQLException {

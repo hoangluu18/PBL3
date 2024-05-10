@@ -3,7 +3,6 @@ package Controller;
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,8 +20,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
