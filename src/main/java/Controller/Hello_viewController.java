@@ -56,6 +56,7 @@ public class Hello_viewController {
     private Label notificationlABEL;
 
     public static int IdEmployeeCurrent;
+    public static int IDManagerCurrent;
 
 
     @FXML
@@ -66,6 +67,8 @@ public class Hello_viewController {
         String condition = "userName = '" + account + "' AND password = '" + pass + "' AND role = " + role;
         try {
             if(user_dao.findByCondition(condition) != null && this.role == User.ADMIN){
+                String condition1 = "userName = '" + account + "' AND password = '" + pass + "' AND role = " + User.ADMIN;
+                IDManagerCurrent = user_dao.findByCondition(condition1).get(0).getUser_id();
                 Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/manager.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -75,12 +78,12 @@ public class Hello_viewController {
                 stage.setMinHeight(982.0);
                 stage.setScene(scene);
                 stage.show();
-                stage.setMaximized(true);
+                //stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
             } else if (user_dao.findByCondition(condition) != null && this.role == User.EMPLOYEE){
                 //save Employee ID current
                 IdEmployeeCurrent = user_dao.findByCondition(condition).get(0).getUser_id();
-
+                System.out.println(IdEmployeeCurrent);
                 Parent root = (Parent)FXMLLoader.load(this.getClass().getResource("/View/Staff.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -90,7 +93,7 @@ public class Hello_viewController {
                 stage.setMinHeight(982.0);
                 stage.setScene(scene);
                 stage.show();
-                stage.setMaximized(true);
+                //stage.setMaximized(true);
                 this.sigin_btn.getScene().getWindow().hide();
             } else {
                 this.notificationlABEL.setText("Invalid account or password!");
