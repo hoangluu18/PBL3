@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -137,6 +139,11 @@ public class staffController implements Initializable {
 
     private ObservableList<Product> CardListData;
 
+    @FXML
+    private TextField textFieldSearch;
+    boolean isChanged = false;
+    ObservableList<Product> listDataByKey;
+    List<Product> listProductCache;
     @FXML
     public void addBillList(){
         //clear data
@@ -374,17 +381,44 @@ public class staffController implements Initializable {
 
     public ObservableList<Product> menuGetData() throws SQLException {
         ArrayList<Product> data = Product_DAO.getInstance().findAll();
+
         ObservableList<Product> listData = FXCollections.observableArrayList(data);
 
         return listData;
     }
 
-    public void initCardList() throws SQLException {
-               // CardListData.clear();
-        if (CardListData == null) {
-            CardListData = FXCollections.observableArrayList();
+    @FXML
+    public void enterText() throws SQLException {
+        String key = textFieldSearch.getText();
+        System.out.println(key);
+        if(key.equals("") || key == null){
+           isChanged = false;
         }
-        CardListData.addAll(menuGetData());
+        else{
+            isChanged = true;
+        }
+        ArrayList<Product> data = Product_DAO.getInstance().findByCondition("name LIKE '%" + key + "%'");
+        listDataByKey = FXCollections.observableArrayList(data);
+        initCardList();
+
+
+    }
+
+    public void initCardList() throws SQLException {
+        //listenertextfield
+
+
+               // CardListData.clear();
+        if(isChanged){
+            CardListData = listDataByKey;
+        }
+        else{
+            CardListData = menuGetData();
+        }
+//        if (CardListData == null) {
+//            CardListData = FXCollections.observableArrayList();
+//        }
+//        CardListData.addAll(menuGetData());
 
         int row = 0;
         int column = 0;
@@ -476,6 +510,11 @@ public class staffController implements Initializable {
         quantity.setPrefWidth(200);
         quantity.setResizable(false);
 
+        for(Product product: listProductPick){
+           if(product.getQuantity() == 0){
+               listProductPick.remove(product);
+           }
+        }
         ObservableList<Product> List = FXCollections.observableArrayList(listProductPick);
         tableViewBillInformation.getColumns().addAll(nameProduct,unitPrice,quantity);
         tableViewBillInformation.setItems(List);
@@ -772,6 +811,7 @@ public class staffController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
         menubutton.setText(name);
+        listProductCache = Product_DAO.getInstance().findAll();
         //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
         //set up bill list
