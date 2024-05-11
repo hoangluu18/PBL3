@@ -472,6 +472,7 @@ public class staffController implements Initializable {
         AnchorPaneProductList.setVisible(false);
         AnchorPaneBillInfor.setVisible(true);
 
+        //
 
         //cal total price
         int totalPrice = 0;

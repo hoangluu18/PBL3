@@ -251,25 +251,37 @@
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldBillId" layoutX="59.0" layoutY="112.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldBillId" editable="false" layoutX="59.0" layoutY="112.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
             <Label layoutX="794.0" layoutY="80.0" text="Order Date">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldOrderDate" layoutX="792.0" layoutY="110.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldOrderDate" editable="false" layoutX="792.0" layoutY="110.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
             <Label layoutX="64.0" layoutY="186.0" text="Staff">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldStaffName" layoutX="61.0" layoutY="218.0" prefHeight="59.0" prefWidth="667.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldStaffName" editable="false" layoutX="61.0" layoutY="218.0" prefHeight="59.0" prefWidth="667.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
             <Label layoutX="794.0" layoutY="186.0" text="Customer">
                <font>
                   <Font name="Inter Bold" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldCustomer" layoutX="792.0" layoutY="216.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd" />
+            <TextField fx:id="textFieldCustomer" editable="false" layoutX="792.0" layoutY="216.0" prefHeight="59.0" prefWidth="665.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="21.0" />
+               </font></TextField>
             <Label layoutX="59.0" layoutY="303.0" text="Items">
                <font>
                   <Font name="Inter Bold" size="36.0" />
