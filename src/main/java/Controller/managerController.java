@@ -467,7 +467,7 @@ public class managerController implements Initializable {
         product.setColor(productColorTxtField2.getText());
         product.setSize(productSizeTxtField2.getText());
         product.setQuantity(Integer.parseInt(productQuantityTxtField2.getText()));
-        product.setImage(temp);
+        product.setImage(temp2);
         product.setDescription(productDescriptionTxtArea2.getText());
         int typeID = -1;
         for (int i = 0; i < data.size(); i++) {
@@ -484,15 +484,20 @@ public class managerController implements Initializable {
         temp = choosePictureFromDialog(productImageView);
     }
 
+    String temp2 = "";
+
     public void setAddImageButton2() throws MalformedURLException {
         productImageView2.setImage(null);
-        temp = choosePictureFromDialog(productImageView2);
+        temp2 = choosePictureFromDialog(productImageView2);
     }
 
     public void setCheckImageButton(ImageView imageView,  Product product) throws MalformedURLException {
         productImageView2.setImage(null);
-        Image image = new Image(product.getImage());
-        productImageView2.setImage(image);
+        String imageUrl = product.getImage();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Image image = new Image(imageUrl);
+            productImageView2.setImage(image);
+        }
     }
 
     public String choosePictureFromDialog(ImageView imgView) throws MalformedURLException {
@@ -561,23 +566,22 @@ public class managerController implements Initializable {
     @FXML
     public void updateProduct() throws IOException, SQLException {
         Product product = new Product();
-        product = getProductInfo();
-        product.setProduct_id(Integer.parseInt(productSizeTxtField2.getText()));
+        product = getCheckProductInfo();
         Product_DAO.getInstance().update(product);
         menuDisplayCard();
-        clearAddInfo();
+        clearCheckInfo();
         dimPane.setVisible(false);
-        productInfoAnchorpane.setVisible(false);
+        productInfoAnchorpane2.setVisible(false);
     }
     @FXML
     public void deleteProduct() throws IOException, SQLException {
         Product product = new Product();
-        product = getProductInfo();
+        product = getCheckProductInfo();
         Product_DAO.getInstance().delete(product);
         menuDisplayCard();
-        clearAddInfo();
+        clearCheckInfo();
         dimPane.setVisible(false);
-        productInfoAnchorpane.setVisible(false);
+        productInfoAnchorpane2.setVisible(false);
     }
 
 
@@ -651,7 +655,7 @@ public class managerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Hello_viewController.IDManagerCurrent);
+        //System.out.println(Hello_viewController.IDManagerCurrent);
         String managerName = Manager_DAO.getInstance().getmanagerName(Hello_viewController.IDManagerCurrent);
         menubutton.setText(managerName);
         testTextfield.textProperty().addListener((observable, oldvalue, newvalue )->  {
@@ -664,7 +668,7 @@ public class managerController implements Initializable {
             for (int i = 0; i < data.size(); i++) {
                 productTypeComboBox.getItems().add(data.get(i).getCategory());
             }
-
+            nodeList.clear();
             cardListData.clear();
             cardListData.addAll(listProduct);
             int row = 0;
@@ -698,9 +702,29 @@ public class managerController implements Initializable {
                     st.setToY(1);    // Kết thúc tại scale y = 1
                     st.setCycleCount(1);  // Chỉ chạy 1 lần
 
+                    if (column == 6) {
+                        column = 0;
+                        row += 1;
+                    }
+                    nodeList.add(pane);
                     pane.setOnMouseClicked(event -> {
+                        int position = nodeList.indexOf(pane);
                         dimPane.setVisible(true);
-                        productInfoAnchorpane.setVisible(true);
+                        currentId = cardListData.get(position).getProduct_id();
+                        productNameTxtField2.setText(cardListData.get(position).getName());
+                        productColorTxtField2.setText(cardListData.get(position).getColor());
+                        productSizeTxtField2.setText(cardListData.get(position).getSize());
+                        productPriceTxtField2.setText(Integer.toString(cardListData.get(position).getPrice()));
+                        productQuantityTxtField2.setText(Integer.toString(cardListData.get(position).getQuantity()));
+                        productDescriptionTxtArea2.setText(cardListData.get(position).getDescription());
+                        productTypeComboBox2.getSelectionModel().select(ProductType_DAO.getInstance().findById(cardListData.get(position).getType_id()).getCategory());
+                        productInfoAnchorpane2.setVisible(true);
+
+                        try {
+                            setCheckImageButton(productImageView2, cardListData.get(position));
+                        } catch (MalformedURLException e) {
+                            throw new RuntimeException(e);
+                        }
                         st.play();
                     });
 
@@ -829,6 +853,14 @@ public class managerController implements Initializable {
             stOut.setOnFinished(e -> {
                 productInfoAnchorpane.setVisible(false);
                 productInfoAnchorpane2.setVisible(false);
+                try {
+                    clearAddInfo();
+                    clearCheckInfo();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 dimPane.setVisible(false);
             });
             stOut.play();  // Chạy hiệu ứng

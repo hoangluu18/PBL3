@@ -343,7 +343,6 @@
                </font>
             </Label>
             <ComboBox fx:id="productTypeComboBox" layoutX="487.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="spinner" />
-            <Pane layoutX="972.0" layoutY="68.0" prefHeight="498.0" prefWidth="394.0" styleClass="pane1" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="productInfoAnchorpane2" layoutX="41.0" layoutY="150.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
@@ -408,12 +407,12 @@
                   <Font name="Inter Regular" size="25.0" />
                </font>
             </TextArea>
-            <Button fx:id="addImageButton1" layoutX="1016.0" layoutY="576.0" mnemonicParsing="false" onAction="#setAddImageButton" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Add">
+            <Button fx:id="addImageButton2" layoutX="1016.0" layoutY="576.0" mnemonicParsing="false" onAction="#setAddImageButton2" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Add">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
-            <Button fx:id="deleteProductButton" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Delete">
+            <Button fx:id="updateProductButton2" layoutX="1184.0" layoutY="574.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="83.0" prefWidth="145.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Delete">
                <font>
                   <Font name="Inter Black" size="23.0" />
                </font>
@@ -423,14 +422,13 @@
                   <Font name="Inter Black" size="23.0" />
                </font>
             </Button>
-            <ImageView fx:id="productImageView1" fitHeight="498.0" fitWidth="394.0" layoutX="972.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="487.0" layoutY="27.0" text="Product Type">
                <font>
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
             <ComboBox fx:id="productTypeComboBox2" layoutX="483.0" layoutY="68.0" prefHeight="70.0" prefWidth="400.0" />
-            <Pane layoutX="972.0" layoutY="68.0" prefHeight="498.0" prefWidth="394.0" styleClass="pane1" />
+            <ImageView fx:id="productImageView2" fitHeight="498.0" fitWidth="394.0" layoutX="972.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
     </children>
