@@ -159,18 +159,15 @@ public class Hello_viewController {
         user.setPassword(sign_password.getText());
         user.setRole(User.ADMIN);
         if(User_DAO.getInstance().insert(user) == User_DAO.isDuplicate){
-
             this.alert = new Alert(Alert.AlertType.ERROR);
             this.alert.setTitle("Error Message");
             this.alert.setHeaderText((String)null);
             this.alert.setContentText("Duplicate account, try again");
             this.alert.showAndWait();
-
         }
         else {
-            User_DAO user_dao = new User_DAO();
-            String condition = "userName = '" + sign_account.getText() + "' AND password = '" + sign_password.getText() + "' AND role = " + User.ADMIN;
-            int newManagerID =  user_dao.findByCondition(condition).get(0).getUser_id();
+            String condition = "userName = '" + sign_account.getText() + "' AND password = '" + User_DAO.encode( sign_password.getText()) + "' AND role = " + User.ADMIN;
+            int newManagerID =  User_DAO.getInstance().findByCondition(condition).get(0).getUser_id();
             System.out.println(newManagerID);
             Manager manager = new Manager();
             manager.setName(sign_name.getText());
@@ -178,6 +175,7 @@ public class Hello_viewController {
             manager.setImage_path("");
             Manager_DAO.getInstance().insertManager(manager);
             this.sign_account.setText("");
+            this.sign_name.setText("");
             this.sign_password.setText("");
             this.alert = new Alert(Alert.AlertType.INFORMATION);
             this.alert.setTitle("Information Message");
