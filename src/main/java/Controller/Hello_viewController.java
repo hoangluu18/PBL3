@@ -1,5 +1,7 @@
 package Controller;
+import DAO.Manager_DAO;
 import DAO.User_DAO;
+import Model.Manager;
 import Model.User;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +54,8 @@ public class Hello_viewController {
     private Button switchBtn;
     @FXML
     private Label notificationlABEL;
-
+    @FXML
+    private TextField sign_name;
     public static int IdEmployeeCurrent;
     public static int IDManagerCurrent;
 
@@ -156,13 +159,24 @@ public class Hello_viewController {
         user.setPassword(sign_password.getText());
         user.setRole(User.ADMIN);
         if(User_DAO.getInstance().insert(user) == User_DAO.isDuplicate){
+
             this.alert = new Alert(Alert.AlertType.ERROR);
             this.alert.setTitle("Error Message");
             this.alert.setHeaderText((String)null);
             this.alert.setContentText("Duplicate account, try again");
             this.alert.showAndWait();
+
         }
         else {
+            User_DAO user_dao = new User_DAO();
+            String condition = "userName = '" + sign_account.getText() + "' AND password = '" + sign_password.getText() + "' AND role = " + User.ADMIN;
+            int newManagerID =  user_dao.findByCondition(condition).get(0).getUser_id();
+            System.out.println(newManagerID);
+            Manager manager = new Manager();
+            manager.setName(sign_name.getText());
+            manager.setManager_id(newManagerID);
+            manager.setImage_path("");
+            Manager_DAO.getInstance().insertManager(manager);
             this.sign_account.setText("");
             this.sign_password.setText("");
             this.alert = new Alert(Alert.AlertType.INFORMATION);

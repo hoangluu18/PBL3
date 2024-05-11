@@ -27,7 +27,19 @@ public class Manager_DAO {
         }
     }
 
+    public void insertManager(Manager manager) {
+        String sql = "insert into manager (manager_id, name, image_path) values (?,?,'') ";
+        try (Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, manager.getManager_id());
+            statement.setString(2, manager.getName());
 
+            int result = statement.executeUpdate();
+            System.out.println("Số dòng bị ảnh hưởng: " + result);
+            JDBC_Util.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static Manager_DAO getInstance(){
         return new Manager_DAO();
     }

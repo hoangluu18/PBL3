@@ -88,16 +88,26 @@
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font></TextField>
-                  <Label layoutX="91.0" layoutY="488.0" text="Password">
+                  <Label layoutX="87.0" layoutY="620.0" text="Password">
                       <font>
                           <Font name="Inter Medium" size="20.0" />
                       </font>
                   </Label>
-            <PasswordField fx:id="sign_password" layoutX="78.0" layoutY="519.0" prefHeight="54.0" prefWidth="565.0" promptText="Password" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd">
+            <PasswordField fx:id="sign_password" layoutX="78.0" layoutY="655.0" prefHeight="54.0" prefWidth="565.0" promptText="Password" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font>
             </PasswordField>
+            <Label layoutX="95.0" layoutY="492.0" text="Name">
+               <font>
+                  <Font name="Inter Medium" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sign_name" layoutX="81.0" layoutY="517.0" prefHeight="54.0" prefWidth="565.0" promptText="Name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="19.0" />
+               </font>
+            </TextField>
             </children>
         </AnchorPane>
       <AnchorPane fx:id="switch_pane" prefHeight="1024.0" prefWidth="754.0" styleClass="anchor_child">
