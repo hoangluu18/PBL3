@@ -8,12 +8,22 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import  java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class User_DAO implements DAO_Interface<User, Integer>{
     public static final int isDuplicate = -1;
     ResultSet result = null;
     Connection connection = null;
     PreparedStatement statement = null;
+
+    public static String encode(String password){
+        return  Base64.getEncoder().encodeToString(password.getBytes());
+    }
+
+    public static String decode(String password){
+        byte[] decodedBytes = Base64.getDecoder().decode(password);
+        return new String(decodedBytes);
+    }
     @Override
 
     public int insert(User entity) {
@@ -28,7 +38,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
             connection = JDBC_Util.getConnection();
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, entity.getUserName());
-            statement.setString(2, entity.getPassword());
+            statement.setString(2, encode(entity.getPassword()));
             statement.setInt(3, entity.getRole());
 
             statement.executeUpdate();
@@ -61,7 +71,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         String sql = "UPDATE users SET userName = ?, password = ? WHERE user_id = ?";
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getUserName());
-            statement.setString(2, entity.getPassword());
+            statement.setString(2, encode(entity.getPassword()));
             statement.setInt(3, entity.getUser_id());
 
             int result = statement.executeUpdate();
@@ -104,7 +114,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
                 User user = new User();
                 user.setUser_id(resultSet.getInt("user_id"));
                 user.setUserName(resultSet.getString("userName"));
-                user.setPassword(resultSet.getString("password"));
+                user.setPassword(decode(resultSet.getString("password")));
                 user.setRole(resultSet.getInt("role"));
                 listUser.add(user);
             }
@@ -127,7 +137,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
             while (resultSet.next()){
                 user.setUser_id(resultSet.getInt("user_id"));
                 user.setUserName(resultSet.getString("userName"));
-                user.setPassword(resultSet.getString("password"));
+                user.setPassword(decode(resultSet.getString("password")));
                 user.setRole(resultSet.getInt("role"));
             }
             JDBC_Util.closeConnection(connection);
@@ -159,7 +169,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
                 User user = new User();
                 user.setUser_id(resultSet.getInt("user_id"));
                 user.setUserName(resultSet.getString("userName"));
-                user.setPassword(resultSet.getString("password"));
+                user.setPassword(decode(resultSet.getString("password")));
                 user.setRole(resultSet.getInt("role"));
                 listUser.add(user);
             }
@@ -199,7 +209,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         String sql = "UPDATE users SET userName = ?, password = ? WHERE user_id = ?";
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getUserName());
-            statement.setString(2, entity.getPassword());
+            statement.setString(2, encode(entity.getPassword()));
             statement.setInt(3, entity.getUser_id());
 
             int result = statement.executeUpdate();
