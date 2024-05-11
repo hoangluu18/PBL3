@@ -11,6 +11,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -364,6 +365,82 @@
                <font>
                   <Font name="Inter Bold" size="21.0" />
                </font></TextField>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="dimPane" layoutX="10.0" layoutY="10.0" prefHeight="985.0" prefWidth="1518.0" styleClass="dimPane" visible="false" />
+      <AnchorPane fx:id="productInfoAnchorpane" layoutX="41.0" layoutY="150.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
+         <children>
+            <Label layoutX="67.0" layoutY="27.0" text="Name">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productNameTxtField" editable="false" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="64.0" layoutY="161.0" text="Price">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productPriceTxtField" layoutX="58.0" layoutY="200.0" prefHeight="69.0" prefWidth="400.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="495.0" layoutY="161.0" text="Color">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productColorTxtField" layoutX="489.0" layoutY="199.0" prefHeight="69.0" prefWidth="400.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="64.0" layoutY="293.0" text="Size">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productSizeTxtField" layoutX="58.0" layoutY="332.0" prefHeight="69.0" prefWidth="400.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="495.0" layoutY="288.0" text="Quantity">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productQuantityTxtField" layoutX="489.0" layoutY="330.0" prefHeight="69.0" prefWidth="400.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
+            <Label layoutX="61.0" layoutY="416.0" text="Description">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="productDescriptionTxtArea" layoutX="64.0" layoutY="460.0" prefHeight="298.0" prefWidth="829.0" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextArea>
+            <ImageView fx:id="productImageView" fitHeight="498.0" fitWidth="436.0" layoutX="972.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="487.0" layoutY="27.0" text="Product Type">
+               <font>
+                  <Font name="Inter Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productTypeTxtField2" editable="false" layoutX="486.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+               <font>
+                  <Font name="Inter Regular" size="25.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </children>
