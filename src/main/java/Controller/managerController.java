@@ -35,6 +35,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -647,8 +648,13 @@ public class managerController implements Initializable {
     public void deleteStaff(ActionEvent actionEvent) {
         Employee employee = staff_table.getSelectionModel().getSelectedItem();
         User u1 = User_DAO.getInstance().findById(employee.getEmployee_id());
-        Employee_DAO.getInstance().delete(employee);
-        User_DAO.getInstance().delete(u1);
+//        Employee_DAO.getInstance().delete(employee);
+//        User_DAO.getInstance().delete(u1);
+         u1.setActive(User.NOT_ACTIVE);
+         if(User_DAO.getInstance().update(u1) == User_DAO.isDuplicate){
+             System.out.println("err");
+         }
+        System.out.println("hello");
         employeeList.remove(employee);
         staff_table.refresh();
     }
@@ -777,7 +783,15 @@ public class managerController implements Initializable {
             }
         });
 
+        List<Employee> toRemove = new ArrayList<>();
         employeeData = Employee_DAO.getInstance().findAll();
+        for(Employee e : employeeData){
+            if(User_DAO.getInstance().findById(e.getEmployee_id()).isActive() == User.NOT_ACTIVE){
+                toRemove.add(e);
+            }
+        }
+        employeeData.removeAll(toRemove);
+
         employeeList = FXCollections.observableList(employeeData);
         staffidColumn.setCellValueFactory(new PropertyValueFactory<>("employee_id"));
         staffnameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

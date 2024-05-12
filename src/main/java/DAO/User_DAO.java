@@ -64,15 +64,12 @@ public class User_DAO implements DAO_Interface<User, Integer>{
 
     @Override
     public int update(User entity) {
-        //check duplicate
-        if(checkDuplicateAccounts(entity.getUserName(), entity.getPassword(), entity.getRole())){
-            return isDuplicate;
-        }
-        String sql = "UPDATE users SET userName = ?, password = ? WHERE user_id = ?";
+        String sql = "UPDATE users SET userName = ?, password = ? , is_active = ? WHERE user_id = ?";
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getUserName());
             statement.setString(2, encode(entity.getPassword()));
-            statement.setInt(3, entity.getUser_id());
+            statement.setInt(3, entity.isActive());
+            statement.setInt(4, entity.getUser_id());
 
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
@@ -116,6 +113,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
                 user.setUserName(resultSet.getString("userName"));
                 user.setPassword(decode(resultSet.getString("password")));
                 user.setRole(resultSet.getInt("role"));
+                user.setActive(resultSet.getInt("is_active"));
                 listUser.add(user);
             }
             JDBC_Util.closeConnection(connection);
@@ -139,6 +137,7 @@ public class User_DAO implements DAO_Interface<User, Integer>{
                 user.setUserName(resultSet.getString("userName"));
                 user.setPassword(decode(resultSet.getString("password")));
                 user.setRole(resultSet.getInt("role"));
+                user.setActive(resultSet.getInt("is_active"));
             }
             JDBC_Util.closeConnection(connection);
             return user;
@@ -171,10 +170,11 @@ public class User_DAO implements DAO_Interface<User, Integer>{
                 user.setUserName(resultSet.getString("userName"));
                 user.setPassword(decode(resultSet.getString("password")));
                 user.setRole(resultSet.getInt("role"));
+                user.setActive(resultSet.getInt("is_active"));
                 listUser.add(user);
             }
             JDBC_Util.closeConnection(connection);
-            if(listUser.size() < 1) return null;
+            if(listUser.isEmpty()) return null;
             return listUser;
 
         }catch (SQLException e){
@@ -222,6 +222,8 @@ public class User_DAO implements DAO_Interface<User, Integer>{
         }
         return 0;
     }
+
+
 
 
 }

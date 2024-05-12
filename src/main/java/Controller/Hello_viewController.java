@@ -65,7 +65,7 @@ public class Hello_viewController {
         String account = log_account.getText() ;
         String pass = log_password.getText()  ;
         User_DAO user_dao = new User_DAO();
-        String condition = "userName = '" + account + "' AND password = '" + User_DAO.encode(pass) + "' AND role = " + role;
+        String condition = "userName = '" + account + "' AND password = '" + User_DAO.encode(pass) + "' AND role = " + role + " AND is_active = 1";
         try {
             if(user_dao.findByCondition(condition) != null && this.role == User.ADMIN){
                 String condition1 = "userName = '" + account + "' AND password = '" + User_DAO.encode(pass) + "' AND role = " + User.ADMIN;
