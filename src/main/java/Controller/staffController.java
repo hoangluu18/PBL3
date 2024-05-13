@@ -377,7 +377,7 @@ public class staffController implements Initializable {
     }
 
     public ObservableList<Product> menuGetData() throws SQLException {
-        ArrayList<Product> data = Product_DAO.getInstance().findAll();
+        ArrayList<Product> data = Product_DAO.getInstance().findActiveProduct();
 
         ObservableList<Product> listData = FXCollections.observableArrayList(data);
 
@@ -810,7 +810,7 @@ public class staffController implements Initializable {
         System.out.println(IdEmployeeCurrent);
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
         menubutton.setText(name);
-        listProductCache = Product_DAO.getInstance().findAll();
+        listProductCache = Product_DAO.getInstance().findActiveProduct();
         //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
         //set up bill list

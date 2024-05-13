@@ -90,6 +90,25 @@ public class Product_DAO implements DAO_Interface<Product, String>{
         return 0;
     }
 
+    public int unActive(Product entity) {
+        String sql = "UPDATE products\n" +
+                "SET is_active = 0\n" +
+                "WHERE product_id = ?;";
+        try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, entity.getProduct_id());
+
+            int result = statement.executeUpdate();
+            System.out.println("Số dòng bị ảnh hưởng: " + result);
+
+            JDBC_Util.closeConnection(connection);
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
     @Override
     public ArrayList<Product> findAll() {
         ArrayList<Product> listProduct = new ArrayList<Product>();
@@ -110,6 +129,34 @@ public class Product_DAO implements DAO_Interface<Product, String>{
                 product.setImage(resultSet.getString("image_path"));
                 if(product.getQuantity() > 0)
                 listProduct.add(product);
+            }
+            JDBC_Util.closeConnection(connection);
+            return listProduct;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ArrayList<Product> findActiveProduct() {
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String sql = "SELECT * FROM products where is_active = 1";
+
+        try( Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Product product = new Product();
+                product.setProduct_id(resultSet.getInt("product_id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getInt("price"));
+                product.setColor(resultSet.getString("color"));
+                product.setSize(resultSet.getString("size"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setDescription(resultSet.getString("description"));
+                product.setType_id(resultSet.getInt("type_id"));
+                product.setImage(resultSet.getString("image_path"));
+                if(product.getQuantity() > 0)
+                    listProduct.add(product);
             }
             JDBC_Util.closeConnection(connection);
             return listProduct;

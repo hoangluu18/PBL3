@@ -273,7 +273,7 @@ public class managerController implements Initializable {
     }
 
     public ObservableList<Product> menuGetData() throws SQLException {
-        ArrayList<Product> data = Product_DAO.getInstance().findAll();
+        ArrayList<Product> data = Product_DAO.getInstance().findActiveProduct();
         ObservableList<Product> listData = FXCollections.observableArrayList(data);
 
         return listData;
@@ -578,7 +578,7 @@ public class managerController implements Initializable {
     public void deleteProduct() throws IOException, SQLException {
         Product product = new Product();
         product = getCheckProductInfo();
-        Product_DAO.getInstance().delete(product);
+        Product_DAO.getInstance().unActive(product);
         menuDisplayCard();
         clearCheckInfo();
         dimPane.setVisible(false);
