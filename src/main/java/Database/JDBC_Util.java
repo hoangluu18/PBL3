@@ -19,7 +19,7 @@ public class JDBC_Util {
             String username = "root"; //sua theo may cua ban
             String password = ""; //sua theo may cua ban
 
-            c = DriverManager.  getConnection(url,username,password);
+            c = DriverManager.getConnection(url,username,password);
         }catch (SQLException e){
             e.printStackTrace();
         }

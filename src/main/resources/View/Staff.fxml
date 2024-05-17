@@ -367,7 +367,7 @@
                </font></TextField>
          </children>
       </AnchorPane>
-      <Pane fx:id="dimPane" layoutX="10.0" layoutY="10.0" prefHeight="985.0" prefWidth="1518.0" styleClass="dimPane" visible="false" />
+      <Pane fx:id="dimPane" prefHeight="982.0" prefWidth="1530.0" styleClass="dimPane" visible="false" />
       <AnchorPane fx:id="productInfoAnchorpane" layoutX="41.0" layoutY="150.0" prefHeight="797.0" prefWidth="1455.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main-background" visible="false">
          <children>
             <Label layoutX="67.0" layoutY="27.0" text="Name">
