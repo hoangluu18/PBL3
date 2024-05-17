@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
+import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,11 +17,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,6 +43,12 @@ import java.util.ResourceBundle;
 import static Controller.Hello_viewController.IdEmployeeCurrent;
 
 public class staffController implements Initializable {
+
+    private static staffController instance;
+    public staffController(){
+        instance = this;
+    }
+
 
 
     @FXML
@@ -141,6 +154,30 @@ public class staffController implements Initializable {
     boolean isChanged = false;
     ObservableList<Product> listDataByKey;
     List<Product> listProductCache;
+
+    @FXML
+    private TextField productNameTxtField;
+    @FXML
+    private TextField productTypeTxtField;
+    @FXML
+    private TextField productPriceTxtField;
+    @FXML
+    private TextField productColorTxtField;
+    @FXML
+    private TextField productSizeTxtField;
+    @FXML
+    private TextField productQuantityTxtField;
+    @FXML
+    private TextArea productDescriptionTxtArea;
+    @FXML
+    private ImageView productImageView;
+    @FXML
+    private Pane dimPane;
+    @FXML
+    private AnchorPane productInfoAnchorpane;
+
+    private int currentId;
+    private ArrayList<AnchorPane> nodeList = new ArrayList<>();
     @FXML
     public void addBillList(){
         //clear data
@@ -311,8 +348,10 @@ public class staffController implements Initializable {
         AnchorPaneProductList.setVisible(false);
     }
 
+
     @FXML
     public void clickButtonBack3(){
+
         AnchorPaneProductList.setVisible(true);
         AnchorPaneBillInfor.setVisible(false);
     }
@@ -433,6 +472,49 @@ public class staffController implements Initializable {
                 cardProductStaffController.setData(CardListData.get(i));
                 cardProductStaffController.setProductInfo(CardListData.get(i));
 
+
+//                // Tạo một ScaleTransition
+//                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+//
+//                // Thiết lập thuộc tính cho ScaleTransition
+//                st.setFromX(0);  // Bắt đầu từ scale x = 0
+//                st.setFromY(0);  // Bắt đầu từ scale y = 0
+//                st.setToX(1);    // Kết thúc tại scale x = 1
+//                st.setToY(1);    // Kết thúc tại scale y = 1
+//                st.setCycleCount(1);  // Chỉ chạy 1 lần
+//                st.setFromX(0);  // Bắt đầu từ scale x = 0
+//                st.setFromY(0);  // Bắt đầu từ scale y = 0
+//                st.setToX(1);    // Kết thúc tại scale x = 1
+//                st.setToY(1);    // Kết thúc tại scale y = 1
+//                st.setCycleCount(1);  // Chỉ chạy 1 lần
+//
+//                if (column == 6) {
+//                    column = 0;
+//                    row += 1;
+//                }
+//                nodeList.add(pane);
+//                pane.setOnMouseClicked(event -> {
+//                    int position = nodeList.indexOf(pane);
+//                    dimPane.setVisible(true);
+//                    currentId = CardListData.get(position).getProduct_id();
+//                    productNameTxtField.setText(CardListData.get(position).getName());
+//                    productColorTxtField.setText(CardListData.get(position).getColor());
+//                    productSizeTxtField.setText(CardListData.get(position).getSize());
+//                    productPriceTxtField.setText(Integer.toString(CardListData.get(position).getPrice()));
+//                    productQuantityTxtField.setText(Integer.toString(CardListData.get(position).getQuantity()));
+//                    productDescriptionTxtArea.setText(CardListData.get(position).getDescription());
+//                    String productType = ProductType_DAO.getInstance().findById(CardListData.get(position).getType_id()).getCategory();
+//                    productTypeTxtField.setText(productType);
+//                    productInfoAnchorpane.setVisible(true);
+//
+////                    try {
+////                        setCheckImageButton(productImageView2, cardListData.get(position));
+////                    } catch (MalformedURLException e) {
+////                        throw new RuntimeException(e);
+////                    }
+//                    st.play();
+//                });
+
                 if(column == 6){
                     column = 0;
                     row += 1;
@@ -453,6 +535,8 @@ public class staffController implements Initializable {
         AnchorPaneCustomer.setVisible(false);
         AnchorPaneProductList.setVisible(true);
     }
+
+
 
     @FXML
     void clickButtonNextProduct() {
@@ -807,6 +891,7 @@ public class staffController implements Initializable {
         AnchorPaneBillList.setVisible(true);
     }
     public void initialize(URL url, ResourceBundle rb) {
+
         System.out.println(IdEmployeeCurrent);
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
         menubutton.setText(name);
@@ -822,7 +907,60 @@ public class staffController implements Initializable {
             throw new RuntimeException(e);
         }
         pressOutOfRange();
+        pressOutOfRangeProductDetailRange();
 
+    }
+
+    public void pressOutOfRangeProductDetailRange(){
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                // Thêm EventFilter cho MouseEvent.MOUSE_CLICKED vào scene hoặc root pane của bạn.
+                productInfoAnchorpane.getScene().addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Node node = mouseEvent.getPickResult().getIntersectedNode();
+                        Boolean clickedOn = false;
+                        while (node != null) {
+                            if (node == productInfoAnchorpane ) {
+                                clickedOn = true;
+                                break;
+                            }
+                            node = node.getParent();
+                        }
+
+                        if (!clickedOn) {
+                            productInfoAnchorpane.setVisible(false);
+                            dimPane.setVisible(false);
+
+                        }
+                    }
+                });
+            }
+        });
+        // Trong phương thức initialize() hoặc một phương thức khởi tạo tương tự
+
+    }
+
+    public static void setImageAnchorPane(Product product) {
+        instance.displayProduct(product);
+    }
+
+    public void displayProduct(Product product) {
+        // Cập nhật AnchorPane với thông tin từ product
+        // Ví dụ:
+        productNameTxtField.setText(product.getName());
+        productTypeTxtField.setText(ProductType_DAO.getInstance().findById(product.getType_id()).getCategory());
+        productPriceTxtField.setText(String.valueOf(product.getPrice()));
+        productColorTxtField.setText(product.getColor());
+        productSizeTxtField.setText(product.getSize());
+        productQuantityTxtField.setText(String.valueOf(product.getQuantity()));
+        productDescriptionTxtArea.setText(product.getDescription());
+        productImageView.setImage(new Image(product.getImage()));
+        dimPane.setVisible(true);
+        productInfoAnchorpane.setVisible(true);
+        // ...
     }
 
 }

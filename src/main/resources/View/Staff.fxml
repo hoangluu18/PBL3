@@ -436,7 +436,7 @@
                   <Font name="Inter Bold" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="productTypeTxtField2" editable="false" layoutX="486.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
+            <TextField fx:id="productTypeTxtField" editable="false" layoutX="486.0" layoutY="68.0" prefHeight="70.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="25.0" />
                </font>

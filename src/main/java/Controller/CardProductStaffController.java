@@ -29,9 +29,9 @@ public class CardProductStaffController {
     private Label Name;
 
     @FXML
-    private Label LabelQuantity;
+    private  Label LabelQuantity;
 
-
+    private static boolean isCheck = true;
 
     @FXML
     void mouseClicked(){
@@ -59,6 +59,34 @@ public class CardProductStaffController {
             // Nếu sản phẩm chưa tồn tại trong danh sách, thêm sản phẩm mới
             listProductPick.add(data);
         }
+        System.out.println("hee");
+    }
+
+    @FXML
+    void clickImage(){
+        System.out.println("click image");
+        System.out.println(product_id);
+        System.out.println(name);
+        System.out.println(price);
+        System.out.println(color);
+        System.out.println(size);
+        System.out.println(quantity);
+        System.out.println(description);
+        System.out.println(type_id);
+        System.out.println(productData.getImage());
+        Product product = new Product();
+        product.setProduct_id(product_id);
+        product.setName(name);
+        product.setPrice(price);
+        product.setColor(color);
+        product.setSize(size);
+        product.setQuantity(quantity);
+        product.setDescription(description);
+        product.setType_id(type_id);
+        product.setImage(productData.getImage());
+
+
+        staffController.setImageAnchorPane(product);
     }
 
 

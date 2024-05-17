@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="210.0" styleClass="product" stylesheets="@../staffcardProduct.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CardProductStaffController">
    <children>
-      <ImageView fx:id="ImageViewStaffCard" fitHeight="210.0" fitWidth="210.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ImageViewStaffCard" fitHeight="210.0" fitWidth="210.0" layoutY="6.0" onMouseClicked="#clickImage" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="Price" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="254.0" prefHeight="20.0" prefWidth="202.0">
          <font>
             <Font name="System Bold Italic" size="14.0" />
