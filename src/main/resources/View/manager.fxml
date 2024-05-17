@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -28,7 +27,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="982.0" prefWidth="1512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.managerController">
     <children>
-        <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background" />
+        <AnchorPane prefHeight="983.0" prefWidth="1516.0" styleClass="main-background">
+         <children>
+            <ImageView fx:id="testimage" fitHeight="269.0" fitWidth="239.0" layoutX="642.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
         <AnchorPane prefHeight="70.0" prefWidth="1512.0" styleClass="navbar">
             <children>
                 <ImageView fitHeight="54.0" fitWidth="161.0" layoutX="11.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -36,7 +38,6 @@
                         <Image url="@../Picture/Salework-logo-full.png" />
                     </image>
                 </ImageView>
-                <Avatar fx:id="ava" accessibleRole="IMAGE_VIEW" layoutX="1413.0" layoutY="12.0" />
                 <Button fx:id="productBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="692.0" layoutY="8.0" mnemonicParsing="false" onAction="#anchorProductappear" prefHeight="54.0" prefWidth="152.0" styleClass="switch-btn" text="Product">
                     <font>
                         <Font name="Inter ExtraBold" size="28.0" />
@@ -66,9 +67,10 @@
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
+            <ImageView fx:id="avatarImage" fitHeight="56.0" fitWidth="52.0" layoutX="1377.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
             <children>
                 <DatePicker fx:id="datebegin" layoutX="112.0" layoutY="45.0" prefHeight="45.0" prefWidth="550.0" />
                 <BarChart fx:id="barchart" layoutX="14.0" layoutY="159.0" prefHeight="689.0" prefWidth="1478.0">

@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.scene.Node;
 import java.io.File;
@@ -76,7 +77,8 @@ public class managerController implements Initializable {
     private TextField productQuantityTxtField;
     @FXML
     private TextArea productDescriptionTxtArea;
-
+    @FXML
+    private ImageView avatarImage;
     @FXML
     private ImageView productImageView;
     @FXML
@@ -182,7 +184,8 @@ public class managerController implements Initializable {
 //    TableColumn<OrderDetail, Integer>unit_price;
     @FXML
     private TextField testTextfield;
-
+    @FXML
+    private Avatar avatar = new Avatar();
     @FXML
     private DatePicker datebegin;
     @FXML
@@ -227,6 +230,7 @@ public class managerController implements Initializable {
         tt.setToX(0);
         tt.play();
         switch_pane.setPrefWidth(homeBtn.getWidth());
+
     }
     @FXML
     public void anchorStaffappear(){
@@ -664,6 +668,18 @@ public class managerController implements Initializable {
         //System.out.println(Hello_viewController.IDManagerCurrent);
         String managerName = Manager_DAO.getInstance().getmanagerName(Hello_viewController.IDManagerCurrent);
         menubutton.setText(managerName);
+
+        String avapath = Manager_DAO.getInstance().getavapath(Hello_viewController.IDManagerCurrent);
+        if(avapath != null) {
+            Image tempimage = new Image(avapath);
+//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
+//            Circle clip = new Circle(radius);
+
+            avatarImage.setImage(tempimage);
+//          avatarImage.setClip(clip);
+        }
+
+
         testTextfield.textProperty().addListener((observable, oldvalue, newvalue )->  {
             ArrayList<Product> listProduct = new ArrayList<Product>();
             listProduct = Product_DAO.getInstance().findByname(newvalue);

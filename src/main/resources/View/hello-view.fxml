@@ -108,6 +108,7 @@
                   <Font name="Inter Regular" size="19.0" />
                </font>
             </TextField>
+            <Button layoutX="528.0" layoutY="292.0" mnemonicParsing="false" onAction="#choosePictureFromDialog" text="Add image" />
             </children>
         </AnchorPane>
       <AnchorPane fx:id="switch_pane" prefHeight="1024.0" prefWidth="754.0" styleClass="anchor_child">

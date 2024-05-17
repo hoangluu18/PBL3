@@ -8,13 +8,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +63,7 @@ public class Hello_viewController {
     private TextField sign_name;
     public static int IdEmployeeCurrent;
     public static int IDManagerCurrent;
-
+    public String newUserAvaPath;
 
     @FXML
     public void checklogin(javafx.event.ActionEvent actionEvent) {
@@ -152,8 +157,23 @@ public class Hello_viewController {
         }
     }
 
+
     @FXML
-    public void registration(ActionEvent actionEvent) {// click button sign_up button
+    public void choosePictureFromDialog() throws MalformedURLException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose");
+        File selected = fileChooser.showOpenDialog(null);
+        File url = selected;
+        try {
+            String path = url.toURI().toURL().toString();
+            newUserAvaPath = path;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void registration(ActionEvent actionEvent) throws MalformedURLException {// click button sign_up button
         User user = new User();
         user.setUserName(sign_account.getText());
         user.setPassword(sign_password.getText());
@@ -168,11 +188,15 @@ public class Hello_viewController {
         else {
             String condition = "userName = '" + sign_account.getText() + "' AND password = '" + User_DAO.encode( sign_password.getText()) + "' AND role = " + User.ADMIN;
             int newManagerID =  User_DAO.getInstance().findByCondition(condition).get(0).getUser_id();
-            System.out.println(newManagerID);
+//            System.out.println(newManagerID);
+
             Manager manager = new Manager();
             manager.setName(sign_name.getText());
             manager.setManager_id(newManagerID);
-            manager.setImage_path("");
+            manager.setImage_path(newUserAvaPath);
+            System.out.println(manager.getImage_path());
+
+
             Manager_DAO.getInstance().insertManager(manager);
             this.sign_account.setText("");
             this.sign_name.setText("");
