@@ -70,7 +70,7 @@
             <ImageView fx:id="avatarImage" fitHeight="56.0" fitWidth="52.0" layoutX="1377.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0" visible="false">
+        <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
             <children>
                 <DatePicker fx:id="datebegin" layoutX="112.0" layoutY="45.0" prefHeight="45.0" prefWidth="550.0" />
                 <BarChart fx:id="barchart" layoutX="14.0" layoutY="159.0" prefHeight="689.0" prefWidth="1478.0">
