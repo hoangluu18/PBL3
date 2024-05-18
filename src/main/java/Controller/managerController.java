@@ -2,7 +2,7 @@ package Controller;
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
-import com.gluonhq.charm.glisten.control.Avatar;
+import io.github.gleidson28.GNAvatarView;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -45,7 +45,6 @@ import javafx.util.Duration;
 
 public class managerController implements Initializable {
 
-    @FXML Avatar ava;
     @FXML
     private AnchorPane anchorHome,  anchorStaff, anchorBill, getAnchorProduct;
     @FXML
@@ -77,8 +76,6 @@ public class managerController implements Initializable {
     private TextField productQuantityTxtField;
     @FXML
     private TextArea productDescriptionTxtArea;
-    @FXML
-    private ImageView avatarImage;
     @FXML
     private ImageView productImageView;
     @FXML
@@ -171,6 +168,9 @@ public class managerController implements Initializable {
     private ArrayList<Order> orderData;
     private ObservableList<Order> orderList;
 
+    @FXML
+    private GNAvatarView avatar;
+
 //    ArrayList<OrderDetail> detailList;
 //    @FXML
 //    TableColumn<OrderDetail, Integer>productorder_idcolumn;
@@ -184,8 +184,6 @@ public class managerController implements Initializable {
 //    TableColumn<OrderDetail, Integer>unit_price;
     @FXML
     private TextField testTextfield;
-    @FXML
-    private Avatar avatar = new Avatar();
     @FXML
     private DatePicker datebegin;
     @FXML
@@ -675,8 +673,8 @@ public class managerController implements Initializable {
             Image tempimage = new Image(avapath);
 //            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
 //            Circle clip = new Circle(radius);
-            avatarImage.setImage(tempimage);
-//          avatarImage.setClip(clip);
+            avatar.setImage(tempimage);
+//          avatar.setClip(clip);
         }
 
 
@@ -989,6 +987,12 @@ public class managerController implements Initializable {
             barchart.getData().add(data);
 
         }
+    }
+
+    public void setAvatarImage() {
+        String imageUrl = "file:D:/Study/PBL3/src/main/java/ProductImage/img_7.jpg";
+        Image avatarImage = new Image(imageUrl);
+        avatar.setImage(avatarImage);
     }
 }
 
