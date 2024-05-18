@@ -121,3 +121,7 @@
 .date-picker{
     -fx-font-size: 25px;
 }
+
+.dimPane{
+    -fx-background-color: #00000088;
+}
