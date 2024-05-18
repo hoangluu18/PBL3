@@ -670,11 +670,11 @@ public class managerController implements Initializable {
         menubutton.setText(managerName);
 
         String avapath = Manager_DAO.getInstance().getavapath(Hello_viewController.IDManagerCurrent);
-        if(avapath != null) {
+        System.out.println(avapath);
+        if(avapath != null && !avapath.isEmpty()) {
             Image tempimage = new Image(avapath);
 //            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
 //            Circle clip = new Circle(radius);
-
             avatarImage.setImage(tempimage);
 //          avatarImage.setClip(clip);
         }
