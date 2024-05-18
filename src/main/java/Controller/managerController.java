@@ -988,12 +988,6 @@ public class managerController implements Initializable {
 
         }
     }
-
-    public void setAvatarImage() {
-        String imageUrl = "file:D:/Study/PBL3/src/main/java/ProductImage/img_7.jpg";
-        Image avatarImage = new Image(imageUrl);
-        avatar.setImage(avatarImage);
-    }
 }
 
 
