@@ -208,6 +208,7 @@ public class staffController implements Initializable {
                 "    employees e ON o.employee_id = e.employee_id\n" +
                 "WHERE DATE(o.order_date) = CURDATE();";
 
+
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
@@ -376,7 +377,7 @@ public class staffController implements Initializable {
         System.out.println(name + " " + date + " " + phone + gender + "");
         System.out.println("Click button next");
         //if click element in table view display AnchorPaneProductList , status = unconfirmed
-        if(idCustomerIfPickStatusUnconfirmed != -1){
+        if(idCustomerIfPickStatusUnconfirmed != -1){ //neu customer la unconfirmed
             //update customer
             Customer customer =  new Customer();
             customer.setCustomer_id(idCustomerIfPickStatusUnconfirmed);
@@ -613,6 +614,7 @@ public class staffController implements Initializable {
 
     @FXML
     void clickButtonPurchase(){
+        isSaved = false;
         if(IdOrderCurrentIfPickStatusUnconfirmed != -1){
             //delete data in order detail
             ArrayList<OrderDetail> orderDetails = OrderDetail_DAO.getInstance().findByCondition("order_id = " + IdOrderCurrentIfPickStatusUnconfirmed);
