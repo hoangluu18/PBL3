@@ -205,7 +205,8 @@ public class staffController implements Initializable {
                 "JOIN \n" +
                 "    customers c ON o.customer_id = c.customer_id\n" +
                 "JOIN \n" +
-                "    employees e ON o.employee_id = e.employee_id;\n";
+                "    employees e ON o.employee_id = e.employee_id\n" +
+                "WHERE DATE(o.order_date) = CURDATE();";
 
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             ResultSet resultSet = statement.executeQuery();
