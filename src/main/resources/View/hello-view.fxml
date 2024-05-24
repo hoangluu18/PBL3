@@ -64,56 +64,64 @@
       </AnchorPane>
         <AnchorPane prefHeight="1025.0" prefWidth="722.0">
             <children>
-                <Button fx:id="signup_btn" layoutX="81.0" layoutY="742.0" mnemonicParsing="false" onAction="#registration" prefHeight="68.0" prefWidth="565.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN UP">
+                <Button fx:id="signup_btn" layoutX="49.0" layoutY="738.0" mnemonicParsing="false" onAction="#registration" prefHeight="68.0" prefWidth="623.0" style="-fx-background-radius: 30;" styleClass="sign-in_btn" text="SIGN UP">
                     <font>
                         <Font name="Inter Black" size="24.0" />
                     </font>
                 </Button>
-                <Label layoutX="86.0" layoutY="73.0" text="REGISTER">
+                <Label layoutX="40.0" layoutY="76.0" text="REGISTER">
                     <font>
                         <Font name="Inter Black" size="52.0" />
                     </font>
                 </Label>
-                <Button layoutX="77.0" layoutY="252.0" mnemonicParsing="false" styleClass="switch-btn" text="Manager">
+                <Button layoutX="38.0" layoutY="248.0" mnemonicParsing="false" styleClass="switch-btn" text="Manager">
                     <font>
                         <Font name="Inter Bold" size="24.0" />
                     </font>
                 </Button>
-            <Pane layoutX="88.0" layoutY="132.0" prefHeight="10.0" prefWidth="183.0" style="-fx-background-radius: 10;" styleClass="under_line" />
-                  <Label layoutX="93.0" layoutY="352.0" text="Account">
+            <Pane layoutX="45.0" layoutY="138.0" prefHeight="10.0" prefWidth="183.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+                  <Label layoutX="54.0" layoutY="436.0" text="Account">
                       <font>
                           <Font name="Inter Medium" size="20.0" />
                       </font>
                   </Label>
-                  <TextField fx:id="sign_account" layoutX="79.0" layoutY="381.0" prefHeight="54.0" prefWidth="565.0" promptText="Email" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+                  <TextField fx:id="sign_account" layoutX="49.0" layoutY="464.0" prefHeight="54.0" prefWidth="328.0" promptText="Email" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font></TextField>
-                  <Label layoutX="87.0" layoutY="620.0" text="Password">
+                  <Label layoutX="58.0" layoutY="541.0" text="Password">
                       <font>
                           <Font name="Inter Medium" size="20.0" />
                       </font>
                   </Label>
-            <PasswordField fx:id="sign_password" layoutX="78.0" layoutY="655.0" prefHeight="54.0" prefWidth="565.0" promptText="Password" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd">
+            <PasswordField fx:id="sign_password" layoutX="48.0" layoutY="571.0" prefHeight="54.0" prefWidth="329.0" promptText="Password" style="-fx-background-radius: 10; -fx-border-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font>
             </PasswordField>
-            <Label layoutX="95.0" layoutY="492.0" text="Name">
+            <Label layoutX="56.0" layoutY="325.0" text="Name">
                <font>
                   <Font name="Inter Medium" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="sign_name" layoutX="81.0" layoutY="517.0" prefHeight="54.0" prefWidth="565.0" promptText="Name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
+            <TextField fx:id="sign_name" layoutX="49.0" layoutY="357.0" prefHeight="54.0" prefWidth="326.0" promptText="Name" style="-fx-border-radius: 10; -fx-background-radius: 10;" styleClass="txtfd">
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font>
             </TextField>
-            <Button layoutX="528.0" layoutY="292.0" mnemonicParsing="false" onAction="#choosePictureFromDialog" text="Add image" />
-            <GNAvatarView fx:id="avatar" layoutX="280.0" layoutY="193.0" prefHeight="163.0" prefWidth="132.0" />
+            <Button layoutX="420.0" layoutY="643.0" mnemonicParsing="false" onAction="#choosePictureFromDialog" prefHeight="63.0" prefWidth="240.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" styleClass="main_btn" text="Add image">
+               <font>
+                  <Font name="Inter Black" size="27.0" />
+               </font></Button>
+            <GNAvatarView fx:id="avatar" layoutX="403.0" layoutY="322.0" prefHeight="334.0" prefWidth="267.0" stroke="BLACK" strokeWidth="1.0" />
+            <Label layoutX="414.0" layoutY="325.0" text="Avartar">
+               <font>
+                  <Font name="Inter Medium" size="20.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
-      <AnchorPane fx:id="switch_pane" prefHeight="1024.0" prefWidth="754.0" styleClass="anchor_child" visible="false">
+      <AnchorPane fx:id="switch_pane" prefHeight="1025.0" prefWidth="754.0" styleClass="anchor_child">
          <children>
             <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>

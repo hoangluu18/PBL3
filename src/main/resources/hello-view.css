@@ -37,3 +37,9 @@
     -fx-cursor: hand;
     -fx-font-weight: bold;
 }
+
+.main_btn{
+    -fx-background-color: #141E46;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, #1f2449, 10, 0, 0, 0);
+}
