@@ -3,6 +3,7 @@ import DAO.Manager_DAO;
 import DAO.User_DAO;
 import Model.Manager;
 import Model.User;
+import io.github.gleidson28.GNAvatarView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -45,7 +46,8 @@ public class Hello_viewController {
     private Button staffBtn;
     @FXML
     private Button manaBtn;
-
+    @FXML
+    private GNAvatarView avatar;
     private int role = User.ADMIN;
 
     @FXML
@@ -166,6 +168,13 @@ public class Hello_viewController {
         File url = selected;
         try {
             String path = url.toURI().toURL().toString();
+            if(path != null && !path.isEmpty()) {
+                Image tempimage = new Image(path);
+//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
+//            Circle clip = new Circle(radius);
+                avatar.setImage(tempimage);
+//          avatar.setClip(clip);
+            }
             newUserAvaPath = path;
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

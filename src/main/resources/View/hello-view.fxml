@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.gleidson28.GNAvatarView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -109,9 +110,10 @@
                </font>
             </TextField>
             <Button layoutX="528.0" layoutY="292.0" mnemonicParsing="false" onAction="#choosePictureFromDialog" text="Add image" />
+            <GNAvatarView fx:id="avatar" layoutX="280.0" layoutY="193.0" prefHeight="163.0" prefWidth="132.0" />
             </children>
         </AnchorPane>
-      <AnchorPane fx:id="switch_pane" prefHeight="1024.0" prefWidth="754.0" styleClass="anchor_child">
+      <AnchorPane fx:id="switch_pane" prefHeight="1024.0" prefWidth="754.0" styleClass="anchor_child" visible="false">
          <children>
             <ImageView fitHeight="510.0" fitWidth="680.0" layoutX="24.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
