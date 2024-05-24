@@ -3,6 +3,7 @@ import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
 import io.github.gleidson28.GNAvatarView;
+import io.github.gleidson28.GNAvatarView;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;

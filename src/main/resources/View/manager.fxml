@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.gleidson28.GNAvatarView?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -67,7 +68,7 @@
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-            <ImageView fx:id="avatarImage" fitHeight="56.0" fitWidth="52.0" layoutX="1377.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <GNAvatarView fx:id="avatar" layoutX="1416.0" layoutY="9.0" prefHeight="47.0" prefWidth="58.0" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">

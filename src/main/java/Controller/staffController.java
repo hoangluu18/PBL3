@@ -3,10 +3,12 @@ package Controller;
 import DAO.*;
 import Database.JDBC_Util;
 import Model.*;
+import io.github.gleidson28.GNAvatarView;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,10 +24,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javafx.scene.image.ImageView;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -65,7 +70,8 @@ public class staffController implements Initializable {
     private MenuButton menubutton;
     @FXML
     private MenuItem logout;
-
+    @FXML
+    private TextField setStaffavapath;
     //VARIABLE ANCHORPANE CUSTOMER
     @FXML
     private AnchorPane AnchorPaneCustomer;
@@ -84,7 +90,8 @@ public class staffController implements Initializable {
 
     @FXML
     private  Button ButtonNext;
-
+    @FXML
+    private GNAvatarView avatar;
     //AnchorPaneProductList
     @FXML
     private AnchorPane AnchorPaneProductList;
@@ -840,6 +847,8 @@ public class staffController implements Initializable {
             setStaffEmail.setText(employee.getEmail());
             User user = User_DAO.getInstance().findByUsername(employee.getEmail());
             setStaffPassword.setText(user.getPassword());
+            String avapath = Employee_DAO.getInstance().getavapath(IdEmployeeCurrent);
+            setStaffavapath.setText(avapath);
         }
     }
 
@@ -850,6 +859,14 @@ public class staffController implements Initializable {
         employee.setPhone_number(setStaffPhoneNumber.getText());
         employee.setAddress(setStaffAddress.getText());
         employee.setEmail(setStaffEmail.getText());
+        employee.setImage_path(setStaffavapath.getText());
+        if(setStaffavapath.getText() != null && !setStaffavapath.getText().isEmpty()) {
+            Image tempimage = new Image(setStaffavapath.getText());
+//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
+//            Circle clip = new Circle(radius);
+            avatar.setImage(tempimage);
+        }
+
         Employee_DAO.getInstance().update(employee);
     }
 
@@ -895,6 +912,14 @@ public class staffController implements Initializable {
         System.out.println(IdEmployeeCurrent);
         String name = (Employee_DAO.getInstance().getemployeeName(IdEmployeeCurrent));
         menubutton.setText(name);
+        String avapath = Employee_DAO.getInstance().getavapath(IdEmployeeCurrent);
+        if(avapath != null && !avapath.isEmpty()) {
+            Image tempimage = new Image(avapath);
+//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
+//            Circle clip = new Circle(radius);
+            avatar.setImage(tempimage);
+//          avatar.setClip(clip);
+        }
         listProductCache = Product_DAO.getInstance().findActiveProduct();
         //set up combobox
         ComboBoxGender.getItems().addAll("Male", "Female", "Other");
@@ -909,6 +934,20 @@ public class staffController implements Initializable {
         pressOutOfRange();
         pressOutOfRangeProductDetailRange();
 
+
+    }
+    public String choosePictureFromDialog() throws MalformedURLException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose");
+        File selected = fileChooser.showOpenDialog(null);
+        File url = selected;
+        try {
+            String path = url.toURI().toURL().toString();
+            setStaffavapath.setText(path);
+            return path;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void pressOutOfRangeProductDetailRange(){

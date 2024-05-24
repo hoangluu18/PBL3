@@ -6,6 +6,7 @@ public class Employee {
     private String phone_number;
     private String address;
     private String email;
+    private String image_path;
 
     public Employee(String name, int employee_id, String phone_number, String address, String email) {
         this.name = name;
@@ -15,6 +16,14 @@ public class Employee {
         this.email = email;
     }
     public Employee() {
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
     }
 
     public String getName() {

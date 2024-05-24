@@ -41,14 +41,15 @@ public class Employee_DAO implements DAO_Interface<Employee, String> {
 
     @Override
     public int update(Employee entity) {
-        String sql = "UPDATE employees SET Name = ?, phone_number = ?, Address = ?, Email = ? WHERE employee_id = ?";
+        String sql = "UPDATE employees SET Name = ?, phone_number = ?, Address = ?, Email = ?, image_path = ? WHERE employee_id = ?";
         try( Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getName());
             statement.setString(2, entity.getPhone_number());
             statement.setString(3, entity.getAddress());
             statement.setString(4, entity.getEmail());
-            statement.setInt(5, entity.getEmployee_id());
 
+            statement.setString(5, entity.getImage_path());
+            statement.setInt(6, entity.getEmployee_id());
             int result = statement.executeUpdate();
             System.out.println("Số dòng bị ảnh hưởng: " + result);
 
@@ -164,6 +165,24 @@ public class Employee_DAO implements DAO_Interface<Employee, String> {
                 System.out.println(name);
             }
             return name;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getavapath(int id) {
+        String sql = "select image_path from employees\n" +
+                "where employee_id = ?;";
+        String avapath = "";
+        try (Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                avapath = resultSet.getString("image_path");
+                System.out.println(avapath);
+            }
+            return avapath;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
