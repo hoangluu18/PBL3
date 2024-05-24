@@ -42,7 +42,7 @@
                 <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="Log out" />
                </items>
             </MenuButton>
-            <GNAvatarView fx:id="avatar" layoutX="1417.0" layoutY="11.0" prefHeight="47.0" prefWidth="58.0" />
+            <GNAvatarView fx:id="avatar" layoutX="1417.0" layoutY="11.0" prefHeight="47.0" prefWidth="58.0" stroke="BLACK" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">

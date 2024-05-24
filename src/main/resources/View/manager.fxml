@@ -68,7 +68,7 @@
                         <Font name="Inter ExtraBold" size="28.0" />
                     </font>
                 </Button>
-            <GNAvatarView fx:id="avatar" layoutX="1416.0" layoutY="9.0" prefHeight="47.0" prefWidth="58.0" />
+            <GNAvatarView fx:id="avatar" layoutX="1416.0" layoutY="9.0" prefHeight="47.0" prefWidth="58.0" stroke="BLACK" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="anchorHome" layoutY="63.0" prefHeight="918.0" prefWidth="1512.0">
