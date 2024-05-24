@@ -37,6 +37,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -973,20 +976,35 @@ public class managerController implements Initializable {
         Current.close();
     }
 
+    public static String getNextDay(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate date = LocalDate.parse(dateString, formatter);
+            LocalDate nextDay = date.plusDays(1);
+            return nextDay.format(formatter);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
     public void setBarchart() {
         if(datebegin.getValue() != null && dateend.getValue() != null) {
-            ArrayList<Order> orders = Order_DAO.getInstance().databarchart(datebegin.getValue().toString(), dateend.getValue().toString());
+            String nextday = getNextDay(dateend.getValue().toString());
+            ArrayList<Order> orders = Order_DAO.getInstance().databarchart(datebegin.getValue().toString(), nextday);
 
 //            ObservableList<XYChart.Data<String, Number>> data = FXCollections.observableArrayList();
             XYChart.Series<String, Integer> data = new XYChart.Series();
             for(int i = 0; i < orders.size(); i++) {
                 System.out.println(orders.get(i).getOrder_date());
                 System.out.println(orders.get(i).getTotalPrice());
+
                 data.getData().add(new XYChart.Data(orders.get(i).getOrder_date(), orders.get(i).getTotalPrice()));
             }
             CategoryAxis xAxis = (CategoryAxis) barchart.getXAxis();
-            barchart.setCategoryGap(30);
+            xAxis.setTickLabelRotation(0); // Đảm bảo nhãn trục x không bị xoay
+            xAxis.setTickLabelGap(10); // Khoảng cách giữa các nhãn
 
+            barchart.setCategoryGap(10); // Điều chỉnh khoảng cách giữa các cột
             barchart.getData().clear();
             barchart.getData().add(data);
 

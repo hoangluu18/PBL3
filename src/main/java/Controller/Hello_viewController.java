@@ -204,12 +204,14 @@ public class Hello_viewController {
             manager.setManager_id(newManagerID);
             manager.setImage_path(newUserAvaPath);
             System.out.println(manager.getImage_path());
-
-
             Manager_DAO.getInstance().insertManager(manager);
+
             this.sign_account.setText("");
             this.sign_name.setText("");
             this.sign_password.setText("");
+
+            avatar.setImage(null);
+
             this.alert = new Alert(Alert.AlertType.INFORMATION);
             this.alert.setTitle("Information Message");
             this.alert.setHeaderText((String)null);
