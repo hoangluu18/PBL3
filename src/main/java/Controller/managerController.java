@@ -320,21 +320,6 @@ public class managerController implements Initializable {
                 cardC.setData(cardListData.get(i));
                 cardC.setProductInfo(cardListData.get(i));
 
-                // Tạo một ScaleTransition
-                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
-
-                // Thiết lập thuộc tính cho ScaleTransition
-                st.setFromX(0);  // Bắt đầu từ scale x = 0
-                st.setFromY(0);  // Bắt đầu từ scale y = 0
-                st.setToX(1);    // Kết thúc tại scale x = 1
-                st.setToY(1);    // Kết thúc tại scale y = 1
-                st.setCycleCount(1);  // Chỉ chạy 1 lần
-                st.setFromX(0);  // Bắt đầu từ scale x = 0
-                st.setFromY(0);  // Bắt đầu từ scale y = 0
-                st.setToX(1);    // Kết thúc tại scale x = 1
-                st.setToY(1);    // Kết thúc tại scale y = 1
-                st.setCycleCount(1);  // Chỉ chạy 1 lần
-
                 if (column == 6) {
                     column = 0;
                     row += 1;
@@ -353,12 +338,23 @@ public class managerController implements Initializable {
                     productTypeComboBox2.getSelectionModel().select(ProductType_DAO.getInstance().findById(cardListData.get(position).getType_id()).getCategory());
                     productInfoAnchorpane2.setVisible(true);
 
+                    // Tạo một ScaleTransition cho productInfoAnchorpane2
+                    ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane2);
+
+                    // Thiết lập thuộc tính cho ScaleTransition
+                    st.setFromX(0);  // Bắt đầu từ scale x = 0
+                    st.setFromY(0);  // Bắt đầu từ scale y = 0
+                    st.setToX(1);    // Kết thúc tại scale x = 1
+                    st.setToY(1);    // Kết thúc tại scale y = 1
+                    st.setCycleCount(1);  // Chỉ chạy 1 lần
+
+                    st.play();
+
                     try {
                         setCheckImageButton(productImageView2, cardListData.get(position));
                     } catch (MalformedURLException e) {
                         throw new RuntimeException(e);
                     }
-                    st.play();
                 });
 
                 if (column == 6) {
@@ -383,11 +379,6 @@ public class managerController implements Initializable {
             ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
 
             // Thiết lập thuộc tính cho ScaleTransition
-            st.setFromX(0);  // Bắt đầu từ scale x = 0
-            st.setFromY(0);  // Bắt đầu từ scale y = 0
-            st.setToX(1);    // Kết thúc tại scale x = 1
-            st.setToY(1);    // Kết thúc tại scale y = 1
-            st.setCycleCount(1);  // Chỉ chạy 1 lần
             st.setFromX(0);  // Bắt đầu từ scale x = 0
             st.setFromY(0);  // Bắt đầu từ scale y = 0
             st.setToX(1);    // Kết thúc tại scale x = 1
@@ -712,21 +703,6 @@ public class managerController implements Initializable {
                     cardC.setData(cardListData.get(i));
                     cardC.setProductInfo(cardListData.get(i));
 
-                    // Tạo một ScaleTransition
-                    ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
-
-                    // Thiết lập thuộc tính cho ScaleTransition
-                    st.setFromX(0);  // Bắt đầu từ scale x = 0
-                    st.setFromY(0);  // Bắt đầu từ scale y = 0
-                    st.setToX(1);    // Kết thúc tại scale x = 1
-                    st.setToY(1);    // Kết thúc tại scale y = 1
-                    st.setCycleCount(1);  // Chỉ chạy 1 lần
-                    st.setFromX(0);  // Bắt đầu từ scale x = 0
-                    st.setFromY(0);  // Bắt đầu từ scale y = 0
-                    st.setToX(1);    // Kết thúc tại scale x = 1
-                    st.setToY(1);    // Kết thúc tại scale y = 1
-                    st.setCycleCount(1);  // Chỉ chạy 1 lần
-
                     if (column == 6) {
                         column = 0;
                         row += 1;
@@ -745,12 +721,23 @@ public class managerController implements Initializable {
                         productTypeComboBox2.getSelectionModel().select(ProductType_DAO.getInstance().findById(cardListData.get(position).getType_id()).getCategory());
                         productInfoAnchorpane2.setVisible(true);
 
+                        // Tạo một ScaleTransition cho productInfoAnchorpane2
+                        ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane2);
+
+                        // Thiết lập thuộc tính cho ScaleTransition
+                        st.setFromX(0);  // Bắt đầu từ scale x = 0
+                        st.setFromY(0);  // Bắt đầu từ scale y = 0
+                        st.setToX(1);    // Kết thúc tại scale x = 1
+                        st.setToY(1);    // Kết thúc tại scale y = 1
+                        st.setCycleCount(1);  // Chỉ chạy 1 lần
+
+                        st.play();
+
                         try {
                             setCheckImageButton(productImageView2, cardListData.get(position));
                         } catch (MalformedURLException e) {
                             throw new RuntimeException(e);
                         }
-                        st.play();
                     });
 
                     if (column == 6) {
@@ -775,11 +762,6 @@ public class managerController implements Initializable {
                 ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
 
                 // Thiết lập thuộc tính cho ScaleTransition
-                st.setFromX(0);  // Bắt đầu từ scale x = 0
-                st.setFromY(0);  // Bắt đầu từ scale y = 0
-                st.setToX(1);    // Kết thúc tại scale x = 1
-                st.setToY(1);    // Kết thúc tại scale y = 1
-                st.setCycleCount(1);  // Chỉ chạy 1 lần
                 st.setFromX(0);  // Bắt đầu từ scale x = 0
                 st.setFromY(0);  // Bắt đầu từ scale y = 0
                 st.setToX(1);    // Kết thúc tại scale x = 1
@@ -871,18 +853,24 @@ public class managerController implements Initializable {
         bill_table.getColumns().addAll(idColumn,customer_name,Date,Employee_name,totalPrice,status);
         bill_table.setItems(List);
         //bill_table.setItems(orderList);
-        // Tạo một ScaleTransition
-        ScaleTransition stOut = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
 
-        // Thiết lập thuộc tính cho ScaleTransition
-        stOut.setFromX(1);  // Bắt đầu từ scale x = 1
-        stOut.setFromY(1);  // Bắt đầu từ scale y = 1
-        stOut.setToX(0);    // Kết thúc tại scale x = 0
-        stOut.setToY(0);    // Kết thúc tại scale y = 0
-        stOut.setCycleCount(1);  // Chỉ chạy 1 lần
-
-// Khi nhấn nút save, chạy hiệu ứng và sau đó ẩn searchPane và dimPane
+        //transition out
         dimPane.setOnMouseClicked(event -> {
+            ScaleTransition stOut;
+            if (productInfoAnchorpane.isVisible()) {
+                stOut = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
+            } else if (productInfoAnchorpane2.isVisible()) {
+                stOut = new ScaleTransition(Duration.millis(250), productInfoAnchorpane2);
+            } else {
+                return;
+            }
+
+            stOut.setFromX(1);  // Bắt đầu từ scale x = 1
+            stOut.setFromY(1);  // Bắt đầu từ scale y = 1
+            stOut.setToX(0);    // Kết thúc tại scale x = 0
+            stOut.setToY(0);    // Kết thúc tại scale y = 0
+            stOut.setCycleCount(1);  // Chỉ chạy 1 lần
+
             stOut.setOnFinished(e -> {
                 productInfoAnchorpane.setVisible(false);
                 productInfoAnchorpane2.setVisible(false);
@@ -896,6 +884,7 @@ public class managerController implements Initializable {
                 }
                 dimPane.setVisible(false);
             });
+
             stOut.play();  // Chạy hiệu ứng
             try {
                 clearAddInfo();
