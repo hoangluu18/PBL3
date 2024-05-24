@@ -18,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -983,7 +984,9 @@ public class managerController implements Initializable {
                 System.out.println(orders.get(i).getTotalPrice());
                 data.getData().add(new XYChart.Data(orders.get(i).getOrder_date(), orders.get(i).getTotalPrice()));
             }
+            CategoryAxis xAxis = (CategoryAxis) barchart.getXAxis();
             barchart.setCategoryGap(30);
+
             barchart.getData().clear();
             barchart.getData().add(data);
 
