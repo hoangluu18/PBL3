@@ -352,6 +352,7 @@ public class managerController implements Initializable {
 
                     try {
                         setCheckImageButton(productImageView2, cardListData.get(position));
+                        temp2 = cardListData.get(position).getImage();
                     } catch (MalformedURLException e) {
                         throw new RuntimeException(e);
                     }
