@@ -227,7 +227,7 @@ public class Product_DAO implements DAO_Interface<Product, String>{
 
     public ArrayList<Product> findByname(String name) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String sql = "SELECT * FROM products WHERE name LIKE ?" ;
+        String sql = "SELECT * FROM products WHERE name LIKE ? and is_active = 1 and quantity > 0" ;
 
         try(Connection connection = JDBC_Util.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, name + "%");
