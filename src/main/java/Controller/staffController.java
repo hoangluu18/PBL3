@@ -402,7 +402,7 @@ public class staffController implements Initializable {
 
         }
         //check phoneNumber (vietnam +84)
-        String regex = "^(\\+84|0)([3|5|7|8|9])+([0-9]{8})$";
+        String regex = "^0[0-9]{9}$";
 
         Pattern pattern = Pattern.compile(regex);
 
