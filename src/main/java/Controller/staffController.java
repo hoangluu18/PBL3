@@ -565,6 +565,13 @@ public class staffController implements Initializable {
 
     @FXML
     void clickButtonNextProduct() {
+        if(listProductPick.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("You have not selected any products yet");
+            alert.showAndWait();
+            return;
+        }
         System.out.println("Click button next product");
         System.out.println(listProductPick.size());
         for(Product product: listProductPick){
@@ -630,6 +637,15 @@ public class staffController implements Initializable {
 
     @FXML
     void clickButtonPurchase(){
+
+            if(listProductPick.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("You have not selected any products yet");
+                alert.showAndWait();
+                return;
+            }
+
         isSaved = false;
         if(IdOrderCurrentIfPickStatusUnconfirmed != -1){
             //delete data in order detail
@@ -708,6 +724,13 @@ public class staffController implements Initializable {
 
     @FXML
     void clickButtonSave(){
+        if(listProductPick.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("You have not selected any products yet");
+            alert.showAndWait();
+            return;
+        }
         if(IdOrderCurrentIfPickStatusUnconfirmed != -1){
             //delete data in order detail
             ArrayList<OrderDetail> orderDetails = OrderDetail_DAO.getInstance().findByCondition("order_id = " + IdOrderCurrentIfPickStatusUnconfirmed);
@@ -830,7 +853,7 @@ public class staffController implements Initializable {
 
                         if (!clickedOn) {
                             billList_table.getSelectionModel().clearSelection();
-
+                            ButtonAdd.setText("Add");
                         }
                     }
                 });
@@ -1031,7 +1054,7 @@ public class staffController implements Initializable {
                     Bill clickedRow = row.getItem();
                     if(clickedRow.getStatus().equals("unconfimred") ){
                         ButtonAdd.setText("Edit");
-                       
+
                     }
                     else{
                         ButtonAdd.setText("Add");
