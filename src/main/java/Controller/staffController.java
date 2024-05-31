@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static Controller.Hello_viewController.IdEmployeeCurrent;
 
@@ -398,6 +400,20 @@ public class staffController implements Initializable {
             alert.showAndWait();
             return;
 
+        }
+        //check phoneNumber (vietnam +84)
+        String regex = "^(\\+84|0)([3|5|7|8|9])+([0-9]{8})$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(phone);
+
+        if(!matcher.matches()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct phone number format");
+            alert.showAndWait();
+            return;
         }
         //create new customer
 
@@ -936,6 +952,7 @@ public class staffController implements Initializable {
         }
         pressOutOfRange();
         pressOutOfRangeProductDetailRange();
+        clickBill();
 
 
     }
@@ -1003,6 +1020,26 @@ public class staffController implements Initializable {
         dimPane.setVisible(true);
         productInfoAnchorpane.setVisible(true);
         // ...
+    }
+
+    public void clickBill() {
+        billList_table.setRowFactory(tv -> {
+            TableRow<Bill> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty()) {
+                    System.out.println("hello");
+                    Bill clickedRow = row.getItem();
+                    if(clickedRow.getStatus() == "unconfined"){
+                        ButtonAdd.setText("Edit");
+                    }
+                    else{
+                        ButtonAdd.setText("Add");
+                    }
+                }
+
+            });
+            return row; // Đảm bảo trả về TableRow<Bill>
+        });
     }
 
 }
