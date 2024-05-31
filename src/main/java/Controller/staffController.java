@@ -1027,10 +1027,11 @@ public class staffController implements Initializable {
             TableRow<Bill> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty()) {
-                    System.out.println("hello");
+
                     Bill clickedRow = row.getItem();
-                    if(clickedRow.getStatus() == "unconfined"){
+                    if(clickedRow.getStatus().equals("unconfimred") ){
                         ButtonAdd.setText("Edit");
+                       
                     }
                     else{
                         ButtonAdd.setText("Add");
