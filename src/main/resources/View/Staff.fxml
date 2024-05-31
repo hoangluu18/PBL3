@@ -45,7 +45,7 @@
             <GNAvatarView fx:id="avatar" layoutX="1417.0" layoutY="11.0" prefHeight="47.0" prefWidth="58.0" stroke="BLACK" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0" visible="false">
+      <AnchorPane fx:id="AnchorPaneBillList" layoutY="70.0" prefHeight="912.0" prefWidth="1517.0">
          <children>
             <Label layoutX="25.0" layoutY="22.0" text="BILL LIST">
                <font>
@@ -254,7 +254,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AnchorPaneBillInfor" layoutY="70.0" prefHeight="912.0" prefWidth="1519.0">
+      <AnchorPane fx:id="AnchorPaneBillInfor" layoutY="70.0" prefHeight="912.0" prefWidth="1519.0" visible="false">
          <children>
             <Label layoutX="25.0" layoutY="15.0" text="BILL INFORMATION">
                <font>
@@ -314,7 +314,7 @@
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="LabelTotalPrice" layoutX="1185.0" layoutY="673.0" prefHeight="44.0" prefWidth="0.0">
+            <Label fx:id="LabelTotalPrice" layoutX="1235.0" layoutY="683.0" prefHeight="44.0" prefWidth="233.0">
                <font>
                   <Font name="Inter Bold" size="36.0" />
                </font>

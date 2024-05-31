@@ -26,12 +26,12 @@
                       <Font name="Inter Black" size="52.0" />
                   </font>
               </Label>
-              <Button fx:id="manaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="73.0" layoutY="222.0" mnemonicParsing="false" onAction="#managerStatus" prefHeight="45.0" prefWidth="132.0" style="-fx-font-size: 24;" styleClass="selected_btn" text="Manager">
+              <Button fx:id="manaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="222.0" mnemonicParsing="false" onAction="#managerStatus" prefHeight="51.0" prefWidth="137.0" style="-fx-font-size: 24;" styleClass="selected_btn" text="Manager">
                   <font>
                       <Font name="Inter Regular" size="24.0" />
                   </font>
               </Button>
-              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="219.0" layoutY="222.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
+              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="222.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
                   <font>
                       <Font size="24.0" />
                   </font>
