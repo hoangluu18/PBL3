@@ -772,7 +772,7 @@ public class staffController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Save Confirmation");
-        alert.setContentText("Do you want to save the save to the database?");
+        alert.setContentText("Do you want to save to the database?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){

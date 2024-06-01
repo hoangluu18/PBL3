@@ -649,13 +649,23 @@ public class managerController implements Initializable {
         User u1 = User_DAO.getInstance().findById(employee.getEmployee_id());
 //        Employee_DAO.getInstance().delete(employee);
 //        User_DAO.getInstance().delete(u1);
-         u1.setActive(User.NOT_ACTIVE);
-         if(User_DAO.getInstance().update(u1) == User_DAO.isDuplicate){
-             System.out.println("err");
-         }
-        System.out.println("hello");
-        employeeList.remove(employee);
-        staff_table.refresh();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Delete Staff Confirmation");
+        alert.setContentText("Are you sure to delete this staff?");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK) {
+            u1.setActive(User.NOT_ACTIVE);
+            if(User_DAO.getInstance().update(u1) == User_DAO.isDuplicate){
+                System.out.println("err");
+            }
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Information");
+            alert1.setHeaderText("Save successfully");
+            alert1.showAndWait();
+            employeeList.remove(employee);
+            staff_table.refresh();
+        }
     }
 
     @Override

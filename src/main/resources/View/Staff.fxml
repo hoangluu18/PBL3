@@ -33,7 +33,7 @@
                </image>
             </ImageView>
             <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-            <MenuButton fx:id="menubutton" layoutX="1175.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="218.0" style="-fx-background-color: none;" text="Lê Minh Duyệt" textAlignment="RIGHT">
+            <MenuButton fx:id="menubutton" layoutX="1080.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="313.0" style="-fx-background-color: none;" text="Trần Ngọc Minh Hoàng" textAlignment="RIGHT">
                <font>
                   <Font name="Inter Bold" size="22.0" />
                </font>
@@ -314,7 +314,7 @@
                   <Font name="Inter Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="LabelTotalPrice" layoutX="1235.0" layoutY="683.0" prefHeight="44.0" prefWidth="233.0">
+            <Label fx:id="LabelTotalPrice" layoutX="1085.0" layoutY="683.0" prefHeight="44.0" prefWidth="383.0" textAlignment="RIGHT">
                <font>
                   <Font name="Inter Bold" size="36.0" />
                </font>

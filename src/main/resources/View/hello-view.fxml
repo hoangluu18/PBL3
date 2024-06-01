@@ -31,7 +31,7 @@
                       <Font name="Inter Regular" size="24.0" />
                   </font>
               </Button>
-              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="222.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
+              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="228.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
                   <font>
                       <Font size="24.0" />
                   </font>
