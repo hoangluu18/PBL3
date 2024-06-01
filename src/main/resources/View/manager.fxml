@@ -55,7 +55,7 @@
                     </font>
                 </Button>
                 <Pane fx:id="switch_pane" layoutX="491.0" layoutY="52.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-            <MenuButton fx:id="menubutton" layoutX="1099.0" layoutY="12.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="312.0" style="-fx-background-color: none;" text="Trần Ngọc Minh Hoàng">
+            <MenuButton fx:id="menubutton" layoutX="1201.0" layoutY="12.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="210.0" style="-fx-background-color: none;" text="Tran Duc Duy" textAlignment="RIGHT">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#logout" text="Log out" />
               </items>
@@ -206,11 +206,11 @@
                 <Line endX="1042.977783203125" endY="-1.52587890625E-5" layoutX="412.0" layoutY="37.0" startX="-50.049072265625" startY="-1.52587890625E-5" strokeWidth="3.0" styleClass="line-color" />
                 <TableView fx:id="productDetail_table" layoutX="25.0" layoutY="68.0" prefHeight="360.0" prefWidth="1430.0">
                <columns>
-                  <TableColumn fx:id="order_id" editable="false" prefWidth="110.66669273376465" text="Order ID" />
-                  <TableColumn fx:id="order_detail_id" editable="false" prefWidth="146.66664123535156" text="Order Detail ID" />
-                  <TableColumn fx:id="product_name" editable="false" prefWidth="588.6667175292969" text="Product" />
-                  <TableColumn fx:id="quantity" editable="false" prefWidth="225.9998779296875" text="Quantity" />
-                  <TableColumn fx:id="unit_price" prefWidth="357.333251953125" text="Unit Price" />
+                  <TableColumn fx:id="order_id" editable="false" prefWidth="168.66578483581543" text="Order ID" />
+                  <TableColumn fx:id="order_detail_id" editable="false" prefWidth="174.23101806640625" text="Order Detail ID" />
+                  <TableColumn fx:id="product_name" editable="false" prefWidth="636.4267578125" text="Product" />
+                  <TableColumn fx:id="quantity" editable="false" prefWidth="173.5732421875" text="Quantity" />
+                  <TableColumn fx:id="unit_price" prefWidth="277.475341796875" text="Unit Price" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

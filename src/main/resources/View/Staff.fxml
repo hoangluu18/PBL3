@@ -33,7 +33,7 @@
                </image>
             </ImageView>
             <Pane fx:id="switch_pane" layoutX="649.0" layoutY="47.0" prefHeight="6.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="switch-pane" />
-            <MenuButton fx:id="menubutton" layoutX="1080.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="313.0" style="-fx-background-color: none;" text="Trần Ngọc Minh Hoàng" textAlignment="RIGHT">
+            <MenuButton fx:id="menubutton" layoutX="1168.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="225.0" style="-fx-background-color: none;" text="Luu Viet Hoang" textAlignment="RIGHT">
                <font>
                   <Font name="Inter Bold" size="22.0" />
                </font>
