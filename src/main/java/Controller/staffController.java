@@ -376,6 +376,22 @@ public class staffController implements Initializable {
         String date = (DatePickerDateOfBirth.getValue() != null) ? DatePickerDateOfBirth.getValue().toString() : null;
         String phone = TextFieldPhoneNumber.getText();
         int gender = ComboBoxGender.getSelectionModel().getSelectedIndex();
+
+        //check phoneNumber (vietnam +84)
+        String regex = "^0[0-9]{9}$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(phone);
+
+        if(!matcher.matches()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct phone number format");
+            alert.showAndWait();
+            return;
+        }
+
         System.out.println(name + " " + date + " " + phone + gender + "");
         System.out.println("Click button next");
         //if click element in table view display AnchorPaneProductList , status = unconfirmed
@@ -401,20 +417,7 @@ public class staffController implements Initializable {
             return;
 
         }
-        //check phoneNumber (vietnam +84)
-        String regex = "^0[0-9]{9}$";
 
-        Pattern pattern = Pattern.compile(regex);
-
-        Matcher matcher = pattern.matcher(phone);
-
-        if(!matcher.matches()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please enter the correct phone number format");
-            alert.showAndWait();
-            return;
-        }
         //create new customer
 
         if(!isSaved ){
@@ -879,6 +882,11 @@ public class staffController implements Initializable {
     @FXML
     public void setProfile_btn(){
         AnchorPaneBillList.setVisible(false);
+        AnchorPaneCustomer.setVisible(false);
+        AnchorPaneProductList.setVisible(false);
+        AnchorPaneBillInfor.setVisible(false);
+        AnchorPaneSetPassword.setVisible(false);
+        
         AnchorPaneStaffInformation.setVisible(true);
         Employee employee = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
         if(employee != null){
@@ -897,18 +905,49 @@ public class staffController implements Initializable {
     @FXML
     public void saveInforamtion(){
         Employee employee = Employee_DAO.getInstance().findById(IdEmployeeCurrent+"");
+
+        // Regex for Vietnamese phone number
+        String phoneRegex = "^0[0-9]{9}$";
+        Pattern phonePattern = Pattern.compile(phoneRegex);
+        Matcher phoneMatcher = phonePattern.matcher(setStaffPhoneNumber.getText());
+
+        // Regex for email
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        Matcher emailMatcher = emailPattern.matcher(setStaffEmail.getText());
+
+        if (!phoneMatcher.matches()) {
+            // Show error message for invalid phone number
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid phone number");
+            alert.showAndWait();
+            return;
+        }
+
+        if (!emailMatcher.matches()) {
+            // Show error message for invalid email
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid email");
+            alert.showAndWait();
+            return;
+        }
+
+        // If phone number and email are valid, update the employee information
         employee.setName(setStaffName.getText());
         employee.setPhone_number(setStaffPhoneNumber.getText());
         employee.setAddress(setStaffAddress.getText());
         employee.setEmail(setStaffEmail.getText());
         employee.setImage_path(setStaffavapath.getText());
+
         if(setStaffavapath.getText() != null && !setStaffavapath.getText().isEmpty()) {
             Image tempimage = new Image(setStaffavapath.getText());
-//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
-//            Circle clip = new Circle(radius);
             avatar.setImage(tempimage);
         }
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Update successfully");
         Employee_DAO.getInstance().update(employee);
     }
 
