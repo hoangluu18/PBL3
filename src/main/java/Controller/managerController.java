@@ -659,6 +659,33 @@ public class managerController implements Initializable {
 
     @FXML
     public void saveStaff(ActionEvent actionEvent) {
+        String email = staffemailTextfield.getText();
+
+        if (!isValidEmailFormat(email)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct email format");
+            alert.showAndWait();
+            staffemailTextfield.setText("");
+            return;
+        }
+
+        String phone = staffphoneTextfield.getText();
+        //check phoneNumber (vietnam +84)
+        String regex = "^0[0-9]{9}$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(phone);
+
+        if(!matcher.matches()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct phone number format");
+            alert.showAndWait();
+            staffphoneTextfield.setText("");
+            return;
+        }
         Employee employee = staff_table.getSelectionModel().getSelectedItem();
         User user = User_DAO.getInstance().findByUsername(employee.getEmail());
 

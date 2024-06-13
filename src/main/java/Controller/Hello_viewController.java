@@ -24,6 +24,8 @@ import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Hello_viewController {
     @FXML
@@ -178,8 +180,25 @@ public class Hello_viewController {
         }
     }
 
+    public static boolean isValidEmailFormat(String email) {
+        Pattern emailPattern = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+        Matcher matcher = emailPattern.matcher(email);
+        return matcher.matches();
+    }
     @FXML
     public void registration(ActionEvent actionEvent) throws MalformedURLException {// click button sign_up button
+
+        String email = sign_account.getText();
+
+        if (!isValidEmailFormat(email)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct email format");
+            alert.showAndWait();
+            sign_account.setText("");
+            return;
+        }
+
         User user = new User();
         user.setUserName(sign_account.getText());
         user.setPassword(sign_password.getText());
