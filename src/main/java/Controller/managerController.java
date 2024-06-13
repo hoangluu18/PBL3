@@ -292,11 +292,11 @@ public class managerController implements Initializable {
     ArrayList<ProductType> data;
 
     public static boolean isValidEmailFormat(String email) {
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\.[\\w-_\\.+]*[\\w-_\\.]+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
+        Pattern emailPattern = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+        Matcher matcher = emailPattern.matcher(email);
         return matcher.matches();
     }
+
 
     public void menuDisplayCard() throws IOException, SQLException {
         data = ProductType_DAO.getInstance().findAll();
