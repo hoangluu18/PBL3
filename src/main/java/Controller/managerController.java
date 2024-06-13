@@ -43,6 +43,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -287,6 +290,13 @@ public class managerController implements Initializable {
     }
 
     ArrayList<ProductType> data;
+
+    public static boolean isValidEmailFormat(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\.[\\w-_\\.+]*[\\w-_\\.]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 
     public void menuDisplayCard() throws IOException, SQLException {
         data = ProductType_DAO.getInstance().findAll();
@@ -588,6 +598,33 @@ public class managerController implements Initializable {
 
     @FXML
     public void addStaff(ActionEvent actionEvent) {
+        String email = staffemailTextfield.getText();
+
+        if (!isValidEmailFormat(email)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct email format");
+            alert.showAndWait();
+            staffemailTextfield.setText("");
+            return;
+        }
+
+        String phone = staffphoneTextfield.getText();
+        //check phoneNumber (vietnam +84)
+        String regex = "^0[0-9]{9}$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(phone);
+
+        if(!matcher.matches()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter the correct phone number format");
+            alert.showAndWait();
+            staffphoneTextfield.setText("");
+            return;
+        }
         // Check if the corresponding user record already exists
         User user = User_DAO.getInstance().findByUsername(staffemailTextfield.getText());
         int employee_id = 0;
