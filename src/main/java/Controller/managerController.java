@@ -539,24 +539,6 @@ public class managerController implements Initializable {
     }
 
     public void addProductDetail(){
-
-//        detailList = OrderDetail_DAO.getInstance().findAll();
-//        productorder_idcolumn.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_id"));
-//        order_detail_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("order_detail_id"));
-//        detailproduct_id.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("product_id"));
-//        quantity.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("quantity"));
-//        unit_price.setCellValueFactory(new PropertyValueFactory<OrderDetail, Integer>("unit_price"));
-//        int orderID = getOrderID();
-//        ArrayList<OrderDetail> selected = new ArrayList<>();
-//
-//        for(int i = 0; i < detailList.size(); i++) {
-//            int index = detailList.get(i).getOrder_id();
-//            if(index == orderID) {
-//                selected.add(detailList.get(i));
-//            }
-//        }
-//        ObservableList<OrderDetail> orderDetailsdata = FXCollections.observableArrayList(selected);
-//        productDetail_table.setItems(orderDetailsdata);
         if(bill_table.getSelectionModel().getSelectedItem() != null) {
             int id = getOrderID();
             listBillDetail = BillDetail_DAO.getInstance().getBillDetail(id);
@@ -742,10 +724,7 @@ public class managerController implements Initializable {
         System.out.println(avapath);
         if(avapath != null && !avapath.isEmpty()) {
             Image tempimage = new Image(avapath);
-//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
-//            Circle clip = new Circle(radius);
             avatar.setImage(tempimage);
-//          avatar.setClip(clip);
         }
 
 

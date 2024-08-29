@@ -31,7 +31,7 @@
                       <Font name="Inter Regular" size="24.0" />
                   </font>
               </Button>
-              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="228.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
+              <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="212.0" layoutY="228.0" mnemonicParsing="false" onAction="#staffStatus" style="-fx-font-size: 24;" styleClass="switch-btn" text="Staff">
                   <font>
                       <Font size="24.0" />
                   </font>
@@ -54,7 +54,7 @@
                <font>
                   <Font name="Inter Regular" size="19.0" />
                </font></PasswordField>
-            <Pane fx:id="highlightPane" layoutX="77.0" layoutY="261.0" prefHeight="7.0" prefWidth="124.0" style="-fx-background-radius: 10;" styleClass="under_line" />
+            <Pane fx:id="highlightPane" layoutX="72.0" layoutY="261.0" prefHeight="7.0" prefWidth="124.0" style="-fx-background-radius: 10;" styleClass="under_line" />
             <Label fx:id="notificationlABEL" layoutX="100.0" layoutY="587.0" prefHeight="30.0" prefWidth="559.0" textFill="#dd4949">
                <font>
                   <Font name="Inter Bold" size="19.0" />
