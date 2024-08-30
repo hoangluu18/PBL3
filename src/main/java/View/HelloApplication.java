@@ -17,9 +17,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Shop Management System");
         stage.setScene(scene);
         stage.show();
-//        stage.setMaximized(true);
-        stage.setMinWidth(1512);
-        stage.setMinHeight(982);
+        stage.setMaximized(true);
     }
 
     public static void main(String[] args) {

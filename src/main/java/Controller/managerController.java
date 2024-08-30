@@ -179,17 +179,6 @@ public class managerController implements Initializable {
     @FXML
     private GNAvatarView avatar;
 
-//    ArrayList<OrderDetail> detailList;
-//    @FXML
-//    TableColumn<OrderDetail, Integer>productorder_idcolumn;
-//    @FXML
-//    TableColumn<OrderDetail, Integer>order_detail_id;
-//    @FXML
-//    TableColumn<OrderDetail, Integer>detailproduct_id;
-//    @FXML
-//    TableColumn<OrderDetail, Integer>quantity;
-//    @FXML
-//    TableColumn<OrderDetail, Integer>unit_price;
     @FXML
     private TextField testTextfield;
     @FXML
@@ -526,11 +515,6 @@ public class managerController implements Initializable {
     }
 
 
-//        table_billList.getSelectionModel().selectedItemProperty().addListener(((observableValue, o, newSelection) -> {
-//            if(newSelection != null) {
-//                String orderID = newSelection.ge
-//            }
-//        } ));
 
     public int getOrderID(){
         Bill selectedOrder = (Bill) bill_table.getSelectionModel().getSelectedItem();
@@ -693,8 +677,7 @@ public class managerController implements Initializable {
     public void deleteStaff(ActionEvent actionEvent) {
         Employee employee = staff_table.getSelectionModel().getSelectedItem();
         User u1 = User_DAO.getInstance().findById(employee.getEmployee_id());
-//        Employee_DAO.getInstance().delete(employee);
-//        User_DAO.getInstance().delete(u1);
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Delete Staff Confirmation");
@@ -716,7 +699,7 @@ public class managerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //System.out.println(Hello_viewController.IDManagerCurrent);
+
         String managerName = Manager_DAO.getInstance().getmanagerName(Hello_viewController.IDManagerCurrent);
         menubutton.setText(managerName);
 
@@ -906,9 +889,7 @@ public class managerController implements Initializable {
         ObservableList<Bill> List = FXCollections.observableArrayList(BillList);
         bill_table.getColumns().addAll(idColumn,customer_name,Date,Employee_name,totalPrice,status);
         bill_table.setItems(List);
-        //bill_table.setItems(orderList);
 
-        //transition out
         dimPane.setOnMouseClicked(event -> {
             ScaleTransition stOut;
             if (productInfoAnchorpane.isVisible()) {
@@ -1035,7 +1016,7 @@ public class managerController implements Initializable {
             String nextday = getNextDay(dateend.getValue().toString());
             ArrayList<Order> orders = Order_DAO.getInstance().databarchart(datebegin.getValue().toString(), nextday);
 
-//            ObservableList<XYChart.Data<String, Number>> data = FXCollections.observableArrayList();
+
             XYChart.Series<String, Integer> data = new XYChart.Series();
             for(int i = 0; i < orders.size(); i++) {
                 System.out.println(orders.get(i).getOrder_date());

@@ -140,7 +140,7 @@ public class CardProductStaffController {
         Price.setText((Integer.toString(product.getPrice())));
         setImageByPath(product, this.ImageViewStaffCard);
         Name.setText(product.getName());
-        //spinner =  new Spinner<Integer>();
+
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, product.getQuantity(), 0);
         spinner.setValueFactory(valueFactory);
         int product_id = product.getProduct_id();

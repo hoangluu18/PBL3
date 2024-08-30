@@ -305,9 +305,6 @@ public class staffController implements Initializable {
                 //reset list product
                 CardListData.clear();
                 listProductPick.clear();
-//                GridPane.getChildren().clear();
-//                GridPane.getRowConstraints().clear();
-//                GridPane.getColumnConstraints().clear();
                 idCustomerIfPickStatusUnconfirmed = customer.getCustomer_id();
                 //set data
                 TextFieldCustomerName.setText(nameCustomer);
@@ -469,20 +466,14 @@ public class staffController implements Initializable {
     }
 
     public void initCardList() throws SQLException {
-        //listenertextfield
 
-
-               // CardListData.clear();
         if(isChanged){
             CardListData = listDataByKey;
         }
         else{
             CardListData = menuGetData();
         }
-//        if (CardListData == null) {
-//            CardListData = FXCollections.observableArrayList();
-//        }
-//        CardListData.addAll(menuGetData());
+
 
         int row = 0;
         int column = 0;
@@ -499,49 +490,6 @@ public class staffController implements Initializable {
                 CardProductStaffController cardProductStaffController = load.getController();
                 cardProductStaffController.setData(CardListData.get(i));
                 cardProductStaffController.setProductInfo(CardListData.get(i));
-
-
-//                // Tạo một ScaleTransition
-//                ScaleTransition st = new ScaleTransition(Duration.millis(250), productInfoAnchorpane);
-//
-//                // Thiết lập thuộc tính cho ScaleTransition
-//                st.setFromX(0);  // Bắt đầu từ scale x = 0
-//                st.setFromY(0);  // Bắt đầu từ scale y = 0
-//                st.setToX(1);    // Kết thúc tại scale x = 1
-//                st.setToY(1);    // Kết thúc tại scale y = 1
-//                st.setCycleCount(1);  // Chỉ chạy 1 lần
-//                st.setFromX(0);  // Bắt đầu từ scale x = 0
-//                st.setFromY(0);  // Bắt đầu từ scale y = 0
-//                st.setToX(1);    // Kết thúc tại scale x = 1
-//                st.setToY(1);    // Kết thúc tại scale y = 1
-//                st.setCycleCount(1);  // Chỉ chạy 1 lần
-//
-//                if (column == 6) {
-//                    column = 0;
-//                    row += 1;
-//                }
-//                nodeList.add(pane);
-//                pane.setOnMouseClicked(event -> {
-//                    int position = nodeList.indexOf(pane);
-//                    dimPane.setVisible(true);
-//                    currentId = CardListData.get(position).getProduct_id();
-//                    productNameTxtField.setText(CardListData.get(position).getName());
-//                    productColorTxtField.setText(CardListData.get(position).getColor());
-//                    productSizeTxtField.setText(CardListData.get(position).getSize());
-//                    productPriceTxtField.setText(Integer.toString(CardListData.get(position).getPrice()));
-//                    productQuantityTxtField.setText(Integer.toString(CardListData.get(position).getQuantity()));
-//                    productDescriptionTxtArea.setText(CardListData.get(position).getDescription());
-//                    String productType = ProductType_DAO.getInstance().findById(CardListData.get(position).getType_id()).getCategory();
-//                    productTypeTxtField.setText(productType);
-//                    productInfoAnchorpane.setVisible(true);
-//
-////                    try {
-////                        setCheckImageButton(productImageView2, cardListData.get(position));
-////                    } catch (MalformedURLException e) {
-////                        throw new RuntimeException(e);
-////                    }
-//                    st.play();
-//                });
 
                 if(column == 6){
                     column = 0;
@@ -590,8 +538,6 @@ public class staffController implements Initializable {
 
         AnchorPaneProductList.setVisible(false);
         AnchorPaneBillInfor.setVisible(true);
-
-        //
 
         //cal total price
         int totalPrice = 0;
@@ -996,10 +942,8 @@ public class staffController implements Initializable {
         String avapath = Employee_DAO.getInstance().getavapath(IdEmployeeCurrent);
         if(avapath != null && !avapath.isEmpty()) {
             Image tempimage = new Image(avapath);
-//            double radius = Math.min(tempimage.getWidth(), tempimage.getHeight()) / 2;
-//            Circle clip = new Circle(radius);
             avatar.setImage(tempimage);
-//          avatar.setClip(clip);
+
         }
         listProductCache = Product_DAO.getInstance().findActiveProduct();
         //set up combobox
@@ -1060,7 +1004,7 @@ public class staffController implements Initializable {
                 });
             }
         });
-        // Trong phương thức initialize() hoặc một phương thức khởi tạo tương tự
+
 
     }
 

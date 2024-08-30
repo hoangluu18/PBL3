@@ -213,7 +213,6 @@ public class Hello_viewController {
         else {
             String condition = "userName = '" + sign_account.getText() + "' AND password = '" + User_DAO.encode( sign_password.getText()) + "' AND role = " + User.ADMIN;
             int newManagerID =  User_DAO.getInstance().findByCondition(condition).get(0).getUser_id();
-//            System.out.println(newManagerID);
 
             Manager manager = new Manager();
             manager.setName(sign_name.getText());

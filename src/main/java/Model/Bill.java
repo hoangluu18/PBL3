@@ -1,13 +1,12 @@
 package Model;
 
-//new class bill
 public class  Bill{
     private int Bill_Id;
     private String customer_name;
     private String date;
     private String employee_name;
     private int total_price;
-    private String status; // 0: chưa xác nhận, 1: đã xác nhận
+    private String status; // 0: not confirm, 1: confirm
 
     public Bill(int id, String customer_name, String date, String employee_name, int total_price, String status) {
         this.Bill_Id = id;
